@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smarti-Assist", "Smarti-Assist\Smarti-Assist.csproj", "{EA4ED652-DE4C-470B-AA96-C12E9C298803}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA4ED652-DE4C-470B-AA96-C12E9C298803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4ED652-DE4C-470B-AA96-C12E9C298803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4ED652-DE4C-470B-AA96-C12E9C298803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4ED652-DE4C-470B-AA96-C12E9C298803}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1AE4EEBC-59A7-4A14-9621-F9AB04F1768D}
+	EndGlobalSection
+EndGlobal
