@@ -17,12 +17,23 @@ namespace Smarti_Assist
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
 
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutSmartiAssistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAbout aboutFrame = new frmAbout();
+            aboutFrame.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

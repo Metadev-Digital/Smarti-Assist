@@ -30,41 +30,41 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFilePrint = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.importConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printerConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setTechniciansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.partNumbersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.qRCodeOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditPrinter = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditTech = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditPart = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditQR = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.removeConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.assemblyDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.smartiAssistDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewAss = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuViewSmart = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpReport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutSmartiAssistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.grpOptions = new System.Windows.Forms.GroupBox();
+            this.txtPO = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTech = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.chkTech = new System.Windows.Forms.CheckBox();
             this.chkQR = new System.Windows.Forms.CheckBox();
             this.chkDate = new System.Windows.Forms.CheckBox();
             this.chkInjector = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtTech = new System.Windows.Forms.TextBox();
-            this.txtPO = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.lstArk = new System.Windows.Forms.ListBox();
             this.lstInj = new System.Windows.Forms.ListBox();
@@ -72,6 +72,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnArk = new System.Windows.Forms.Button();
             this.btnInj = new System.Windows.Forms.Button();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.grpOptions.SuspendLayout();
             this.SuspendLayout();
@@ -93,152 +94,169 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveAsPDFToolStripMenuItem,
-            this.printToolStripMenuItem,
+            this.mnuFileSave,
+            this.mnuFilePrint,
             this.toolStripMenuItem1,
-            this.importConfigFileToolStripMenuItem,
-            this.exportConfigFileToolStripMenuItem,
+            this.mnuFileImport,
+            this.mnuFileExport,
             this.toolStripMenuItem2,
-            this.exitToolStripMenuItem});
+            this.mnuFileExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 32);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // saveAsPDFToolStripMenuItem
+            // mnuFileSave
             // 
-            this.saveAsPDFToolStripMenuItem.Name = "saveAsPDFToolStripMenuItem";
-            this.saveAsPDFToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.saveAsPDFToolStripMenuItem.Text = "Save as PDF...";
+            this.mnuFileSave.Name = "mnuFileSave";
+            this.mnuFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.mnuFileSave.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileSave.Text = "Save as PDF...";
             // 
-            // printToolStripMenuItem
+            // mnuFilePrint
             // 
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.printToolStripMenuItem.Text = "Print...";
+            this.mnuFilePrint.Name = "mnuFilePrint";
+            this.mnuFilePrint.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.mnuFilePrint.Size = new System.Drawing.Size(283, 34);
+            this.mnuFilePrint.Text = "Print...";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(267, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(280, 6);
             // 
-            // importConfigFileToolStripMenuItem
+            // mnuFileImport
             // 
-            this.importConfigFileToolStripMenuItem.Name = "importConfigFileToolStripMenuItem";
-            this.importConfigFileToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.importConfigFileToolStripMenuItem.Text = "Import Config File";
+            this.mnuFileImport.Name = "mnuFileImport";
+            this.mnuFileImport.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileImport.Text = "Import Config File";
             // 
-            // exportConfigFileToolStripMenuItem
+            // mnuFileExport
             // 
-            this.exportConfigFileToolStripMenuItem.Name = "exportConfigFileToolStripMenuItem";
-            this.exportConfigFileToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.exportConfigFileToolStripMenuItem.Text = "Export Config File...";
+            this.mnuFileExport.Name = "mnuFileExport";
+            this.mnuFileExport.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileExport.Text = "Export Config File...";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(267, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(280, 6);
             // 
-            // exitToolStripMenuItem
+            // mnuFileExit
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.mnuFileExit.Name = "mnuFileExit";
+            this.mnuFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.mnuFileExit.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileExit.Text = "Exit";
+            this.mnuFileExit.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.printerConfigToolStripMenuItem,
-            this.setTechniciansToolStripMenuItem,
-            this.partNumbersToolStripMenuItem,
-            this.qRCodeOutputToolStripMenuItem,
+            this.mnuEditPrinter,
+            this.toolStripMenuItem6,
+            this.mnuEditTech,
+            this.mnuEditPart,
+            this.mnuEditQR,
             this.toolStripMenuItem3,
-            this.removeConfigFileToolStripMenuItem});
+            this.mnuEditRemove});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 32);
             this.editToolStripMenuItem.Text = "Edit";
             // 
-            // printerConfigToolStripMenuItem
+            // mnuEditPrinter
             // 
-            this.printerConfigToolStripMenuItem.Name = "printerConfigToolStripMenuItem";
-            this.printerConfigToolStripMenuItem.Size = new System.Drawing.Size(267, 34);
-            this.printerConfigToolStripMenuItem.Text = "Printer Config";
+            this.mnuEditPrinter.Name = "mnuEditPrinter";
+            this.mnuEditPrinter.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.P)));
+            this.mnuEditPrinter.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditPrinter.Text = "Printer Config";
             // 
-            // setTechniciansToolStripMenuItem
+            // mnuEditTech
             // 
-            this.setTechniciansToolStripMenuItem.Name = "setTechniciansToolStripMenuItem";
-            this.setTechniciansToolStripMenuItem.Size = new System.Drawing.Size(267, 34);
-            this.setTechniciansToolStripMenuItem.Text = "Set Technicians";
+            this.mnuEditTech.Name = "mnuEditTech";
+            this.mnuEditTech.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.T)));
+            this.mnuEditTech.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditTech.Text = "Set Technicians";
             // 
-            // partNumbersToolStripMenuItem
+            // mnuEditPart
             // 
-            this.partNumbersToolStripMenuItem.Name = "partNumbersToolStripMenuItem";
-            this.partNumbersToolStripMenuItem.Size = new System.Drawing.Size(267, 34);
-            this.partNumbersToolStripMenuItem.Text = "Part Numbers";
+            this.mnuEditPart.Name = "mnuEditPart";
+            this.mnuEditPart.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.N)));
+            this.mnuEditPart.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditPart.Text = "Part Numbers";
             // 
-            // qRCodeOutputToolStripMenuItem
+            // mnuEditQR
             // 
-            this.qRCodeOutputToolStripMenuItem.Name = "qRCodeOutputToolStripMenuItem";
-            this.qRCodeOutputToolStripMenuItem.Size = new System.Drawing.Size(267, 34);
-            this.qRCodeOutputToolStripMenuItem.Text = "Q.R. Code Output";
+            this.mnuEditQR.Name = "mnuEditQR";
+            this.mnuEditQR.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.Q)));
+            this.mnuEditQR.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditQR.Text = "Q.R. Code Output";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(264, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(366, 6);
             // 
-            // removeConfigFileToolStripMenuItem
+            // mnuEditRemove
             // 
-            this.removeConfigFileToolStripMenuItem.Name = "removeConfigFileToolStripMenuItem";
-            this.removeConfigFileToolStripMenuItem.Size = new System.Drawing.Size(267, 34);
-            this.removeConfigFileToolStripMenuItem.Text = "Remove Config File";
+            this.mnuEditRemove.Name = "mnuEditRemove";
+            this.mnuEditRemove.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditRemove.Text = "Remove Config File";
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.assemblyDocumentToolStripMenuItem,
-            this.smartiAssistDocumentToolStripMenuItem});
+            this.mnuViewAss,
+            this.mnuViewSmart});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 32);
             this.viewToolStripMenuItem.Text = "View";
             // 
-            // assemblyDocumentToolStripMenuItem
+            // mnuViewAss
             // 
-            this.assemblyDocumentToolStripMenuItem.Name = "assemblyDocumentToolStripMenuItem";
-            this.assemblyDocumentToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
-            this.assemblyDocumentToolStripMenuItem.Text = "Assembly Document";
+            this.mnuViewAss.Name = "mnuViewAss";
+            this.mnuViewAss.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.mnuViewAss.Size = new System.Drawing.Size(375, 34);
+            this.mnuViewAss.Text = "Assembly Document";
             // 
-            // smartiAssistDocumentToolStripMenuItem
+            // mnuViewSmart
             // 
-            this.smartiAssistDocumentToolStripMenuItem.Name = "smartiAssistDocumentToolStripMenuItem";
-            this.smartiAssistDocumentToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
-            this.smartiAssistDocumentToolStripMenuItem.Text = "Smart-i Assist Document";
+            this.mnuViewSmart.Name = "mnuViewSmart";
+            this.mnuViewSmart.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.mnuViewSmart.Size = new System.Drawing.Size(375, 34);
+            this.mnuViewSmart.Text = "Smart-i Assist Document";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reportIssueToolStripMenuItem,
+            this.mnuHelpReport,
             this.toolStripMenuItem4,
-            this.aboutSmartiAssistToolStripMenuItem});
+            this.mnuHelpAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 32);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // reportIssueToolStripMenuItem
+            // mnuHelpReport
             // 
-            this.reportIssueToolStripMenuItem.Name = "reportIssueToolStripMenuItem";
-            this.reportIssueToolStripMenuItem.Size = new System.Drawing.Size(278, 34);
-            this.reportIssueToolStripMenuItem.Text = "Report Issue";
+            this.mnuHelpReport.Name = "mnuHelpReport";
+            this.mnuHelpReport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.mnuHelpReport.Size = new System.Drawing.Size(278, 34);
+            this.mnuHelpReport.Text = "Report Issue";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(275, 6);
             // 
-            // aboutSmartiAssistToolStripMenuItem
+            // mnuHelpAbout
             // 
-            this.aboutSmartiAssistToolStripMenuItem.Name = "aboutSmartiAssistToolStripMenuItem";
-            this.aboutSmartiAssistToolStripMenuItem.Size = new System.Drawing.Size(278, 34);
-            this.aboutSmartiAssistToolStripMenuItem.Text = "About Smart-i Assist";
+            this.mnuHelpAbout.Name = "mnuHelpAbout";
+            this.mnuHelpAbout.Size = new System.Drawing.Size(278, 34);
+            this.mnuHelpAbout.Text = "About Smart-i Assist";
+            this.mnuHelpAbout.Click += new System.EventHandler(this.aboutSmartiAssistToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -287,6 +305,46 @@
             this.grpOptions.TabStop = false;
             this.grpOptions.Text = "Options/Info";
             // 
+            // txtPO
+            // 
+            this.txtPO.Location = new System.Drawing.Point(15, 238);
+            this.txtPO.Name = "txtPO";
+            this.txtPO.Size = new System.Drawing.Size(222, 26);
+            this.txtPO.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 214);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 20);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Injector P/O:";
+            // 
+            // txtTech
+            // 
+            this.txtTech.Location = new System.Drawing.Point(15, 176);
+            this.txtTech.Name = "txtTech";
+            this.txtTech.Size = new System.Drawing.Size(222, 26);
+            this.txtTech.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 152);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(107, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Technician(s):";
+            // 
+            // label5
+            // 
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.Location = new System.Drawing.Point(0, 146);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(243, 2);
+            this.label5.TabIndex = 5;
+            // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(7, 146);
@@ -333,46 +391,6 @@
             this.chkInjector.TabIndex = 0;
             this.chkInjector.Text = "Include Injector P/O";
             this.chkInjector.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(0, 146);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(243, 2);
-            this.label5.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 152);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Technician(s):";
-            // 
-            // txtTech
-            // 
-            this.txtTech.Location = new System.Drawing.Point(15, 176);
-            this.txtTech.Name = "txtTech";
-            this.txtTech.Size = new System.Drawing.Size(222, 26);
-            this.txtTech.TabIndex = 7;
-            // 
-            // txtPO
-            // 
-            this.txtPO.Location = new System.Drawing.Point(15, 238);
-            this.txtPO.Name = "txtPO";
-            this.txtPO.Size = new System.Drawing.Size(222, 26);
-            this.txtPO.TabIndex = 9;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 214);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 20);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Injector P/O:";
             // 
             // btnPrint
             // 
@@ -440,6 +458,11 @@
             this.btnInj.Text = "Import";
             this.btnInj.UseVisualStyleBackColor = true;
             // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(366, 6);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -462,7 +485,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.Text = "Smart-i Assist";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.grpOptions.ResumeLayout(false);
@@ -476,27 +499,27 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsPDFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileSave;
+        private System.Windows.Forms.ToolStripMenuItem mnuFilePrint;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem importConfigFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportConfigFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileImport;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileExport;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileExit;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem printerConfigToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setTechniciansToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem partNumbersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem qRCodeOutputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditPrinter;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditTech;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditPart;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditQR;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem removeConfigFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditRemove;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem assemblyDocumentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem smartiAssistDocumentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewAss;
+        private System.Windows.Forms.ToolStripMenuItem mnuViewSmart;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportIssueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpReport;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem aboutSmartiAssistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuHelpAbout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -518,6 +541,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnArk;
         private System.Windows.Forms.Button btnInj;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
     }
 }
 
