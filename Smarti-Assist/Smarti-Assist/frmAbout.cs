@@ -8,6 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*Smart-i Assist -About- Version 0.6
+ * Created: 6/9/2020
+ * Updated: 6/9/2020
+ * Designed by: Kevin Sherman at Acrelec America
+ * Contact at: Kevin@Meteadevllc.com
+ * 
+ * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
+ */
+
+
 namespace Smarti_Assist
 {
     public partial class frmAbout : Form
@@ -15,6 +25,11 @@ namespace Smarti_Assist
         public frmAbout()
         {
             InitializeComponent();
+        }
+
+        private void btnContact_Click(object sender, EventArgs e)
+        {
+            //TODO: Same as the main forms contact button
         }
     }
 }
