@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
  * Updated: 6/16/2020
@@ -169,19 +168,39 @@ namespace Smarti_Assist
             //TODO: Delete the current settings to start first time set-up on next launch
         }
 
+        /// <summary>
+        /// Opens frmViewAssembly to provide a webbrowser view of the requested PDF
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuViewAss</param>
+        /// <see cref="mnuViewSmart_Click(object, EventArgs)"/>
         private void mnuViewAss_Click(object sender, EventArgs e)
         {
-            //TODO: Open the assembly document for Smart-Injectors
+            frmViewAssembly viewForm = new frmViewAssembly();
+            viewForm.Show();
         }
 
+        /// <summary>
+        /// Opens frmViewSmart to provide a webbrowser view of the requested PDF
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuViewSmart</param>
+        /// <see cref="mnuViewAss_Click(object, EventArgs)"/>
         private void mnuViewSmart_Click(object sender, EventArgs e)
         {
-            //TODO: Open the support document for Smart-i Assist
+            frmViewSmart viewForm = new frmViewSmart();
+            viewForm.Show();
         }
 
+        /// <summary>
+        /// Opens a new form to allow the user to type his mail message. Sending is handled on the new form.
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuHelpReport</param>
         private void mnuHelpReport_Click(object sender, EventArgs e)
         {
-            //TODO: Prewrite an email and send for bug reports, issues, or just a "hey there Kev how ya been"
+            frmMail mailForm = new frmMail();
+            mailForm.ShowDialog();
         }
     }
 }

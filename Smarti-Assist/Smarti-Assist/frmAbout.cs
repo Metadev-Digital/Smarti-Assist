@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -About- Version 0.6
  * Created: 6/9/2020
- * Updated: 6/9/2020
+ * Updated: 6/17/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Meteadevllc.com
  * 
@@ -27,9 +27,16 @@ namespace Smarti_Assist
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Opens a new form to allow the user to type his mail message. Sending is handled on the new form.
+        /// </summary>
+        /// <param name="sender">frmAbout</param>
+        /// <param name="e">btnContact</param>
+        /// <see cref="frmMain.mnuHelpReport_Click(object, EventArgs)"/>
         private void btnContact_Click(object sender, EventArgs e)
         {
-            //TODO: Same as the main forms contact button
+            frmMail mailForm = new frmMail();
+            mailForm.ShowDialog();
         }
     }
 }
