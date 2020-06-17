@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -Dialogue- Version 0.6
  * Created: 6/16/2020
- * Updated: 6/16/2020
+ * Updated: 6/17/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Meteadevllc.com
  * 

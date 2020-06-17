@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,14 +53,39 @@ namespace Smarti_Assist
         {
             SmtpClient mailClient = new SmtpClient();
             MailMessage toSend = new MailMessage();
+            bool retryOpt = true;
 
-            toSend.From = new MailAddress("system@metadevdigital.com", "System");
+            toSend.From = new MailAddress("noreplymetadevdigital@gmail.com", "No Reply");
             toSend.To.Add(new MailAddress("kevin@metadevdigital.com"));
             toSend.Subject = "Smart-i Assist Report Message";
             toSend.Body = message;
             toSend.IsBodyHtml = true;
-            mailClient.Send(toSend);
+
+            while(retryOpt==true)
+            {
+                try
+                {
+                    mailClient.Send(toSend);
+                    retryOpt = false;
+                    MessageBox.Show("Message sent successfully!", "Message Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (SmtpException e)
+                {
+                    var selection = MessageBox.Show("An unexpected error occured while trying to send the message. Do you have an " +
+                        "active internet connection, or has a firewall setting been changed for your network?", "Error",
+                        MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+
+                    if (selection == DialogResult.Retry)
+                    {
+                        retryOpt = true;
+                    }
+                }
+            }
+
             toSend.Dispose();
+
+
+            //TODO: Finish testing and polishing the mail send function, as well as comment frmMail.
         }
     }
 }
