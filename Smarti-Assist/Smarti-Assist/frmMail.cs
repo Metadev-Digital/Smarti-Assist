@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -Mail- Version 0.6
  * Created: 6/17/2020
- * Updated: 6/17/2020
+ * Updated: 6/19/2020
  * Designed by: Kevin Sherman at Acrelec America
- * Contact at: Kevin@Meteadevllc.com
+ * Contact at: Kevin@Metadevllc.com
  * 
  * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
  */
@@ -33,6 +33,12 @@ namespace Smarti_Assist
 
         }
 
+        /// <summary>
+        /// Handles the sending of messages to the proper channels through an email. Tests and makes sure that there is 
+        /// actually a message to be sent, then calls a function to handle the actual sending of the emails
+        /// </summary>
+        /// <param name="sender">frmMail</param>
+        /// <param name="e">btnSubmit</param>
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if(txtMessage.Text.Equals(""))
@@ -46,9 +52,18 @@ namespace Smarti_Assist
             else
             {
                 sendEmail(txtMessage.Text);
+                this.Close();
             }
         }
 
+        /// <summary>
+        /// Creates default mail client based  off of proper information. Attaches the message typed in the text
+        /// box as the message of the email and sends it to an account monitored for trouble-shooting.
+        /// 
+        /// Allows retry of sending messaages based off user input in case error occurs during sending. Loops
+        /// through this process until a message is successfully sent or the user says so.
+        /// </summary>
+        /// <param name="message">txtMessage's text sent. Already checked and verified to not be empty.</param>
         protected void sendEmail(string message)
         {
             SmtpClient mailClient = new SmtpClient();
@@ -69,7 +84,7 @@ namespace Smarti_Assist
                     retryOpt = false;
                     MessageBox.Show("Message sent successfully!", "Message Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (SmtpException e)
+                catch (SmtpException)
                 {
                     var selection = MessageBox.Show("An unexpected error occured while trying to send the message. Do you have an " +
                         "active internet connection, or has a firewall setting been changed for your network?", "Error",
@@ -79,13 +94,14 @@ namespace Smarti_Assist
                     {
                         retryOpt = true;
                     }
+                    else
+                    {
+                        retryOpt = false;
+                    }
                 }
             }
 
             toSend.Dispose();
-
-
-            //TODO: Finish testing and polishing the mail send function, as well as comment frmMail.
         }
     }
 }

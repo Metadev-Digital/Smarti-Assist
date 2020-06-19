@@ -326,6 +326,7 @@
             // 
             // txtPO
             // 
+            this.txtPO.Enabled = false;
             this.txtPO.Location = new System.Drawing.Point(15, 238);
             this.txtPO.Name = "txtPO";
             this.txtPO.Size = new System.Drawing.Size(222, 26);
@@ -342,6 +343,7 @@
             // 
             // txtTech
             // 
+            this.txtTech.Enabled = false;
             this.txtTech.Location = new System.Drawing.Point(15, 176);
             this.txtTech.Name = "txtTech";
             this.txtTech.Size = new System.Drawing.Size(222, 26);
@@ -380,6 +382,7 @@
             this.chkTech.TabIndex = 3;
             this.chkTech.Text = "Include Technician(s)";
             this.chkTech.UseVisualStyleBackColor = true;
+            this.chkTech.CheckedChanged += new System.EventHandler(this.chkTech_CheckedChanged);
             // 
             // chkQR
             // 
@@ -410,6 +413,7 @@
             this.chkInjector.TabIndex = 0;
             this.chkInjector.Text = "Include Injector P/O";
             this.chkInjector.UseVisualStyleBackColor = true;
+            this.chkInjector.CheckedChanged += new System.EventHandler(this.chkInjector_CheckedChanged);
             // 
             // btnPrint
             // 

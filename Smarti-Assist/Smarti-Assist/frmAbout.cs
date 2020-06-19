@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -About- Version 0.6
  * Created: 6/17/2020
- * Updated: 6/17/2020
+ * Updated: 6/19/2020
  * Designed by: Kevin Sherman at Acrelec America
- * Contact at: Kevin@Meteadevllc.com
+ * Contact at: Kevin@Metadevllc.com
  * 
  * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
  */

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -Dialogue- Version 0.6
  * Created: 6/16/2020
- * Updated: 6/17/2020
+ * Updated: 6/19/2020
  * Designed by: Kevin Sherman at Acrelec America
- * Contact at: Kevin@Meteadevllc.com
+ * Contact at: Kevin@Metadevllc.com
  * 
  * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
  */
@@ -42,13 +42,24 @@ namespace Smarti_Assist
         /// <param name="e"btnOK></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            List<String> output = txtInput.Text.Split(new[] { System.Environment.NewLine }, StringSplitOptions.None).ToList();
+            if (txtInput.Text.Equals(""))
+            {
+                var selection = MessageBox.Show("No data was entered, do you wish to clear the current serials?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(selection==DialogResult.Yes)
+                {
+                    List<String> emptyOut = new List<String>();
+                    emptyOut.Add("");
+                    this.outReturn = emptyOut;
+                }
+            }
+            else
+            {
+                List<String> output = txtInput.Text.Split(new[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-            this.DialogResult = DialogResult.OK;
-            this.outReturn = output;
-            this.Close();
-
-            //TODO: Finish validation if input text, handle exceptions, eliminate entires containing only a single enterline
+                this.DialogResult = DialogResult.OK;
+                this.outReturn = output;
+                this.Close();
+            }
         }
 
         /// <summary>

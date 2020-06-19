@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -Assembly View- Version 0.6
  * Created: 6/17/2020
- * Updated: 6/17/2020
+ * Updated: 6/19/2020
  * Designed by: Kevin Sherman at Acrelec America
- * Contact at: Kevin@Meteadevllc.com
+ * Contact at: Kevin@Metadevllc.com
  * 
  * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
  */
@@ -27,6 +27,11 @@ namespace Smarti_Assist
         }
 
         private void frmViewAssembly_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }

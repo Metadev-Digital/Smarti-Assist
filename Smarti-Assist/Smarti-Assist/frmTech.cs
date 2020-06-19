@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/*Smart-i Assist -Smart-i View- Version 0.6
- * Created: 6/17/2020
+/*Smart-i Assist -Tech- Version 0.6
+ * Created: 6/19/2020
  * Updated: 6/19/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
@@ -19,16 +19,19 @@ using System.Windows.Forms;
 
 namespace Smarti_Assist
 {
-    public partial class frmViewSmart : Form
+    public partial class frmTech : Form
     {
-        public frmViewSmart()
+        public frmTech()
         {
             InitializeComponent();
         }
 
-        private void frmViewSmart_Load(object sender, EventArgs e)
-        {
+        public String technician { get; set; }
 
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            technician = txtInput.Text;
+            this.Close();
         }
     }
 }

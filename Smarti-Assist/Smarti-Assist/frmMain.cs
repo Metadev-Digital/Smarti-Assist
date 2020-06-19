@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/16/2020
+ * Updated: 6/19/2020
  * Designed by: Kevin Sherman at Acrelec America
- * Contact at: Kevin@Meteadevllc.com
+ * Contact at: Kevin@Metadevllc.com
  * 
  * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
  */
@@ -79,13 +79,17 @@ namespace Smarti_Assist
 
                     lstArk.Items.Clear();
 
-                    foreach(string line in lstArkSerials)
+                    if (lstArkSerials.ElementAt(0).Equals("PC"))
+                    {
+                        lstArkSerials.RemoveAt(0);
+                    }
+
+                    foreach (string line in lstArkSerials)
                     {
                         lstArk.Items.Add(line);
                     }
                 }
             }
-            //TODO: Verify that the data inside of lstArkSerials and lstInjectorSerials is not being overwritten on next run of frmDialogue due to byref
         }
 
         /// <summary>
@@ -110,6 +114,11 @@ namespace Smarti_Assist
 
                     lstInj.Items.Clear();
 
+                    if(lstInjectorSerials.ElementAt(0).Equals("Injector"))
+                    {
+                        lstInjectorSerials.RemoveAt(0);
+                    }
+
                     foreach (string line in lstInjectorSerials)
                     {
                         lstInj.Items.Add(line);
@@ -120,6 +129,15 @@ namespace Smarti_Assist
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+
+            if(lstInjectorSerials.Count() == lstArkSerials.Count())
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.","Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
             //TODO: Validate input and print the labels
         }
 
@@ -190,6 +208,67 @@ namespace Smarti_Assist
         {
             frmViewSmart viewForm = new frmViewSmart();
             viewForm.Show();
+        }
+
+        /// <summary>
+        /// Handles the checking and unchecking of chkInjector. Clears out the text field if the data is not to be
+        /// included.
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">chkInjector</param>
+        /// <seealso cref="mnuEditPart_Click(object, EventArgs)"/>
+        private void chkInjector_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkInjector.Checked==true)
+            {
+                txtPO.Enabled = true;
+            }
+            else
+            {
+                txtPO.Text = "";
+                txtPO.Enabled = false;
+            }
+            //TODO: Change handling of chkInjector to be similar to chkTech so that it can be properly changed in the configuration file without an on change event handler
+            //TODO: Change the configuration file to reflect the proper P.O. on subsequent boots.
+        }
+
+        /// <summary>
+        /// Handles the checking and unchecking of chkTech. Asks the user if they would like to change the
+        /// technician field. If so, runs a form to take that requested input. Notices a technician field that is empty
+        /// and force un-checks the box
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">chkTech</param>
+        /// <seealso cref="mnuEditTech_Click(object, EventArgs)"/>
+        private void chkTech_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkTech.Checked==true)
+            {
+
+
+                var selection = MessageBox.Show("Do you wish to change the reprersented technician(s)?", "Change Technician(s)?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if(selection == DialogResult.Yes)
+                {
+                    using (frmTech techForm = new frmTech())
+                    {
+                        String techInput = techForm.technician;
+
+                        if (techInput.Equals(""))
+                        {
+                            MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            chkTech.Checked = false;
+                        }
+                    }
+                }
+                else if((selection == DialogResult.No) && txtTech.Text.Equals(""))
+                {
+                    MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    chkTech.Checked = false;
+                }
+
+                //TODO: Change the configuration file to reflect the technician changes on subsequent boots.
+            }
         }
 
         /// <summary>
