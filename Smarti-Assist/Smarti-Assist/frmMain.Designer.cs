@@ -43,7 +43,6 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuEditTech = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditPart = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEditQR = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuEditRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +79,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -162,7 +160,6 @@
             this.toolStripMenuItem6,
             this.mnuEditTech,
             this.mnuEditPart,
-            this.mnuEditQR,
             this.toolStripMenuItem3,
             this.mnuEditRemove});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
@@ -174,21 +171,21 @@
             this.mnuEditPrinter.Name = "mnuEditPrinter";
             this.mnuEditPrinter.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.P)));
-            this.mnuEditPrinter.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditPrinter.Size = new System.Drawing.Size(339, 34);
             this.mnuEditPrinter.Text = "Printer Config";
             this.mnuEditPrinter.Click += new System.EventHandler(this.mnuEditPrinter_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(366, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(336, 6);
             // 
             // mnuEditTech
             // 
             this.mnuEditTech.Name = "mnuEditTech";
             this.mnuEditTech.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.T)));
-            this.mnuEditTech.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditTech.Size = new System.Drawing.Size(339, 34);
             this.mnuEditTech.Text = "Set Technicians";
             this.mnuEditTech.Click += new System.EventHandler(this.mnuEditTech_Click);
             // 
@@ -197,28 +194,19 @@
             this.mnuEditPart.Name = "mnuEditPart";
             this.mnuEditPart.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.N)));
-            this.mnuEditPart.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditPart.Size = new System.Drawing.Size(339, 34);
             this.mnuEditPart.Text = "Part Numbers";
             this.mnuEditPart.Click += new System.EventHandler(this.mnuEditPart_Click);
-            // 
-            // mnuEditQR
-            // 
-            this.mnuEditQR.Name = "mnuEditQR";
-            this.mnuEditQR.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.Q)));
-            this.mnuEditQR.Size = new System.Drawing.Size(369, 34);
-            this.mnuEditQR.Text = "Q.R. Code Output";
-            this.mnuEditQR.Click += new System.EventHandler(this.mnuEditQR_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(366, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(336, 6);
             // 
             // mnuEditRemove
             // 
             this.mnuEditRemove.Name = "mnuEditRemove";
-            this.mnuEditRemove.Size = new System.Drawing.Size(369, 34);
+            this.mnuEditRemove.Size = new System.Drawing.Size(339, 34);
             this.mnuEditRemove.Text = "Remove Config File";
             this.mnuEditRemove.Click += new System.EventHandler(this.mnuEditRemove_Click);
             // 
@@ -531,7 +519,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEditPrinter;
         private System.Windows.Forms.ToolStripMenuItem mnuEditTech;
         private System.Windows.Forms.ToolStripMenuItem mnuEditPart;
-        private System.Windows.Forms.ToolStripMenuItem mnuEditQR;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mnuEditRemove;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/19/2020
+ * Updated: 6/23/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -211,8 +211,9 @@ namespace Smarti_Assist
         }
 
         /// <summary>
-        /// Handles the checking and unchecking of chkInjector. Clears out the text field if the data is not to be
-        /// included.
+        /// Handles the checking and unchecking of chkInjector. Asks the user if they would like to change the
+        /// PO field. If so, runs a form to take that requested input. notices a P.O. field that is empty
+        /// and then force unchecks the box.
         /// </summary>
         /// <param name="sender">frmMain</param>
         /// <param name="e">chkInjector</param>
@@ -221,14 +222,29 @@ namespace Smarti_Assist
         {
             if(chkInjector.Checked==true)
             {
-                txtPO.Enabled = true;
+                var selection = MessageBox.Show("Do you wish to change the unit's Part Order?", "Change Part Order?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (selection.Equals(DialogResult.Yes))
+                {
+                    using (frmPO poForm = new frmPO())
+                    {
+                        poForm.ShowDialog();
+
+                        if (poForm.po == "")
+                        {
+                            MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            chkInjector.Checked = false;
+                        }
+
+                        txtPO.Text = poForm.po;
+                    }
+                }
+                else if(selection == DialogResult.No && txtPO.Text.Equals("") )
+                {
+                    MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    chkInjector.Checked = false;
+                }
             }
-            else
-            {
-                txtPO.Text = "";
-                txtPO.Enabled = false;
-            }
-            //TODO: Change handling of chkInjector to be similar to chkTech so that it can be properly changed in the configuration file without an on change event handler
             //TODO: Change the configuration file to reflect the proper P.O. on subsequent boots.
         }
 
@@ -244,21 +260,21 @@ namespace Smarti_Assist
         {
             if(chkTech.Checked==true)
             {
-
-
                 var selection = MessageBox.Show("Do you wish to change the reprersented technician(s)?", "Change Technician(s)?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if(selection == DialogResult.Yes)
                 {
                     using (frmTech techForm = new frmTech())
                     {
-                        String techInput = techForm.technician;
+                        techForm.ShowDialog();
 
-                        if (techInput.Equals(""))
+                        if (techForm.technician=="")
                         {
                             MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             chkTech.Checked = false;
                         }
+
+                        txtTech.Text = techForm.technician;
                     }
                 }
                 else if((selection == DialogResult.No) && txtTech.Text.Equals(""))
