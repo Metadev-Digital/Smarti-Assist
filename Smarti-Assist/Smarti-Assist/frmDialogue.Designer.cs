@@ -89,6 +89,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDialogue";
             this.Text = "Input Serials";
+            this.Load += new System.EventHandler(this.frmDialogue_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

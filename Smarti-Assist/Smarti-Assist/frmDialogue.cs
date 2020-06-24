@@ -72,5 +72,10 @@ namespace Smarti_Assist
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void frmDialogue_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

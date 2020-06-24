@@ -1,19 +1,10 @@
 ﻿using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
-using iText.Layout;
 using iText.Layout.Element;
-using iText.StyledXmlParser.Jsoup.Nodes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
@@ -28,6 +19,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 
 
 //TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
+//TODO: Include an option to set the number of EACH label to be printed. Do you want 1,2,3,4,etc.. copies of each?
 namespace Smarti_Assist
 {
     public partial class frmMain : Form
@@ -139,33 +131,8 @@ namespace Smarti_Assist
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.InitialDirectory = "C:\\Users";
-            dialog.IsFolderPicker = true;
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                MessageBox.Show("You selected: " + dialog.FileName);
-            }
+            printLabels(lstArkSerials,lstInjectorSerials);
 
-            //TODO: everything above works, below is weird
-
-            PdfWriter outWriter = new PdfWriter(dialog.FileName + "helloworld.pdf");
-            PdfDocument outPDF = new PdfDocument(outWriter);
-            iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 1200, 1800);
-            iText.Layout.Document document = new iText.Layout.Document(outPDF, new PageSize(labelSize));
-            document.SetMargins(2, 2, 2, 2);
-            iText.Layout.Element.Paragraph p = new iText.Layout.Element.Paragraph("Hello World!");
-            document.Add(p);
-            document.Add(new AreaBreak( new PageSize(labelSize)));
-            document.SetMargins(20, 20, 20, 20);
-            document.Add(p);
-            document.Add(p);
-            document.Close();
-
-            outPDF.Close();
-            outWriter.Close();
-
-            outWriter.Dispose();
 
 
          //   if(lstInjectorSerials.Count()>0 && lstArkSerials.Count()>0)
@@ -189,19 +156,23 @@ namespace Smarti_Assist
 
         private void mnuFileSave_Click(object sender, EventArgs e)
         {
-            if (lstInjectorSerials.Count() == lstArkSerials.Count())
-            {
+            saveLabels(lstArkSerials, lstInjectorSerials);
 
-            }
-            else
-            {
-                MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if (lstInjectorSerials.Count() == lstArkSerials.Count())
+            //{
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
             //TODO: Validate input and save labels as a PDF
         }
 
         private void mnuFilePrint_Click(object sender, EventArgs e)
         {
+            printLabels(lstArkSerials,lstInjectorSerials);
             //TODO: Validate input and print the labels
         }
 
@@ -347,6 +318,59 @@ namespace Smarti_Assist
             mailForm.ShowDialog();
         }
 
+        private void printLabels(List<string> lstArkSerials, List<string> lstInjectorSerials)
+        {
+            //TODO: This
+            throw new NotImplementedException();
+        }
+
+        private void saveLabels(List<string> lstArkSerials, List<string> lstInjectorSerials)
+        {
+            using (PdfWriter outWriter = new PdfWriter(choseDirectory() + "/helloworld.pdf"))
+            {
+                PdfDocument outPDF = new PdfDocument(outWriter);
+                //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
+                //I have no idea where this number comes from but it makes something printable for 3"x3"
+                iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
+                iText.Layout.Document document = new iText.Layout.Document(outPDF, new PageSize(labelSize));
+                document.SetMargins(2, 2, 2, 2);
+                iText.Layout.Element.Paragraph p = new iText.Layout.Element.Paragraph("Hello World!");
+                document.Add(p);
+                document.Add(new AreaBreak(new PageSize(labelSize)));
+                document.SetMargins(20, 20, 20, 20);
+                document.Add(p);
+                document.Add(p);
+                document.Close();
+
+                outPDF.Close();
+                outWriter.Close();
+            }
+            //TODO: Finish fleshing out the pdf construction
+            //TODO: Break up the pdf construction into a separate function so it can be called recursively
+        }
+
+        private string choseDirectory()
+        {
+            /* Note:
+            * 
+            * CommonOpenFileDialog has a weird error if a user has a scaling set on their monitor higher than
+            * 100%. This casues all open frames to set back down to a 100% scaling after opening. To counter-act
+            * this there is a line in the app.config that makes the program keep track of the scaling of all
+            * used monitors so it can be reset afterwards
+            */
+
+            using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
+            {
+                dialog.InitialDirectory = "C:\\Users";
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    MessageBox.Show("You selected: " + dialog.FileName);
+                }
+
+                return dialog.FileName;
+            }
+        }
 
         //Shoud create a PDF to memory.
         private byte[] createPDF()
