@@ -1,16 +1,25 @@
-﻿using System;
+﻿using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.StyledXmlParser.Jsoup.Nodes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/23/2020
+ * Updated: 6/24/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -130,19 +139,64 @@ namespace Smarti_Assist
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
-            if(lstInjectorSerials.Count() == lstArkSerials.Count())
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.InitialDirectory = "C:\\Users";
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
+                MessageBox.Show("You selected: " + dialog.FileName);
+            }
 
-            }
-            else
-            {
-                MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.","Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+            //TODO: everything above works, below is weird
+
+            PdfWriter outWriter = new PdfWriter(dialog.FileName + "helloworld.pdf");
+            PdfDocument outPDF = new PdfDocument(outWriter);
+            iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 1200, 1800);
+            iText.Layout.Document document = new iText.Layout.Document(outPDF, new PageSize(labelSize));
+            document.SetMargins(2, 2, 2, 2);
+            iText.Layout.Element.Paragraph p = new iText.Layout.Element.Paragraph("Hello World!");
+            document.Add(p);
+            document.Add(new AreaBreak( new PageSize(labelSize)));
+            document.SetMargins(20, 20, 20, 20);
+            document.Add(p);
+            document.Add(p);
+            document.Close();
+
+            outPDF.Close();
+            outWriter.Close();
+
+            outWriter.Dispose();
+
+
+         //   if(lstInjectorSerials.Count()>0 && lstArkSerials.Count()>0)
+           // {
+             //   if (lstInjectorSerials.Count() == lstArkSerials.Count())
+               // {
+
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Serials not properly entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+ 
             //TODO: Validate input and print the labels
         }
 
         private void mnuFileSave_Click(object sender, EventArgs e)
         {
+            if (lstInjectorSerials.Count() == lstArkSerials.Count())
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //TODO: Validate input and save labels as a PDF
         }
 
@@ -174,11 +228,6 @@ namespace Smarti_Assist
         private void mnuEditPart_Click(object sender, EventArgs e)
         {
             //TODO: Edit the preset and saved field for the part order
-        }
-
-        private void mnuEditQR_Click(object sender, EventArgs e)
-        {
-            //TODO: Edit whether or not the QR is included for some reason
         }
 
         private void mnuEditRemove_Click(object sender, EventArgs e)
@@ -296,6 +345,21 @@ namespace Smarti_Assist
         {
             frmMail mailForm = new frmMail();
             mailForm.ShowDialog();
+        }
+
+
+        //Shoud create a PDF to memory.
+        private byte[] createPDF()
+        {
+            var stream = new MemoryStream();
+            var writer = new PdfWriter(stream);
+            var pdf = new PdfDocument(writer);
+            var document = new iText.Layout.Document(pdf);
+
+            document.Add(new iText.Layout.Element.Paragraph("Hello world!"));
+            document.Close();
+
+            return stream.ToArray();
         }
     }
 }
