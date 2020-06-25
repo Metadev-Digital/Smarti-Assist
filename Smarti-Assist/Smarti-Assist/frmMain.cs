@@ -7,10 +7,17 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using iText.Layout;
+using iText.Kernel.Font;
+using iText.Kernel.Colors;
+using iText.Layout.Properties;
+using iText.Layout.Borders;
+using iText.Barcodes;
+using iText.Kernel.Pdf.Xobject;
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/24/2020
+ * Updated: 6/25/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -167,7 +174,7 @@ namespace Smarti_Assist
             //    MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
 
-            //TODO: Validate input and save labels as a PDF
+            //TODO: Validate input
         }
 
         private void mnuFilePrint_Click(object sender, EventArgs e)
@@ -228,6 +235,23 @@ namespace Smarti_Assist
         {
             frmViewSmart viewForm = new frmViewSmart();
             viewForm.Show();
+        }
+
+        /// <summary>
+        /// Forces a second thought on disabling the QR codes on account of the.... whole point.
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">chkQR</param>
+        private void chkQR_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkQR.Checked.Equals(false))
+            {
+                var selection = MessageBox.Show("Are you sure you wish to disable the QR code on the output labels?", "Disable QR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (selection == DialogResult.No)
+                {
+                    chkQR.Checked = true;
+                }
+            }
         }
 
         /// <summary>
@@ -324,31 +348,41 @@ namespace Smarti_Assist
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Prompts the user with a requested save location for the to-be-generated PDF
+        /// Iterates through all elements inside of relevant lists to create the required number of labels inside 
+        /// of the PDF document, separated by pages.
+        /// </summary>
+        /// <param name="lstArkSerials">List of strings, representative of the entered ARK serial numbers</param>
+        /// <param name="lstInjectorSerials">List of strings, representative of the entered Injector serial numbers</param>
         private void saveLabels(List<string> lstArkSerials, List<string> lstInjectorSerials)
         {
-            using (PdfWriter outWriter = new PdfWriter(choseDirectory() + "/helloworld.pdf"))
+            //TODO: Handle System.IO.IOException for when the document is already open
+            using (PdfWriter outWriter = new PdfWriter(choseDirectory() + "/Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf" ))
             {
                 PdfDocument outPDF = new PdfDocument(outWriter);
+
+
+                //TODO: Create For loop that iterates through the total count of items in list sent to createLabel(), creates a new page for each call of createLabel()
+
                 //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
                 //I have no idea where this number comes from but it makes something printable for 3"x3"
                 iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
-                iText.Layout.Document document = new iText.Layout.Document(outPDF, new PageSize(labelSize));
-                document.SetMargins(2, 2, 2, 2);
-                iText.Layout.Element.Paragraph p = new iText.Layout.Element.Paragraph("Hello World!");
-                document.Add(p);
-                document.Add(new AreaBreak(new PageSize(labelSize)));
-                document.SetMargins(20, 20, 20, 20);
-                document.Add(p);
-                document.Add(p);
-                document.Close();
+                iText.Layout.Document outDocument = new iText.Layout.Document(outPDF, new PageSize(labelSize));
 
+                createLabel(outDocument, outPDF, "KSA1234", "1234");
+                
+                outDocument.Close();
                 outPDF.Close();
                 outWriter.Close();
             }
-            //TODO: Finish fleshing out the pdf construction
-            //TODO: Break up the pdf construction into a separate function so it can be called recursively
+            //TODO: Prompt user that the file had saved successfully.
         }
 
+        /// <summary>
+        /// Provides the user with a Windows form dialog for picking a folder to save the document to
+        /// </summary>
+        /// <returns>Selected folder filepath</returns>
         private string choseDirectory()
         {
             /* Note:
@@ -361,17 +395,125 @@ namespace Smarti_Assist
 
             using (CommonOpenFileDialog dialog = new CommonOpenFileDialog())
             {
-                dialog.InitialDirectory = "C:\\Users";
+                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 dialog.IsFolderPicker = true;
-                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
                 {
-                    MessageBox.Show("You selected: " + dialog.FileName);
+                    MessageBox.Show("You gone and made me have to code this");
+                    //TODO: Decide how I want to handle the exception of them not chosing a folder. Force them to? Find a way to soft shutdown the function?
                 }
-
                 return dialog.FileName;
             }
         }
 
+        /// <summary>
+        /// Creates a one page label the dimensions of the GX430t label maker on site. (3" x 3" labels)
+        /// Takes in a document created by another function to be modular and callable by either a printing or saving action
+        /// Handles different formatting options automatically depending on the options selected by the user.
+        /// </summary>
+        /// <param name="document">The base document that contains the data inside of the pdf</param>
+        /// <param name="PDF">Object which contains the document and teaches it how to be one with the PDF</param>
+        /// <param name="ark">Provided ark serial number for current iteration</param>
+        /// <param name="inj">Provided smart injector serial number for current iteration</param>
+        private void createLabel(Document document, PdfDocument PDF, string ark, string inj)
+        {
+            Style normal = new Style();
+            Style header = new Style();
+            Style subtext = new Style();
+            Style subheader = new Style();
+
+            PdfFont nfont = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA);
+            PdfFont hFont = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA_BOLD);
+            PdfFont sFont = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA);
+
+            normal.SetFont(nfont).SetFontSize(11);
+            header.SetFont(hFont).SetFontSize(16);
+            subheader.SetFont(hFont).SetFontSize(13);
+            subtext.SetFont(sFont).SetFontSize(7);
+
+            document.SetMargins(10, 25, 10, 25);
+
+            Table table = new Table(new float[7]).UseAllAvailableWidth();
+            table.SetMarginTop(0);
+            table.SetMarginBottom(0);
+
+            // Header
+            table.AddCell(new Cell(1, 7).Add(new Paragraph("HAT-PROC-0025").AddStyle(header)).SetTextAlignment(TextAlignment.CENTER));
+
+            // Header Subtext
+            table.AddCell(new Cell(1, 7).Add(new Paragraph("ARK-1123H with Smart Injector").AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetPadding(5).SetMaxHeight(10).SetBorder(Border.NO_BORDER).SetBorderBottom(new SolidBorder(ColorConstants.BLACK, 1)));
+
+            // PC Data Row
+            table.AddCell(new Cell(2, 2).Add(new Paragraph("PC:").AddStyle(subheader)).SetBorder(Border.NO_BORDER).SetPaddingBottom(10));
+            table.AddCell(new Cell(1, 1).Add(new Paragraph("Part:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingBottom(0));
+            table.AddCell(new Cell(1, 4).Add(new Paragraph("HAPC0000088").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingBottom(0));
+            table.AddCell(new Cell(1, 1).Add(new Paragraph("Serial:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingTop(0));
+            table.AddCell(new Cell(1, 4).Add(new Paragraph(ark).AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingTop(0));
+
+            // Injector Data Row
+            table.AddCell(new Cell(2, 2).Add(new Paragraph("Injector:").AddStyle(subheader)).SetBorder(Border.NO_BORDER).SetPaddingBottom(10));
+            table.AddCell(new Cell(1, 1).Add(new Paragraph("Part:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingBottom(0));
+            table.AddCell(new Cell(1, 4).Add(new Paragraph("HAT-HYPR-0284").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingBottom(0));
+            table.AddCell(new Cell(1, 1).Add(new Paragraph("Serial:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingTop(0));
+            table.AddCell(new Cell(1, 4).Add(new Paragraph(inj).AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingTop(0));
+
+            // Data Row
+            if (chkQR.Checked.Equals(true))
+            {
+                table.AddCell(new Cell(4, 3).Add(new Image(new BarcodeQRCode(ark + " / " + inj).CreateFormXObject(PDF)).SetHeight(70).SetWidth(70)).SetBorder(Border.NO_BORDER).SetPadding(0));
+            }
+            else
+            {
+                table.AddCell(new Cell(4, 3).SetBorder(Border.NO_BORDER));
+            }
+
+            if (chkInjector.Checked.Equals(true))
+            {
+                table.AddCell(new Cell(1, 1).Add(new Paragraph("P.O.").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 3).Add(new Paragraph(txtPO.Text).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+            }
+            else
+            {
+                table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER));
+            }
+
+            if (chkTech.Checked.Equals(true))
+            {
+                table.AddCell(new Cell(1, 4).Add(new Paragraph(txtTech.Text).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 1).Add(new Paragraph("Locale:").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 3).Add(new Paragraph("U.S.A.").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+            }
+            else
+            {
+                table.AddCell(new Cell(1, 4).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER));
+            }
+
+            if (chkDate.Checked.Equals(true))
+            {
+                table.AddCell(new Cell(1, 4).Add(new Paragraph(DateTime.UtcNow.ToString("MM-dd-yyyy")).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER).SetPaddingBottom(0));
+            }
+            /*
+             * Handles the case that in the extremely unlikely event that no additional data at all is included on the label,
+             * sets the second to last cell to have a set height to allow the footer to still be in the correct position
+             */
+            else if (chkDate.Checked.Equals(false) && chkInjector.Checked.Equals(false) && chkQR.Checked.Equals(false) && chkTech.Checked.Equals(false))
+            {
+                table.AddCell(new Cell(1, 4).SetHeight(50).SetBorder(Border.NO_BORDER));
+            }
+            else
+            {
+                table.AddCell(new Cell(1, 4).SetBorder(Border.NO_BORDER));
+            }
+
+            // Footer
+            table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/").AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
+
+            document.Add(table);
+        }
+  
         //Shoud create a PDF to memory.
         private byte[] createPDF()
         {

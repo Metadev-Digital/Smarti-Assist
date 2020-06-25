@@ -79,6 +79,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -319,6 +320,7 @@
             this.txtPO.Name = "txtPO";
             this.txtPO.Size = new System.Drawing.Size(222, 26);
             this.txtPO.TabIndex = 9;
+            this.txtPO.Text = "10171";
             // 
             // label7
             // 
@@ -336,6 +338,7 @@
             this.txtTech.Name = "txtTech";
             this.txtTech.Size = new System.Drawing.Size(222, 26);
             this.txtTech.TabIndex = 7;
+            this.txtTech.Text = "091901 & 091902";
             // 
             // label6
             // 
@@ -364,7 +367,9 @@
             // chkTech
             // 
             this.chkTech.AutoSize = true;
-            this.chkTech.Location = new System.Drawing.Point(22, 55);
+            this.chkTech.Checked = true;
+            this.chkTech.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkTech.Location = new System.Drawing.Point(19, 25);
             this.chkTech.Name = "chkTech";
             this.chkTech.Size = new System.Drawing.Size(185, 24);
             this.chkTech.TabIndex = 3;
@@ -375,17 +380,22 @@
             // chkQR
             // 
             this.chkQR.AutoSize = true;
-            this.chkQR.Location = new System.Drawing.Point(22, 85);
+            this.chkQR.Checked = true;
+            this.chkQR.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkQR.Location = new System.Drawing.Point(19, 85);
             this.chkQR.Name = "chkQR";
             this.chkQR.Size = new System.Drawing.Size(165, 24);
             this.chkQR.TabIndex = 2;
             this.chkQR.Text = "Include Q.R. Code";
             this.chkQR.UseVisualStyleBackColor = true;
+            this.chkQR.CheckedChanged += new System.EventHandler(this.chkQR_CheckedChanged);
             // 
             // chkDate
             // 
             this.chkDate.AutoSize = true;
-            this.chkDate.Location = new System.Drawing.Point(22, 115);
+            this.chkDate.Checked = true;
+            this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDate.Location = new System.Drawing.Point(19, 115);
             this.chkDate.Name = "chkDate";
             this.chkDate.Size = new System.Drawing.Size(126, 24);
             this.chkDate.TabIndex = 1;
@@ -395,7 +405,9 @@
             // chkInjector
             // 
             this.chkInjector.AutoSize = true;
-            this.chkInjector.Location = new System.Drawing.Point(22, 25);
+            this.chkInjector.Checked = true;
+            this.chkInjector.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInjector.Location = new System.Drawing.Point(19, 55);
             this.chkInjector.Name = "chkInjector";
             this.chkInjector.Size = new System.Drawing.Size(174, 24);
             this.chkInjector.TabIndex = 0;
