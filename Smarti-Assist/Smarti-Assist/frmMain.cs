@@ -13,6 +13,7 @@ using iText.Kernel.Colors;
 using iText.Layout.Properties;
 using iText.Layout.Borders;
 using iText.Barcodes;
+using System.Drawing.Printing;
 
 
 /*Smart-i Assist Version 0.6
@@ -407,16 +408,28 @@ namespace Smarti_Assist
 
                         for (int i = 0; i < lstArkSerials.Count(); i++)
                         {
-
                             createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i));
                         }
 
+
                         //TODO: Handle the actual printing here
+                        using (PrintDialog printDialog = new PrintDialog())
+                        {
+                            printDialog.AllowSomePages = true;
+                            printDialog.ShowHelp = true;
+
+                            PdfiumViewer.PdfDocument printerDoc = PdfiumViewer.PdfDocument.Load(stream);
+                            PrintDocument pd = printerDoc.CreatePrintDocument(PdfiumViewer.PdfPrintMode.CutMargin);
+
+                            printDialog.Document = pd;
+                            printDialog.ShowDialog();
+                        }
 
                         outDocument.Close();
                         outPDF.Close();
                         outWriter.Close();
 
+                        //TODO: Fix since it is not working
                     }
                 }
             }
