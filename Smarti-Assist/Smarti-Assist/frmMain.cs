@@ -13,7 +13,7 @@ using iText.Kernel.Colors;
 using iText.Layout.Properties;
 using iText.Layout.Borders;
 using iText.Barcodes;
-using iText.Kernel.Pdf.Xobject;
+
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
@@ -53,6 +53,19 @@ namespace Smarti_Assist
         {
             frmAbout aboutFrame = new frmAbout();
             aboutFrame.ShowDialog();
+        }
+
+        /// <summary>
+        /// Clears out the list boxes and resets the lists
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuFileClear</param>
+        private void mnuFileClear_Click(object sender, EventArgs e)
+        {
+            lstArk.Items.Clear();
+            lstInj.Items.Clear();
+            lstArkSerials = new List<string>();
+            lstInjectorSerials = new List<string>();
         }
 
         /// <summary>
@@ -135,52 +148,49 @@ namespace Smarti_Assist
             }
         }
 
+        /// <summary>
+        /// Calles validateSerials to check and make sure that the correct data has been input, then calls printLabels to process
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">btnPrint</param>
+        /// <see cref="mnuFilePrint_Click(object, EventArgs)"/>
+        /// <seealso cref="mnuFileSave_Click(object, EventArgs)"/>
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
-            printLabels(lstArkSerials,lstInjectorSerials);
-
-
-
-         //   if(lstInjectorSerials.Count()>0 && lstArkSerials.Count()>0)
-           // {
-             //   if (lstInjectorSerials.Count() == lstArkSerials.Count())
-               // {
-
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Serials not properly entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
- 
-            //TODO: Validate input and print the labels
+            if(validateSerials(lstArkSerials,lstInjectorSerials))
+            {
+                printLabels(lstArkSerials, lstInjectorSerials);
+            }
         }
 
+        /// <summary>
+        /// Calles validateSerials to check and make sure that the correct data has been input, then calls saveLabels to process
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuFileSave</param>
+        /// <seealso cref="btnPrint_Click(object, EventArgs)"/>
+        /// <seealso cref="mnuFilePrint_Click(object, EventArgs)"/>
         private void mnuFileSave_Click(object sender, EventArgs e)
         {
-            saveLabels(lstArkSerials, lstInjectorSerials);
-
-            //if (lstInjectorSerials.Count() == lstArkSerials.Count())
-            //{
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Number of serials listed for ARKs and Smart Injectors is not equal.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
-            //TODO: Validate input
+            if(validateSerials(lstArkSerials,lstInjectorSerials))
+            {
+                saveLabels(lstArkSerials, lstInjectorSerials);
+            }
         }
 
+        /// <summary>
+        /// Calles validateSerials to check and make sure that the correct data has been input, then calls printLabels to process
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuFilePrint</param>
+        /// <see cref="btnPrint_Click(object, EventArgs)"/>
+        /// <seealso cref="mnuFileSave_Click(object, EventArgs)"/>
         private void mnuFilePrint_Click(object sender, EventArgs e)
         {
-            printLabels(lstArkSerials,lstInjectorSerials);
-            //TODO: Validate input and print the labels
+            if(validateSerials(lstArkSerials,lstInjectorSerials))
+            {
+                printLabels(lstArkSerials, lstInjectorSerials);
+            }
         }
 
         private void mnuFileImport_Click(object sender, EventArgs e)
@@ -191,11 +201,6 @@ namespace Smarti_Assist
         private void mnuFileExport_Click(object sender, EventArgs e)
         {
             //TODO: Export configuration settings as an easily transferable file
-        }
-
-        private void mnuEditPrinter_Click(object sender, EventArgs e)
-        {
-            //TODO: Edit cached printer information
         }
 
         private void mnuEditTech_Click(object sender, EventArgs e)
@@ -342,10 +347,83 @@ namespace Smarti_Assist
             mailForm.ShowDialog();
         }
 
+
+        /// <summary>
+        /// Checks for the existance of data inside of the variables before shipping them off for label making.
+        /// Handled in a function so this doesn't have to be hand written 3 times.
+        /// </summary>
+        /// <param name="lstArkSerials">List of all Ark Serials</param>
+        /// <param name="lstInjectorSerials">List of all Injector Serials</param>
+        /// <returns></returns>
+        private bool validateSerials(List<string> lstArkSerials, List<string> lstInjectorSerials)
+        {
+                if (lstInjectorSerials == null && lstArkSerials == null)
+                {
+                    MessageBox.Show("No serial entries were provided. Please enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else if (lstInjectorSerials == null)
+                {
+                    MessageBox.Show("No Smart Injector serials were provided. Enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else if(lstArkSerials == null)
+                {
+                    MessageBox.Show("No ARK serials were provided. Enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else if (lstInjectorSerials.Count != lstArkSerials.Count)
+                {
+                    if (lstArkSerials.Count > lstInjectorSerials.Count)
+                    {
+                        MessageBox.Show("There are more ARK serial number entries than Smart Injectors. Re-enter the data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("There are more Smart Injector serial number entries than ARKs. Re-enter the data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return false;
+                }
+
+            return true;
+        }
+
+
         private void printLabels(List<string> lstArkSerials, List<string> lstInjectorSerials)
         {
-            //TODO: This
-            throw new NotImplementedException();
+            try
+            {
+                using(var stream = new MemoryStream())
+                {
+                    using (PdfWriter outWriter = new PdfWriter(stream))
+                    {
+
+                        PdfDocument outPDF = new PdfDocument(outWriter);
+
+                        //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
+                        //I have no idea where this number comes from but it makes something printable for 3"x3"
+                        iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
+                        iText.Layout.Document outDocument = new iText.Layout.Document(outPDF, new PageSize(labelSize));
+
+                        for (int i = 0; i < lstArkSerials.Count(); i++)
+                        {
+
+                            createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i));
+                        }
+
+                        //TODO: Handle the actual printing here
+
+                        outDocument.Close();
+                        outPDF.Close();
+                        outWriter.Close();
+
+                    }
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                MessageBox.Show("Printer job was cancelled. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
@@ -357,26 +435,41 @@ namespace Smarti_Assist
         /// <param name="lstInjectorSerials">List of strings, representative of the entered Injector serial numbers</param>
         private void saveLabels(List<string> lstArkSerials, List<string> lstInjectorSerials)
         {
-            //TODO: Handle System.IO.IOException for when the document is already open
-            using (PdfWriter outWriter = new PdfWriter(choseDirectory() + "/Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf" ))
+            try
             {
-                PdfDocument outPDF = new PdfDocument(outWriter);
+                using (PdfWriter outWriter = new PdfWriter(choseDirectory() + "/Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf"))
+                {
+                    PdfDocument outPDF = new PdfDocument(outWriter);
 
+                    //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
+                    //I have no idea where this number comes from but it makes something printable for 3"x3"
+                    iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
+                    iText.Layout.Document outDocument = new iText.Layout.Document(outPDF, new PageSize(labelSize));
 
-                //TODO: Create For loop that iterates through the total count of items in list sent to createLabel(), creates a new page for each call of createLabel()
+                    for (int i = 0; i < lstArkSerials.Count(); i++)
+                    {
 
-                //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
-                //I have no idea where this number comes from but it makes something printable for 3"x3"
-                iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
-                iText.Layout.Document outDocument = new iText.Layout.Document(outPDF, new PageSize(labelSize));
+                            createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i));
+                    }
 
-                createLabel(outDocument, outPDF, "KSA1234", "1234");
-                
-                outDocument.Close();
-                outPDF.Close();
-                outWriter.Close();
+                    outDocument.Close();
+                    outPDF.Close();
+                    outWriter.Close();
+
+                    MessageBox.Show("Your file was successfully exported in your chosen directory as 'Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf'", "Success!", MessageBoxButtons.OK);
+                }
             }
-            //TODO: Prompt user that the file had saved successfully.
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("An unexcected error occured when trying to save the file in that location. Is there already a file" +
+                    " with that name open and in use? Does the selected directory exist? Do you have permissions to save inside of it?" +
+                    "\nPlease try again.",
+                    "Unexected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.InvalidOperationException)
+            {
+                MessageBox.Show("Export was cancelled. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
@@ -399,8 +492,18 @@ namespace Smarti_Assist
                 dialog.IsFolderPicker = true;
                 if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
                 {
-                    MessageBox.Show("You gone and made me have to code this");
-                    //TODO: Decide how I want to handle the exception of them not chosing a folder. Force them to? Find a way to soft shutdown the function?
+                    var selection = MessageBox.Show("You have not selected an install location, do you want to cancel the export?", "No Location Selected",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                    if (selection == DialogResult.Yes)
+                    {
+                        throw new System.InvalidOperationException();
+                    }
+                    else
+                    {
+                        while(dialog.ShowDialog() != CommonFileDialogResult.Ok)
+                        {
+
+                        }
+                    }   
                 }
                 return dialog.FileName;
             }
@@ -480,15 +583,15 @@ namespace Smarti_Assist
 
             if (chkTech.Checked.Equals(true))
             {
-                table.AddCell(new Cell(1, 4).Add(new Paragraph(txtTech.Text).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
                 table.AddCell(new Cell(1, 1).Add(new Paragraph("Locale:").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
                 table.AddCell(new Cell(1, 3).Add(new Paragraph("U.S.A.").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 4).Add(new Paragraph(txtTech.Text).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
             }
             else
             {
-                table.AddCell(new Cell(1, 4).SetBorder(Border.NO_BORDER));
                 table.AddCell(new Cell(1, 1).SetBorder(Border.NO_BORDER));
                 table.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 4).SetBorder(Border.NO_BORDER));
             }
 
             if (chkDate.Checked.Equals(true))
@@ -512,20 +615,6 @@ namespace Smarti_Assist
             table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/").AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
 
             document.Add(table);
-        }
-  
-        //Shoud create a PDF to memory.
-        private byte[] createPDF()
-        {
-            var stream = new MemoryStream();
-            var writer = new PdfWriter(stream);
-            var pdf = new PdfDocument(writer);
-            var document = new iText.Layout.Document(pdf);
-
-            document.Add(new iText.Layout.Element.Paragraph("Hello world!"));
-            document.Close();
-
-            return stream.ToArray();
         }
     }
 }

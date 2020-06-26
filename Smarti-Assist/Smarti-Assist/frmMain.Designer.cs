@@ -39,8 +39,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEditPrinter = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuEditTech = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditPart = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -73,6 +71,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnArk = new System.Windows.Forms.Button();
             this.btnInj = new System.Windows.Forms.Button();
+            this.mnuFileClear = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.grpOptions.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +100,7 @@
             this.mnuFileImport,
             this.mnuFileExport,
             this.toolStripMenuItem2,
+            this.mnuFileClear,
             this.mnuFileExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
@@ -157,8 +157,6 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuEditPrinter,
-            this.toolStripMenuItem6,
             this.mnuEditTech,
             this.mnuEditPart,
             this.toolStripMenuItem3,
@@ -166,20 +164,6 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
             this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // mnuEditPrinter
-            // 
-            this.mnuEditPrinter.Name = "mnuEditPrinter";
-            this.mnuEditPrinter.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.P)));
-            this.mnuEditPrinter.Size = new System.Drawing.Size(339, 34);
-            this.mnuEditPrinter.Text = "Printer Config";
-            this.mnuEditPrinter.Click += new System.EventHandler(this.mnuEditPrinter_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(336, 6);
             // 
             // mnuEditTech
             // 
@@ -292,7 +276,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 17);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Version 0.6";
+            this.label3.Text = "Version 1.0";
             // 
             // grpOptions
             // 
@@ -311,7 +295,7 @@
             this.grpOptions.Size = new System.Drawing.Size(243, 284);
             this.grpOptions.TabIndex = 4;
             this.grpOptions.TabStop = false;
-            this.grpOptions.Text = "Options/Info";
+            this.grpOptions.Text = "Include Options";
             // 
             // txtPO
             // 
@@ -371,9 +355,9 @@
             this.chkTech.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTech.Location = new System.Drawing.Point(19, 25);
             this.chkTech.Name = "chkTech";
-            this.chkTech.Size = new System.Drawing.Size(185, 24);
+            this.chkTech.Size = new System.Drawing.Size(129, 24);
             this.chkTech.TabIndex = 3;
-            this.chkTech.Text = "Include Technician(s)";
+            this.chkTech.Text = "Technician(s)";
             this.chkTech.UseVisualStyleBackColor = true;
             this.chkTech.CheckedChanged += new System.EventHandler(this.chkTech_CheckedChanged);
             // 
@@ -384,9 +368,9 @@
             this.chkQR.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkQR.Location = new System.Drawing.Point(19, 85);
             this.chkQR.Name = "chkQR";
-            this.chkQR.Size = new System.Drawing.Size(165, 24);
+            this.chkQR.Size = new System.Drawing.Size(109, 24);
             this.chkQR.TabIndex = 2;
-            this.chkQR.Text = "Include Q.R. Code";
+            this.chkQR.Text = "Q.R. Code";
             this.chkQR.UseVisualStyleBackColor = true;
             this.chkQR.CheckedChanged += new System.EventHandler(this.chkQR_CheckedChanged);
             // 
@@ -397,9 +381,9 @@
             this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDate.Location = new System.Drawing.Point(19, 115);
             this.chkDate.Name = "chkDate";
-            this.chkDate.Size = new System.Drawing.Size(126, 24);
+            this.chkDate.Size = new System.Drawing.Size(70, 24);
             this.chkDate.TabIndex = 1;
-            this.chkDate.Text = "Include Date";
+            this.chkDate.Text = "Date";
             this.chkDate.UseVisualStyleBackColor = true;
             // 
             // chkInjector
@@ -409,9 +393,9 @@
             this.chkInjector.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInjector.Location = new System.Drawing.Point(19, 55);
             this.chkInjector.Name = "chkInjector";
-            this.chkInjector.Size = new System.Drawing.Size(174, 24);
+            this.chkInjector.Size = new System.Drawing.Size(118, 24);
             this.chkInjector.TabIndex = 0;
-            this.chkInjector.Text = "Include Injector P/O";
+            this.chkInjector.Text = "Injector P/O";
             this.chkInjector.UseVisualStyleBackColor = true;
             this.chkInjector.CheckedChanged += new System.EventHandler(this.chkInjector_CheckedChanged);
             // 
@@ -421,7 +405,7 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(215, 46);
             this.btnPrint.TabIndex = 5;
-            this.btnPrint.Text = "Validate/Print";
+            this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -483,6 +467,15 @@
             this.btnInj.UseVisualStyleBackColor = true;
             this.btnInj.Click += new System.EventHandler(this.btnInj_Click);
             // 
+            // mnuFileClear
+            // 
+            this.mnuFileClear.Name = "mnuFileClear";
+            this.mnuFileClear.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.R)));
+            this.mnuFileClear.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileClear.Text = "Clear";
+            this.mnuFileClear.Click += new System.EventHandler(this.mnuFileClear_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -528,7 +521,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuFileExit;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mnuEditPrinter;
         private System.Windows.Forms.ToolStripMenuItem mnuEditTech;
         private System.Windows.Forms.ToolStripMenuItem mnuEditPart;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
@@ -561,7 +553,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnArk;
         private System.Windows.Forms.Button btnInj;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileClear;
     }
 }
 

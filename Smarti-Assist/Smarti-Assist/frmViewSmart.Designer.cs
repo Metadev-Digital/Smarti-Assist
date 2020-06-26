@@ -40,6 +40,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(928, 1044);
             this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.Url = new System.Uri("https://www.metadevdigital.com/acrelec/pdf/smarti.pdf", System.UriKind.Absolute);
             // 
             // frmViewSmart
             // 

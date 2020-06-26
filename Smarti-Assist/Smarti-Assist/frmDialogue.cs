@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/*Smart-i Assist -Dialogue- Version 0.6
+/*Smart-i Assist -Dialogue- Version 1.0
  * Created: 6/16/2020
- * Updated: 6/19/2020
+ * Updated: 6/26/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -75,7 +70,7 @@ namespace Smarti_Assist
 
         private void frmDialogue_Load(object sender, EventArgs e)
         {
-
+            txtInput.Focus();
         }
     }
 }

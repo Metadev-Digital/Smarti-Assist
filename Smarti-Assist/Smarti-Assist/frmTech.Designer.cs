@@ -73,6 +73,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTech";
             this.Text = "Change set Technician(s)";
+            this.Load += new System.EventHandler(this.frmTech_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
