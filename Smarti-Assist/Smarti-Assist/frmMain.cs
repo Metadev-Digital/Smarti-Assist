@@ -14,11 +14,12 @@ using iText.Layout.Properties;
 using iText.Layout.Borders;
 using iText.Barcodes;
 using System.Drawing.Printing;
+using Smarti_Assist.Properties;
 
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/25/2020
+ * Updated: 6/29/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -28,6 +29,12 @@ using System.Drawing.Printing;
 
 //TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
 //TODO: Include an option to set the number of EACH label to be printed. Do you want 1,2,3,4,etc.. copies of each?
+
+//TODO: Replace version on the bottom of every form with Settings.Default.Version
+//TODO: Everywhere where Settings.Default is being edited in some way shape or form, make sure isChk doesn't also need changed
+
+//TODO: Consider changing the Settings.Default handling so that you are allowed to not input a setting for the PO or the technician. Maybe ask Roger?
+
 namespace Smarti_Assist
 {
     public partial class frmMain : Form
@@ -41,7 +48,18 @@ namespace Smarti_Assist
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if(Settings.Default.configuration==true)
+            {
+                using (frmConfiguration configForm = new frmConfiguration())
+                {
+                    configForm.ShowDialog();
+                }
+            }
 
+            Settings.Default.Reload();
+
+            txtPO.Text = Settings.Default.partorder.ToString();
+            txtTech.Text = Settings.Default.technician.ToString();
         }
 
 
@@ -204,19 +222,96 @@ namespace Smarti_Assist
             //TODO: Export configuration settings as an easily transferable file
         }
 
+        /// <summary>
+        /// Takes part of the ischanged function for chkTech, prompts a user to enter the new tech field, then saves it in settings
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuEditTech</param>
         private void mnuEditTech_Click(object sender, EventArgs e)
         {
-            //TODO: Edit the preset and saved field for technicians
+            using (frmTech techForm = new frmTech())
+            {
+                techForm.ShowDialog();
+
+                if (techForm.technician == "")
+                {
+                    MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    chkTech.Checked = false;
+                }
+
+                txtTech.Text = techForm.technician;
+                Settings.Default.technician = txtTech.Text;
+                Settings.Default.Save();
+                Settings.Default.Reload();
+            }
         }
 
+        /// <summary>
+        /// Takes part of the ischanged function for chkPO, prompts a user to enter the new part order, then saves it in settings
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuEditTech</param>
         private void mnuEditPart_Click(object sender, EventArgs e)
         {
-            //TODO: Edit the preset and saved field for the part order
+            using (frmPO poForm = new frmPO())
+            {
+                poForm.ShowDialog();
+
+                if (poForm.po == "")
+                {
+                    MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    chkInjector.Checked = false;
+                }
+
+                txtPO.Text = poForm.po;
+                Settings.Default.partorder = txtPO.Text;
+                Settings.Default.Save();
+                Settings.Default.Reload();
+            }
         }
 
+        /// <summary>
+        /// Deletes the set settings, then asks the user if they want to reconfigure the settings now or on next launch.
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">mnuEditRemove</param>
         private void mnuEditRemove_Click(object sender, EventArgs e)
         {
-            //TODO: Delete the current settings to start first time set-up on next launch
+            var selection = MessageBox.Show("Are you sure you wish to reset the configuration file back to defaults?\nNote: This will remove " +
+                "ALL settings.", "Remove Settings?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (selection == DialogResult.Yes)
+            {
+                Settings.Default.Reset();
+                txtPO.Text = "";
+                txtTech.Text = "";
+                var selection2 = MessageBox.Show("Do you wish to wait until next launch to set Technician and Part Order?" +
+                    "\nNote: If not now, you must reset these fields if you want them to be displayed on the finished " +
+                    "labels.", "Reset now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(selection2==DialogResult.Yes)
+                {
+                    using (frmConfiguration configForm = new frmConfiguration())
+                    {
+                        configForm.ShowDialog();
+
+                        Settings.Default.Reload();
+
+                        txtPO.Text = Settings.Default.partorder.ToString();
+                        txtTech.Text = Settings.Default.technician.ToString();
+                        chkTech.Checked = true;
+                        chkInjector.Checked = true;
+                        chkDate.Checked = true;
+                        chkQR.Checked = true;
+                    }
+                }
+                else
+                {
+                    chkInjector.Checked = false;
+                    chkTech.Checked = false;
+                    chkDate.Checked = true;
+                    chkQR.Checked = true;
+                }
+            }
         }
 
         /// <summary>
@@ -287,6 +382,9 @@ namespace Smarti_Assist
                         }
 
                         txtPO.Text = poForm.po;
+                        Settings.Default.partorder = txtPO.Text;
+                        Settings.Default.Save();
+                        Settings.Default.Reload();
                     }
                 }
                 else if(selection == DialogResult.No && txtPO.Text.Equals("") )
@@ -295,7 +393,6 @@ namespace Smarti_Assist
                     chkInjector.Checked = false;
                 }
             }
-            //TODO: Change the configuration file to reflect the proper P.O. on subsequent boots.
         }
 
         /// <summary>
@@ -325,6 +422,9 @@ namespace Smarti_Assist
                         }
 
                         txtTech.Text = techForm.technician;
+                        Settings.Default.technician = txtTech.Text;
+                        Settings.Default.Save();
+                        Settings.Default.Reload();
                     }
                 }
                 else if((selection == DialogResult.No) && txtTech.Text.Equals(""))
@@ -332,8 +432,6 @@ namespace Smarti_Assist
                     MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     chkTech.Checked = false;
                 }
-
-                //TODO: Change the configuration file to reflect the technician changes on subsequent boots.
             }
         }
 
@@ -396,7 +494,7 @@ namespace Smarti_Assist
             {
                 using(var stream = new MemoryStream())
                 {
-                    using (PdfWriter outWriter = new PdfWriter(stream))
+                    using (PdfWriter outWriter = new PdfWriter(stream) )
                     {
 
                         PdfDocument outPDF = new PdfDocument(outWriter);
@@ -411,25 +509,39 @@ namespace Smarti_Assist
                             createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i));
                         }
 
-
-                        //TODO: Handle the actual printing here
-                        using (PrintDialog printDialog = new PrintDialog())
-                        {
-                            printDialog.AllowSomePages = true;
-                            printDialog.ShowHelp = true;
-
-                            PdfiumViewer.PdfDocument printerDoc = PdfiumViewer.PdfDocument.Load(stream);
-                            PrintDocument pd = printerDoc.CreatePrintDocument(PdfiumViewer.PdfPrintMode.CutMargin);
-
-                            printDialog.Document = pd;
-                            printDialog.ShowDialog();
-                        }
-
                         outDocument.Close();
                         outPDF.Close();
                         outWriter.Close();
 
-                        //TODO: Fix since it is not working
+                        byte[] bytes = stream.ToArray();
+
+                        using (var outStream = new MemoryStream(bytes))
+                        {
+                            using (var document = PdfiumViewer.PdfDocument.Load(outStream))
+                            {
+                                using (var printDocument = document.CreatePrintDocument())
+                                {
+                                    using (PrintDialog dialog = new PrintDialog())
+                                    {
+                                        printDocument.PrinterSettings.PrintFileName = "Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf";
+                                        printDocument.DocumentName = "Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf";
+                                        printDocument.PrinterSettings.PrintFileName = "file.pdf";
+                                        printDocument.PrintController = new StandardPrintController();
+                                        printDocument.PrinterSettings.MinimumPage = 1;
+                                        printDocument.PrinterSettings.FromPage = 1;
+                                        printDocument.PrinterSettings.ToPage = document.PageCount;
+                                        printDocument.DefaultPageSettings.PaperSize = new PaperSize("3 x 3 inches", 300, 300);
+                                        dialog.Document = printDocument;
+                                        dialog.AllowPrintToFile = true;
+                                        dialog.AllowSomePages = true;
+                                        if (dialog.ShowDialog() == DialogResult.OK)
+                                        {
+                                            dialog.Document.Print();
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

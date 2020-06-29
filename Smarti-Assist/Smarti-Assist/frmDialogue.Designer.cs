@@ -60,10 +60,10 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(435, 40);
+            this.label1.Size = new System.Drawing.Size(436, 40);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Please enter raw serial number data separated by enterlines:\r\n(Copy/Pasted from I" +
-    "njector tracability Excel document)";
+            this.label1.Text = "Please enter raw serial number data separated by enterlines:\r\n(Copy/Pasted from S" +
+    "mart Injector tracability Excel document)";
             // 
             // txtInput
             // 
@@ -81,6 +81,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 252);
+            this.ControlBox = false;
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Cancel);

@@ -121,7 +121,7 @@
             // 
             // btnContact
             // 
-            this.btnContact.Location = new System.Drawing.Point(407, 330);
+            this.btnContact.Location = new System.Drawing.Point(407, 361);
             this.btnContact.Name = "btnContact";
             this.btnContact.Size = new System.Drawing.Size(75, 33);
             this.btnContact.TabIndex = 11;
@@ -134,9 +134,8 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(27, 381);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(139, 20);
+            this.label9.Size = new System.Drawing.Size(0, 20);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Settings Directory:";
             // 
             // label10
             // 

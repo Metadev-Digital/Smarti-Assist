@@ -59,13 +59,14 @@
             this.label1.Size = new System.Drawing.Size(317, 60);
             this.label1.TabIndex = 3;
             this.label1.Text = "Enter the new relevant part order in the box \r\nbelow how exactly the way it shoul" +
-    "d appear\r\non the generated labels and press submit.";
+    "d appear\r\non the generated labels then press submit.";
             // 
             // frmPO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 128);
+            this.ControlBox = false;
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.label1);

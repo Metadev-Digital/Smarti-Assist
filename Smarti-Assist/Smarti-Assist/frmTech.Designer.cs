@@ -42,7 +42,7 @@
             this.label1.Size = new System.Drawing.Size(327, 60);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter the technician(s) identifier(s) in the box \r\nbelow how exactly the way it s" +
-    "hould appear\r\non the generated labels and press submit.";
+    "hould appear\r\non the generated labels then press submit.";
             // 
             // txtInput
             // 
@@ -66,6 +66,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 128);
+            this.ControlBox = false;
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.label1);
