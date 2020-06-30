@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*Smart-i Assist -Tech- Version 1.0
+/*Smart-i Assist -PO- Version 1.0
  * Created: 6/23/2020
- * Updated: 6/29/2020
+ * Updated: 6/30/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -23,7 +23,7 @@ namespace Smarti_Assist
 
         private void frmPO_Load(object sender, EventArgs e)
         {
-            txtInput.Focus();
+            txtInput.Focus().Equals(true);
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

@@ -124,7 +124,7 @@ on the finished labels.
 
 This data should be in the format of intials in the scheme of "First. Middle. Last." If
 you wish to have more than one technician, separate by "/"
-Example: R.A.V / K.R.S.</value>
+Example: R.A.V. / K.R.S.</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Enter the information you want to fill into the "Part Order" field by default on launch.

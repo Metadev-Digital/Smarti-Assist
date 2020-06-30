@@ -15,11 +15,12 @@ using iText.Layout.Borders;
 using iText.Barcodes;
 using System.Drawing.Printing;
 using Smarti_Assist.Properties;
+using System.Text;
 
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/29/2020
+ * Updated: 6/30/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -30,10 +31,7 @@ using Smarti_Assist.Properties;
 //TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
 //TODO: Include an option to set the number of EACH label to be printed. Do you want 1,2,3,4,etc.. copies of each?
 
-//TODO: Replace version on the bottom of every form with Settings.Default.Version
-//TODO: Everywhere where Settings.Default is being edited in some way shape or form, make sure isChk doesn't also need changed
-
-//TODO: Consider changing the Settings.Default handling so that you are allowed to not input a setting for the PO or the technician. Maybe ask Roger?
+//TODO: Replace all instances of Part Order with Purchase Order
 
 namespace Smarti_Assist
 {
@@ -48,6 +46,7 @@ namespace Smarti_Assist
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            Settings.Default.Reload();
             if(Settings.Default.configuration==true)
             {
                 using (frmConfiguration configForm = new frmConfiguration())
@@ -56,10 +55,8 @@ namespace Smarti_Assist
                 }
             }
 
-            Settings.Default.Reload();
-
-            txtPO.Text = Settings.Default.partorder.ToString();
-            txtTech.Text = Settings.Default.technician.ToString();
+            validateSettings();
+            lblVersion.Text = "Version " + Settings.Default.version;
         }
 
 
@@ -212,14 +209,229 @@ namespace Smarti_Assist
             }
         }
 
+        /// <summary>
+        /// Prompts the user for a selected file to import. Attempts its best at itterating through the file to find the data.
+        /// If the version does not match, the program will still try and read the file to change the settings.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mnuFileImport_Click(object sender, EventArgs e)
         {
-            //TODO: Take exported configuration file, read the data, and set the configuration settings equal to input file
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Smart-i Assist Configuration Files | *.sic"; 
+            dialog.Multiselect = false; 
+            if (dialog.ShowDialog() == DialogResult.OK) 
+            {
+                using (StreamReader sr = new StreamReader(new FileStream(dialog.FileName, FileMode.Open), new UTF8Encoding()))
+                {
+                    try
+                    {
+                        String[] newSettings = new string[6];
+                        bool properImport = false;
+
+                        if (sr.ReadLine().Equals("SIC - SMART-I ASSIST"))
+                        {
+                            //Imports the rest of the file to a List for manipulation
+                            List<String> fileText = sr.ReadToEnd().Split(new[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                            //Uses string.contains with Linq expression to allow searching for a partial string since lists will not.
+                            int searchIndex = fileText.FindIndex(str => str.Contains("Version"));
+                            if (searchIndex >= 0)
+                            {
+
+                                string version = fileText.ElementAt(searchIndex);
+                                version = version.Substring(version.IndexOf(":") + 2);
+
+                                //Version match, we know the exact layout of this file
+                                if (version == Settings.Default.version)
+                                {
+                                    for(int i=0; i<6; i++)
+                                    {
+                                        newSettings[i] = fileText.ElementAt(++searchIndex);
+                                        newSettings[i] = newSettings[i].Substring(newSettings[i].IndexOf(":") + 2);
+                                    }
+
+                                    properImport = true;
+                                }
+                                //Version missmatch, we cannot assume anything about this file, but it might contain the data we're looking for
+                                else
+                                {
+                                    for(int i=0; i<6; i++)
+                                    {
+                                        string search;
+                                        switch (i)
+                                        {
+                                            case 0:
+                                                search = "Technician:";
+                                                break;
+                                            case 1:
+                                                search = "Part-Order:";
+                                                break;
+                                            case 2:
+                                                search = "Date-Checked:";
+                                                break;
+                                            case 3:
+                                                search = "QR-Checked:";
+                                                break;
+                                            case 4:
+                                                search = "P.O.-Checked:";
+                                                break;
+                                            case 5:
+                                                search = "Tech-Checked:";
+                                                break;
+                                            default:
+                                                search = "--------";
+                                                break;
+
+                                        }
+
+                                        searchIndex = -1;
+                                        searchIndex = fileText.FindIndex(str => str.Contains(search));
+                                        if (searchIndex >= 0)
+                                        {
+                                            newSettings[i] = fileText.ElementAt(searchIndex);
+                                            newSettings[i] = newSettings[i].Substring(newSettings[i].IndexOf(":") + 2);
+                                        }
+                                        else
+                                        {
+                                            throw new IncompatibleFileVersionException();
+                                        }
+                                    }
+
+                                    properImport = true;
+                                }
+                            }
+                            else
+                            {
+                                throw new IncompatibleFileException();
+                            }
+
+                            sr.Close();
+                        }
+                        else
+                        {
+                            throw new IncompatibleFileException();
+                        }
+
+                        if(properImport)
+                        {
+                            /*
+                             * Holds off changing any settings till the end in case there is a file that can be paritally
+                             * read, this way there are no instances of half changed settings. Also keeps me from writting
+                             * the below set twice or making another function.
+                             */
+
+                            if (newSettings[0]=="!EMPTY")
+                            {
+                                Settings.Default.technician = "";
+                            }
+                            else
+                            {
+                                Settings.Default.technician = newSettings[0];
+                            }
+
+                            if (newSettings[1]=="!EMPTY")
+                            {
+                                Settings.Default.partorder = "";
+                            }
+                            else
+                            {
+                                Settings.Default.partorder = newSettings[1];
+                            }
+
+                            Settings.Default.isChkDate = returnBool(newSettings[2]);
+                            Settings.Default.isChkQR = returnBool(newSettings[3]);
+                            Settings.Default.isChkInj = returnBool(newSettings[4]);
+                            Settings.Default.isChkTech = returnBool(newSettings[5]);
+
+                            validateSettings();
+
+                            MessageBox.Show("Settings successfully imported from selected file.", "Successful Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            //This should never be called, but in case it makes it this far and has not set properImport
+                            throw new IncompatibleFileVersionException();
+                        }
+                    }
+                    catch (IncompatibleFileException)
+                    {
+                        sr.Close();
+                        MessageBox.Show("The file selected for import is either corrupt, or has been edited in some way which" +
+                            "makes it incompatible for importing. Export the settings to a new clean file and try again.\n\n" +
+                            "If you believe this to be shown in error, please report the issue from the report issue button" +
+                            "under the help bar (or by pressing CTRL + R)", "Import Error - File Corrupt",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (IncompatibleFileVersionException)
+                    {
+                        MessageBox.Show(".SIC file is from an incompatible version number and cannot be imported.\n\n" +
+                            "If your version of Smart-i Assist needs updated, please contact your system administrator," +
+                            "the Order Fullfillment Manager, or program creator through the report issue option under" +
+                            "help.", "Incompatible File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void mnuFileExport_Click(object sender, EventArgs e)
         {
-            //TODO: Export configuration settings as an easily transferable file
+
+            //TODO: Check if the file already exists at that location, then clear it out if it does
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(choseDirectory() + "/Smart-i-Config.sic", true, Encoding.UTF8))
+                {
+                    sw.WriteLine("SIC - SMART-I ASSIST");
+                    sw.WriteLine(DateTime.UtcNow.ToString("MM-dd-yyyy"));
+                    sw.WriteLine("");
+                    sw.WriteLine("");
+                    sw.WriteLine("*****************************************");
+                    sw.WriteLine("*** SMART-I ASSIST EXPORTED SETTINGS  ***");
+                    sw.WriteLine("*** MANUAL EDITING COULD CAUSE ISSUES ***");
+                    sw.WriteLine("*****************************************");
+                    sw.WriteLine("");
+                    sw.WriteLine("");
+                    sw.WriteLine("Version: " + Settings.Default.version);
+                    if (Settings.Default.technician==null || Settings.Default.technician=="")
+                    {
+
+                        sw.WriteLine("Technician: !EMPTY");
+                    }
+                    else
+                    {
+                        sw.WriteLine("Technician: " + Settings.Default.technician);
+                    }
+                    if(Settings.Default.partorder==null || Settings.Default.partorder=="")
+                    {
+                        sw.WriteLine("Part-Order: !EMPTY");
+                    }
+                    else
+                    { 
+                        sw.WriteLine("Part-Order: " + Settings.Default.partorder);
+                    }
+                    sw.WriteLine("Date-Checked: " + Settings.Default.isChkDate);
+                    sw.WriteLine("QR-Checked: " + Settings.Default.isChkQR);
+                    sw.WriteLine("P.O.-Checked: " + Settings.Default.isChkInj);
+                    sw.WriteLine("Tech-Checked: " + Settings.Default.isChkTech);
+
+                    sw.Close();
+                }
+
+                MessageBox.Show("Your configuration file was successfully exported in your chosen directory as " +
+                    "'Smart-i-Config.sic'", "Export Successful", MessageBoxButtons.OK);
+            }
+            catch (System.IO.IOException)
+            {
+                MessageBox.Show("An unexcected error occured when trying to save the file in that location. Is there already a file" +
+                    " with that name open and in use? Does the selected directory exist? Do you have permissions to save inside of it?" +
+                    "\nPlease try again.",
+                    "Unexected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.InvalidOperationException)
+            {
+                MessageBox.Show("Export was cancelled. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         /// <summary>
@@ -233,16 +445,17 @@ namespace Smarti_Assist
             {
                 techForm.ShowDialog();
 
-                if (techForm.technician == "")
+                if (techForm.technician == null || techForm.technician == "")
                 {
                     MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    chkTech.Checked = false;
+                    Settings.Default.isChkTech = false;
+                    Settings.Default.technician = "";
                 }
-
-                txtTech.Text = techForm.technician;
-                Settings.Default.technician = txtTech.Text;
-                Settings.Default.Save();
-                Settings.Default.Reload();
+                else
+                {
+                    Settings.Default.technician = techForm.technician;
+                }
+                validateSettings();
             }
         }
 
@@ -257,16 +470,17 @@ namespace Smarti_Assist
             {
                 poForm.ShowDialog();
 
-                if (poForm.po == "")
+                if (poForm.po == null || poForm.po == "")
                 {
                     MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    chkInjector.Checked = false;
+                    Settings.Default.isChkTech = false;
+                    Settings.Default.partorder = "";
                 }
-
-                txtPO.Text = poForm.po;
-                Settings.Default.partorder = txtPO.Text;
-                Settings.Default.Save();
-                Settings.Default.Reload();
+                else
+                {
+                    Settings.Default.partorder = poForm.po;
+                }
+                validateSettings();
             }
         }
 
@@ -283,9 +497,10 @@ namespace Smarti_Assist
             if (selection == DialogResult.Yes)
             {
                 Settings.Default.Reset();
-                txtPO.Text = "";
-                txtTech.Text = "";
-                var selection2 = MessageBox.Show("Do you wish to wait until next launch to set Technician and Part Order?" +
+                Settings.Default.Save();
+                validateSettings();
+
+                var selection2 = MessageBox.Show("Do you wish run the first time configuration now?" +
                     "\nNote: If not now, you must reset these fields if you want them to be displayed on the finished " +
                     "labels.", "Reset now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(selection2==DialogResult.Yes)
@@ -293,23 +508,8 @@ namespace Smarti_Assist
                     using (frmConfiguration configForm = new frmConfiguration())
                     {
                         configForm.ShowDialog();
-
-                        Settings.Default.Reload();
-
-                        txtPO.Text = Settings.Default.partorder.ToString();
-                        txtTech.Text = Settings.Default.technician.ToString();
-                        chkTech.Checked = true;
-                        chkInjector.Checked = true;
-                        chkDate.Checked = true;
-                        chkQR.Checked = true;
+                        validateSettings();
                     }
-                }
-                else
-                {
-                    chkInjector.Checked = false;
-                    chkTech.Checked = false;
-                    chkDate.Checked = true;
-                    chkQR.Checked = true;
                 }
             }
         }
@@ -343,7 +543,27 @@ namespace Smarti_Assist
         /// </summary>
         /// <param name="sender">frmMain</param>
         /// <param name="e">chkQR</param>
-        private void chkQR_CheckedChanged(object sender, EventArgs e)
+        private void chkDate_Click(object sender, EventArgs e)
+        {
+            if(chkDate.Checked)
+            {
+                Settings.Default.isChkDate = true;
+            }
+            else
+            {
+                Settings.Default.isChkDate = false;
+            }
+
+            Settings.Default.Save();
+            Settings.Default.Reload();
+        }
+
+        /// <summary>
+        /// Forces a second thought on disabling the QR codes on account of the.... whole point.
+        /// </summary>
+        /// <param name="sender">frmMain</param>
+        /// <param name="e">chkQR</param>
+        private void chkQR_Click(object sender, EventArgs e)
         {
             if (chkQR.Checked.Equals(false))
             {
@@ -351,9 +571,22 @@ namespace Smarti_Assist
                 if (selection == DialogResult.No)
                 {
                     chkQR.Checked = true;
+                    Settings.Default.isChkQR = true;
+                }
+                else
+                {
+                    Settings.Default.isChkQR = false;
                 }
             }
+            else
+            {
+                Settings.Default.isChkQR = true;
+            }
+
+            Settings.Default.Save();
+            Settings.Default.Reload();
         }
+
 
         /// <summary>
         /// Handles the checking and unchecking of chkInjector. Asks the user if they would like to change the
@@ -363,7 +596,7 @@ namespace Smarti_Assist
         /// <param name="sender">frmMain</param>
         /// <param name="e">chkInjector</param>
         /// <seealso cref="mnuEditPart_Click(object, EventArgs)"/>
-        private void chkInjector_CheckedChanged(object sender, EventArgs e)
+        private void chkInjector_Click(object sender, EventArgs e)
         {
             if(chkInjector.Checked==true)
             {
@@ -375,24 +608,34 @@ namespace Smarti_Assist
                     {
                         poForm.ShowDialog();
 
-                        if (poForm.po == "")
+                        if (poForm.po == null || poForm.po == "")
                         {
                             MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            chkInjector.Checked = false;
+                            Settings.Default.partorder = "";
+                            Settings.Default.isChkInj = false;
                         }
-
-                        txtPO.Text = poForm.po;
-                        Settings.Default.partorder = txtPO.Text;
-                        Settings.Default.Save();
-                        Settings.Default.Reload();
+                        else
+                        {
+                            Settings.Default.partorder = poForm.po;
+                            Settings.Default.isChkInj = true;
+                        }
                     }
                 }
                 else if(selection == DialogResult.No && txtPO.Text.Equals("") )
                 {
                     MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    chkInjector.Checked = false;
+                    Settings.Default.isChkInj = false;
+                }
+                else
+                {
+                    Settings.Default.isChkInj = true;
                 }
             }
+            else
+            {
+                Settings.Default.isChkInj = false;
+            }
+            validateSettings();
         }
 
         /// <summary>
@@ -403,36 +646,47 @@ namespace Smarti_Assist
         /// <param name="sender">frmMain</param>
         /// <param name="e">chkTech</param>
         /// <seealso cref="mnuEditTech_Click(object, EventArgs)"/>
-        private void chkTech_CheckedChanged(object sender, EventArgs e)
+        private void chkTech_Click(object sender, EventArgs e)
         {
-            if(chkTech.Checked==true)
+            if (chkTech.Checked == true)
             {
-                var selection = MessageBox.Show("Do you wish to change the reprersented technician(s)?", "Change Technician(s)?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var selection = MessageBox.Show("Do you wish to change the default Technician(s)?", "Change Technician(s)?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                if(selection == DialogResult.Yes)
+                if (selection.Equals(DialogResult.Yes))
                 {
                     using (frmTech techForm = new frmTech())
                     {
                         techForm.ShowDialog();
 
-                        if (techForm.technician=="")
+                        if (techForm.technician == null || techForm.technician == "")
                         {
-                            MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            chkTech.Checked = false;
+                            MessageBox.Show("Technician(s) cannot be included on the label if the Technician(s) field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Settings.Default.technician = "";
+                            Settings.Default.isChkTech = false;
                         }
-
-                        txtTech.Text = techForm.technician;
-                        Settings.Default.technician = txtTech.Text;
-                        Settings.Default.Save();
-                        Settings.Default.Reload();
+                        else
+                        {
+                            Settings.Default.technician = techForm.technician;
+                            Settings.Default.isChkTech = true;
+                        }
                     }
                 }
-                else if((selection == DialogResult.No) && txtTech.Text.Equals(""))
+                else if (selection == DialogResult.No && txtTech.Text.Equals(""))
                 {
-                    MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    chkTech.Checked = false;
+                    MessageBox.Show("Technician(s) cannot be included on the label if the Technician(s) Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Settings.Default.isChkTech = false;
+                }
+                else
+                {
+                    Settings.Default.isChkTech = true;
                 }
             }
+            else
+            {
+                Settings.Default.isChkTech = false;
+            }
+            validateSettings();
+
         }
 
         /// <summary>
@@ -446,6 +700,89 @@ namespace Smarti_Assist
             mailForm.ShowDialog();
         }
 
+        /// <summary>
+        /// Takes a string input and returns it as a boolean, throws invalid cast exception if not
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private bool returnBool(string str)
+        {
+            if (str.ToLower().Equals("true"))
+                return true;
+            else if (str.ToLower().Equals("false"))
+                return false;
+            else
+                throw new InvalidCastException();
+        }
+
+
+        /// <summary>
+        /// Runs through all of the settings to flip and set fields as necessary.
+        /// </summary>
+        private void validateSettings()
+        {
+            //Text Fields
+            if (Settings.Default.technician == null || Settings.Default.technician == "")
+            {
+                txtTech.Text = "";
+                Settings.Default.isChkTech = false;
+            }
+            else
+            {
+                txtTech.Text = Settings.Default.technician;
+            }
+
+            if (Settings.Default.partorder == null || Settings.Default.partorder == "")
+            {
+                txtPO.Text = "";
+                Settings.Default.isChkInj = false;
+            }
+            else
+            {
+                txtPO.Text = Settings.Default.partorder;
+            }
+
+            //Handles save & reload in the event that one of the options above were changed, but also assuming that they were changed before this was called.
+            Settings.Default.Save();
+            Settings.Default.Reload();
+
+            //Check Boxes
+            if (Settings.Default.isChkDate)
+            {
+                chkDate.Checked = true;
+            }
+            else
+            {
+                chkDate.Checked = false;
+            }
+
+            if (Settings.Default.isChkQR)
+            {
+                chkQR.Checked = true;
+            }
+            else
+            {
+                chkQR.Checked = false;
+            }
+
+            if (Settings.Default.isChkTech)
+            {
+                chkTech.Checked = true;
+            }
+            else
+            {
+                chkTech.Checked = false;
+            }
+
+            if (Settings.Default.isChkInj)
+            {
+                chkInjector.Checked = true;
+            }
+            else
+            {
+                chkInjector.Checked = false;
+            }
+        }
 
         /// <summary>
         /// Checks for the existance of data inside of the variables before shipping them off for label making.
@@ -617,7 +954,7 @@ namespace Smarti_Assist
                 dialog.IsFolderPicker = true;
                 if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
                 {
-                    var selection = MessageBox.Show("You have not selected an install location, do you want to cancel the export?", "No Location Selected",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                    var selection = MessageBox.Show("You have not selected a file location, do you want to cancel the export?", "No Location Selected",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                     if (selection == DialogResult.Yes)
                     {
                         throw new System.InvalidOperationException();
@@ -633,6 +970,7 @@ namespace Smarti_Assist
                 return dialog.FileName;
             }
         }
+
 
         /// <summary>
         /// Creates a one page label the dimensions of the GX430t label maker on site. (3" x 3" labels)

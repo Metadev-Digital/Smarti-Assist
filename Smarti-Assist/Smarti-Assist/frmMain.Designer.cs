@@ -53,7 +53,7 @@
             this.mnuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.grpOptions = new System.Windows.Forms.GroupBox();
             this.txtPO = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -276,15 +276,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Copyright © 2020 All Rights Reserved - Acrelec America";
             // 
-            // label3
+            // lblVersion
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(827, 418);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Version 1.0";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(827, 418);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(80, 17);
+            this.lblVersion.TabIndex = 3;
+            this.lblVersion.Text = "Version 1.0";
             // 
             // grpOptions
             // 
@@ -365,7 +365,7 @@
             this.chkTech.TabIndex = 3;
             this.chkTech.Text = "Technician(s)";
             this.chkTech.UseVisualStyleBackColor = true;
-            this.chkTech.CheckedChanged += new System.EventHandler(this.chkTech_CheckedChanged);
+            this.chkTech.Click += new System.EventHandler(this.chkTech_Click);
             // 
             // chkQR
             // 
@@ -378,7 +378,7 @@
             this.chkQR.TabIndex = 2;
             this.chkQR.Text = "Q.R. Code";
             this.chkQR.UseVisualStyleBackColor = true;
-            this.chkQR.CheckedChanged += new System.EventHandler(this.chkQR_CheckedChanged);
+            this.chkQR.Click += new System.EventHandler(this.chkQR_Click);
             // 
             // chkDate
             // 
@@ -391,6 +391,7 @@
             this.chkDate.TabIndex = 1;
             this.chkDate.Text = "Date";
             this.chkDate.UseVisualStyleBackColor = true;
+            this.chkDate.Click += new System.EventHandler(this.chkDate_Click);
             // 
             // chkInjector
             // 
@@ -403,7 +404,7 @@
             this.chkInjector.TabIndex = 0;
             this.chkInjector.Text = "Injector P/O";
             this.chkInjector.UseVisualStyleBackColor = true;
-            this.chkInjector.CheckedChanged += new System.EventHandler(this.chkInjector_CheckedChanged);
+            this.chkInjector.Click += new System.EventHandler(this.chkInjector_Click);
             // 
             // btnPrint
             // 
@@ -487,7 +488,7 @@
             this.Controls.Add(this.lstArk);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.grpOptions);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -532,7 +533,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHelpAbout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.GroupBox grpOptions;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkTech;

@@ -38,7 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnEnter = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -127,15 +127,15 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // label5
+            // lblVersion
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(832, 639);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 17);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Version 1.0";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(832, 639);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(80, 17);
+            this.lblVersion.TabIndex = 26;
+            this.lblVersion.Text = "Version 1.0";
             // 
             // label6
             // 
@@ -161,7 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 661);
             this.ControlBox = false;
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnImport);
@@ -195,7 +195,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
     }
