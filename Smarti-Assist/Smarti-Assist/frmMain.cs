@@ -33,6 +33,10 @@ using System.Text;
 
 //TODO: Replace all instances of Part Order with Purchase Order
 
+
+//TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
+
+
 namespace Smarti_Assist
 {
     public partial class frmMain : Form
