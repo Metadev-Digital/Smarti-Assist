@@ -303,9 +303,9 @@
             this.grpOptions.Controls.Add(this.chkDate);
             this.grpOptions.Controls.Add(this.chkInjector);
             this.grpOptions.Location = new System.Drawing.Point(560, 40);
-            this.grpOptions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOptions.Margin = new System.Windows.Forms.Padding(2);
             this.grpOptions.Name = "grpOptions";
-            this.grpOptions.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOptions.Padding = new System.Windows.Forms.Padding(2);
             this.grpOptions.Size = new System.Drawing.Size(162, 224);
             this.grpOptions.TabIndex = 4;
             this.grpOptions.TabStop = false;
@@ -315,7 +315,7 @@
             // 
             this.txtPO.Enabled = false;
             this.txtPO.Location = new System.Drawing.Point(9, 191);
-            this.txtPO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPO.Margin = new System.Windows.Forms.Padding(2);
             this.txtPO.Name = "txtPO";
             this.txtPO.Size = new System.Drawing.Size(149, 20);
             this.txtPO.TabIndex = 9;
@@ -334,7 +334,7 @@
             // 
             this.txtTech.Enabled = false;
             this.txtTech.Location = new System.Drawing.Point(9, 150);
-            this.txtTech.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTech.Margin = new System.Windows.Forms.Padding(2);
             this.txtTech.Name = "txtTech";
             this.txtTech.Size = new System.Drawing.Size(149, 20);
             this.txtTech.TabIndex = 7;
@@ -372,7 +372,7 @@
             this.chkTech.Checked = true;
             this.chkTech.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTech.Location = new System.Drawing.Point(13, 16);
-            this.chkTech.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkTech.Margin = new System.Windows.Forms.Padding(2);
             this.chkTech.Name = "chkTech";
             this.chkTech.Size = new System.Drawing.Size(90, 17);
             this.chkTech.TabIndex = 3;
@@ -386,7 +386,7 @@
             this.chkQR.Checked = true;
             this.chkQR.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkQR.Location = new System.Drawing.Point(13, 55);
-            this.chkQR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkQR.Margin = new System.Windows.Forms.Padding(2);
             this.chkQR.Name = "chkQR";
             this.chkQR.Size = new System.Drawing.Size(76, 17);
             this.chkQR.TabIndex = 2;
@@ -400,7 +400,7 @@
             this.chkDate.Checked = true;
             this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDate.Location = new System.Drawing.Point(13, 75);
-            this.chkDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkDate.Margin = new System.Windows.Forms.Padding(2);
             this.chkDate.Name = "chkDate";
             this.chkDate.Size = new System.Drawing.Size(49, 17);
             this.chkDate.TabIndex = 1;
@@ -414,7 +414,7 @@
             this.chkInjector.Checked = true;
             this.chkInjector.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInjector.Location = new System.Drawing.Point(13, 36);
-            this.chkInjector.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkInjector.Margin = new System.Windows.Forms.Padding(2);
             this.chkInjector.Name = "chkInjector";
             this.chkInjector.Size = new System.Drawing.Size(84, 17);
             this.chkInjector.TabIndex = 0;
@@ -425,7 +425,7 @@
             // btnPrint
             // 
             this.btnPrint.Location = new System.Drawing.Point(567, 274);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(143, 30);
             this.btnPrint.TabIndex = 5;
@@ -437,7 +437,7 @@
             // 
             this.lstArk.FormattingEnabled = true;
             this.lstArk.Location = new System.Drawing.Point(11, 79);
-            this.lstArk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstArk.Margin = new System.Windows.Forms.Padding(2);
             this.lstArk.Name = "lstArk";
             this.lstArk.Size = new System.Drawing.Size(257, 225);
             this.lstArk.TabIndex = 6;
@@ -446,7 +446,7 @@
             // 
             this.lstInj.FormattingEnabled = true;
             this.lstInj.Location = new System.Drawing.Point(285, 79);
-            this.lstInj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstInj.Margin = new System.Windows.Forms.Padding(2);
             this.lstInj.Name = "lstInj";
             this.lstInj.Size = new System.Drawing.Size(257, 225);
             this.lstInj.TabIndex = 7;
@@ -476,7 +476,7 @@
             // btnArk
             // 
             this.btnArk.Location = new System.Drawing.Point(218, 50);
-            this.btnArk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnArk.Margin = new System.Windows.Forms.Padding(2);
             this.btnArk.Name = "btnArk";
             this.btnArk.Size = new System.Drawing.Size(50, 23);
             this.btnArk.TabIndex = 10;
@@ -487,7 +487,7 @@
             // btnInj
             // 
             this.btnInj.Location = new System.Drawing.Point(492, 50);
-            this.btnInj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInj.Margin = new System.Windows.Forms.Padding(2);
             this.btnInj.Name = "btnInj";
             this.btnInj.Size = new System.Drawing.Size(50, 23);
             this.btnInj.TabIndex = 11;
@@ -516,7 +516,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Smart-i Assist";

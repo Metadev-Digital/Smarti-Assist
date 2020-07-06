@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="exceptions.cs" />
+    <Compile Include="fileManipulator.cs" />
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +185,7 @@
     <Compile Include="frmViewSmart.Designer.cs">
       <DependentUpon>frmViewSmart.cs</DependentUpon>
     </Compile>
+    <Compile Include="labelMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAbout.resx">

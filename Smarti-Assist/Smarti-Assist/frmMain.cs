@@ -27,12 +27,26 @@ using System.Text;
  * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
  */
 
-
+//---------------FOR VERSION 1.0------------------
+//Additional Features:
 //TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
 //TODO: Include an option to set the number of EACH label to be printed. Do you want 1,2,3,4,etc.. copies of each?
 
-//TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
+//Processes:
+//TODO: Finish labelMaker.cs and rip duplicate functions out of frmMain and frmConfiguration
+//TODO: Decide if this will be the main branch, then merge or get rid of once applicable.
+//TODO: Verify proper use of the iDisposable functions with Pat
 
+//Content & Visuals
+//TODO: Final gramar and spelling checks.
+//TODO: Properly configure the project so that it has all relevant install content. Dont' want it looking like garbo!!
+//TODO: Proper versioning? Server upload? Check for updates?
+//TODO: Configure/Sex-up readme.
+
+
+//---------------FOR VERSION 1.X------------------
+//Additional Features:
+//TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
 
 namespace Smarti_Assist
 {
@@ -218,257 +232,23 @@ namespace Smarti_Assist
         /// <param name="e"></param>
         private void mnuFileImport_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Smart-i Assist Configuration Files | *.sic"; 
-            dialog.Multiselect = false; 
-            if (dialog.ShowDialog() == DialogResult.OK) 
+            using(fileManipulator fm = new fileManipulator())
             {
-                using (StreamReader sr = new StreamReader(new FileStream(dialog.FileName, FileMode.Open), new UTF8Encoding()))
-                {
-                    try
-                    {
-                        String[] newSettings = new string[6];
-                        bool properImport = false;
-
-                        if (sr.ReadLine().Equals("SIC - SMART-I ASSIST"))
-                        {
-                            //Imports the rest of the file to a List for manipulation
-                            List<String> fileText = sr.ReadToEnd().Split(new[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-                            //Uses string.contains with Linq expression to allow searching for a partial string since lists will not.
-                            int searchIndex = fileText.FindIndex(str => str.Contains("Version"));
-                            if (searchIndex >= 0)
-                            {
-
-                                string version = fileText.ElementAt(searchIndex);
-                                version = version.Substring(version.IndexOf(":") + 2);
-
-                                //Version match, we know the exact layout of this file
-                                if (version == Settings.Default.version)
-                                {
-                                    for(int i=0; i<6; i++)
-                                    {
-                                        newSettings[i] = fileText.ElementAt(++searchIndex);
-                                        newSettings[i] = newSettings[i].Substring(newSettings[i].IndexOf(":") + 2);
-                                    }
-
-                                    properImport = true;
-                                }
-                                //Version missmatch, we cannot assume anything about this file, but it might contain the data we're looking for
-                                else
-                                {
-                                    for(int i=0; i<6; i++)
-                                    {
-                                        string search;
-                                        switch (i)
-                                        {
-                                            case 0:
-                                                search = "Technician:";
-                                                break;
-                                            case 1:
-                                                search = "Purchase-Order:";
-                                                break;
-                                            case 2:
-                                                search = "Date-Checked:";
-                                                break;
-                                            case 3:
-                                                search = "QR-Checked:";
-                                                break;
-                                            case 4:
-                                                search = "P.O.-Checked:";
-                                                break;
-                                            case 5:
-                                                search = "Tech-Checked:";
-                                                break;
-                                            default:
-                                                search = "--------";
-                                                break;
-
-                                        }
-
-                                        searchIndex = -1;
-                                        searchIndex = fileText.FindIndex(str => str.Contains(search));
-                                        if (searchIndex >= 0)
-                                        {
-                                            newSettings[i] = fileText.ElementAt(searchIndex);
-                                            newSettings[i] = newSettings[i].Substring(newSettings[i].IndexOf(":") + 2);
-                                        }
-                                        else
-                                        {
-                                            throw new IncompatibleFileVersionException();
-                                        }
-                                    }
-
-                                    properImport = true;
-                                }
-                            }
-                            else
-                            {
-                                throw new IncompatibleFileException();
-                            }
-
-                            sr.Close();
-                        }
-                        else
-                        {
-                            throw new IncompatibleFileException();
-                        }
-
-                        if(properImport)
-                        {
-                            /*
-                             * Holds off changing any settings till the end in case there is a file that can be paritally
-                             * read, this way there are no instances of half changed settings. Also keeps me from writting
-                             * the below set twice or making another function.
-                             */
-
-                            if (newSettings[0]=="!EMPTY")
-                            {
-                                Settings.Default.technician = "";
-                            }
-                            else
-                            {
-                                Settings.Default.technician = newSettings[0];
-                            }
-
-                            if (newSettings[1]=="!EMPTY")
-                            {
-                                Settings.Default.partorder = "";
-                            }
-                            else
-                            {
-                                Settings.Default.partorder = newSettings[1];
-                            }
-
-                            Settings.Default.isChkDate = returnBool(newSettings[2]);
-                            Settings.Default.isChkQR = returnBool(newSettings[3]);
-                            Settings.Default.isChkInj = returnBool(newSettings[4]);
-                            Settings.Default.isChkTech = returnBool(newSettings[5]);
-
-                            validateSettings();
-
-                            MessageBox.Show("Settings successfully imported from selected file.", "Successful Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            //This should never be called, but in case it makes it this far and has not set properImport
-                            throw new IncompatibleFileVersionException();
-                        }
-                    }
-                    catch (IncompatibleFileException)
-                    {
-                        sr.Close();
-                        MessageBox.Show("The file selected for import is either corrupt, or has been edited in some way which" +
-                            "makes it incompatible for importing. Export the settings to a new clean file and try again.\n\n" +
-                            "If you believe this to be shown in error, please report the issue from the report issue button" +
-                            "under the help bar (or by pressing CTRL + R)", "Import Error - File Corrupt",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (IncompatibleFileVersionException)
-                    {
-                        MessageBox.Show(".SIC file is from an incompatible version number and cannot be imported.\n\n" +
-                            "If your version of Smart-i Assist needs updated, please contact your system administrator," +
-                            "the Order Fullfillment Manager, or program creator through the report issue option under" +
-                            "help.", "Incompatible File", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-        }
-
-        private void mnuFileExport_Click(object sender, EventArgs e)
-        {
-
-            //TODO: Check if the file already exists at that location, then clear it out if it does
-            try
-            {
-                String dir = choseDirectory();
-
-                if(File.Exists(dir + "/Smart-i-Config.sic"))
-                {
-                    var selection = MessageBox.Show("That file already exists inside of that directory, do you want to overwrite it?", "Overwrite existing file?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    if (selection== DialogResult.Yes)
-                    {
-                        File.Delete(dir + "/Smart-i-Config.sic");
-                        writeFile(dir);
-                    }
-                    else if(selection==DialogResult.No)
-                    {
-                        selection = MessageBox.Show("Do you want to save in another location?", "Save in another Directory?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (selection == DialogResult.Yes)
-                        {
-                            while(File.Exists(dir + "/Smart-i-Config.sic"))
-                            {
-                                dir = choseDirectory();
-                            }
-
-                            writeFile(dir);
-                        }
-                    }
-                }
-                else
-                {
-                    writeFile(dir);
-                }
-            }
-            catch (System.IO.IOException)
-            {
-                MessageBox.Show("An unexcected error occured when trying to save the file in that location. Is there already a file" +
-                    " with that name open and in use? Does the selected directory exist? Do you have permissions to save inside of it?" +
-                    "\nPlease try again.",
-                    "Unexected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (System.InvalidOperationException)
-            {
-                MessageBox.Show("Export was cancelled. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                fm.import();
             }
         }
 
         /// <summary>
-        /// Handles the actual writing of the file. Put in separate method to allow dialog result options without having to type this all out again
+        /// Prompts the user for selected directory to export. Grabs all the data saved in the settings and exports ot a .sic file
         /// </summary>
-        /// <param name="dir">Chosen directory from chooseDirectory()</param>
-        private void writeFile(string dir)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mnuFileExport_Click(object sender, EventArgs e)
         {
-            using (StreamWriter sw = new StreamWriter(dir + "/Smart-i-Config.sic", true, Encoding.UTF8))
+            using(fileManipulator fm = new fileManipulator())
             {
-                sw.WriteLine("SIC - SMART-I ASSIST");
-                sw.WriteLine(DateTime.UtcNow.ToString("MM-dd-yyyy"));
-                sw.WriteLine("");
-                sw.WriteLine("");
-                sw.WriteLine("*****************************************");
-                sw.WriteLine("*** SMART-I ASSIST EXPORTED SETTINGS  ***");
-                sw.WriteLine("*** MANUAL EDITING COULD CAUSE ISSUES ***");
-                sw.WriteLine("*****************************************");
-                sw.WriteLine("");
-                sw.WriteLine("");
-                sw.WriteLine("Version: " + Settings.Default.version);
-                if (Settings.Default.technician == null || Settings.Default.technician == "")
-                {
-
-                    sw.WriteLine("Technician: !EMPTY");
-                }
-                else
-                {
-                    sw.WriteLine("Technician: " + Settings.Default.technician);
-                }
-                if (Settings.Default.partorder == null || Settings.Default.partorder == "")
-                {
-                    sw.WriteLine("Purchase-Order: !EMPTY");
-                }
-                else
-                {
-                    sw.WriteLine("Purchase-Order: " + Settings.Default.partorder);
-                }
-                sw.WriteLine("Date-Checked: " + Settings.Default.isChkDate);
-                sw.WriteLine("QR-Checked: " + Settings.Default.isChkQR);
-                sw.WriteLine("P.O.-Checked: " + Settings.Default.isChkInj);
-                sw.WriteLine("Tech-Checked: " + Settings.Default.isChkTech);
-
-                sw.Close();
+                fm.export();
             }
-
-            MessageBox.Show("Your configuration file was successfully exported in your chosen directory as " +
-                "'Smart-i-Config.sic'", "Export Successful", MessageBoxButtons.OK);
         }
 
         /// <summary>
