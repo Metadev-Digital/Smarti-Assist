@@ -86,7 +86,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(928, 33);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(748, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -102,14 +103,14 @@
             this.mnuFileClear,
             this.mnuFileExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // mnuFileSave
             // 
             this.mnuFileSave.Name = "mnuFileSave";
             this.mnuFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.mnuFileSave.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileSave.Size = new System.Drawing.Size(185, 22);
             this.mnuFileSave.Text = "Save as PDF...";
             this.mnuFileSave.Click += new System.EventHandler(this.mnuFileSave_Click);
             // 
@@ -117,40 +118,40 @@
             // 
             this.mnuFilePrint.Name = "mnuFilePrint";
             this.mnuFilePrint.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.mnuFilePrint.Size = new System.Drawing.Size(283, 34);
+            this.mnuFilePrint.Size = new System.Drawing.Size(185, 22);
             this.mnuFilePrint.Text = "Print...";
             this.mnuFilePrint.Click += new System.EventHandler(this.mnuFilePrint_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(280, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(182, 6);
             // 
             // mnuFileImport
             // 
             this.mnuFileImport.Name = "mnuFileImport";
-            this.mnuFileImport.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileImport.Size = new System.Drawing.Size(185, 22);
             this.mnuFileImport.Text = "Import Config File";
             this.mnuFileImport.Click += new System.EventHandler(this.mnuFileImport_Click);
             // 
             // mnuFileExport
             // 
             this.mnuFileExport.Name = "mnuFileExport";
-            this.mnuFileExport.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileExport.Size = new System.Drawing.Size(185, 22);
             this.mnuFileExport.Text = "Export Config File...";
             this.mnuFileExport.Click += new System.EventHandler(this.mnuFileExport_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(280, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(182, 6);
             // 
             // mnuFileClear
             // 
             this.mnuFileClear.Name = "mnuFileClear";
             this.mnuFileClear.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.R)));
-            this.mnuFileClear.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileClear.Size = new System.Drawing.Size(185, 22);
             this.mnuFileClear.Text = "Clear";
             this.mnuFileClear.Click += new System.EventHandler(this.mnuFileClear_Click);
             // 
@@ -158,7 +159,7 @@
             // 
             this.mnuFileExit.Name = "mnuFileExit";
             this.mnuFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.mnuFileExit.Size = new System.Drawing.Size(283, 34);
+            this.mnuFileExit.Size = new System.Drawing.Size(185, 22);
             this.mnuFileExit.Text = "Exit";
             this.mnuFileExit.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -170,7 +171,7 @@
             this.toolStripMenuItem3,
             this.mnuEditRemove});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 22);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // mnuEditTech
@@ -178,7 +179,7 @@
             this.mnuEditTech.Name = "mnuEditTech";
             this.mnuEditTech.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.T)));
-            this.mnuEditTech.Size = new System.Drawing.Size(339, 34);
+            this.mnuEditTech.Size = new System.Drawing.Size(226, 22);
             this.mnuEditTech.Text = "Set Technicians";
             this.mnuEditTech.Click += new System.EventHandler(this.mnuEditTech_Click);
             // 
@@ -187,19 +188,19 @@
             this.mnuEditPart.Name = "mnuEditPart";
             this.mnuEditPart.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.N)));
-            this.mnuEditPart.Size = new System.Drawing.Size(339, 34);
+            this.mnuEditPart.Size = new System.Drawing.Size(226, 22);
             this.mnuEditPart.Text = "Part Numbers";
             this.mnuEditPart.Click += new System.EventHandler(this.mnuEditPart_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(336, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(223, 6);
             // 
             // mnuEditRemove
             // 
             this.mnuEditRemove.Name = "mnuEditRemove";
-            this.mnuEditRemove.Size = new System.Drawing.Size(339, 34);
+            this.mnuEditRemove.Size = new System.Drawing.Size(226, 22);
             this.mnuEditRemove.Text = "Remove Config File";
             this.mnuEditRemove.Click += new System.EventHandler(this.mnuEditRemove_Click);
             // 
@@ -209,14 +210,14 @@
             this.mnuViewAss,
             this.mnuViewSmart});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // mnuViewAss
             // 
             this.mnuViewAss.Name = "mnuViewAss";
             this.mnuViewAss.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.mnuViewAss.Size = new System.Drawing.Size(375, 34);
+            this.mnuViewAss.Size = new System.Drawing.Size(248, 22);
             this.mnuViewAss.Text = "Assembly Document";
             this.mnuViewAss.Click += new System.EventHandler(this.mnuViewAss_Click);
             // 
@@ -224,7 +225,7 @@
             // 
             this.mnuViewSmart.Name = "mnuViewSmart";
             this.mnuViewSmart.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.mnuViewSmart.Size = new System.Drawing.Size(375, 34);
+            this.mnuViewSmart.Size = new System.Drawing.Size(248, 22);
             this.mnuViewSmart.Text = "Smart-i Assist Document";
             this.mnuViewSmart.Click += new System.EventHandler(this.mnuViewSmart_Click);
             // 
@@ -235,44 +236,46 @@
             this.toolStripMenuItem4,
             this.mnuHelpAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // mnuHelpReport
             // 
             this.mnuHelpReport.Name = "mnuHelpReport";
             this.mnuHelpReport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.mnuHelpReport.Size = new System.Drawing.Size(278, 34);
+            this.mnuHelpReport.Size = new System.Drawing.Size(182, 22);
             this.mnuHelpReport.Text = "Report Issue";
             this.mnuHelpReport.Click += new System.EventHandler(this.mnuHelpReport_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(275, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(179, 6);
             // 
             // mnuHelpAbout
             // 
             this.mnuHelpAbout.Name = "mnuHelpAbout";
-            this.mnuHelpAbout.Size = new System.Drawing.Size(278, 34);
+            this.mnuHelpAbout.Size = new System.Drawing.Size(182, 22);
             this.mnuHelpAbout.Text = "About Smart-i Assist";
             this.mnuHelpAbout.Click += new System.EventHandler(this.aboutSmartiAssistToolStripMenuItem_Click);
             // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(0, 410);
+            this.label1.Location = new System.Drawing.Point(-6, 328);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(928, 2);
+            this.label1.Size = new System.Drawing.Size(754, 2);
             this.label1.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(272, 418);
+            this.label2.Location = new System.Drawing.Point(246, 335);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(361, 17);
+            this.label2.Size = new System.Drawing.Size(265, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Copyright © 2020 All Rights Reserved - Acrelec America";
             // 
@@ -280,9 +283,10 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(827, 418);
+            this.lblVersion.Location = new System.Drawing.Point(677, 335);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(80, 17);
+            this.lblVersion.Size = new System.Drawing.Size(60, 13);
             this.lblVersion.TabIndex = 3;
             this.lblVersion.Text = "Version 1.0";
             // 
@@ -298,9 +302,11 @@
             this.grpOptions.Controls.Add(this.chkQR);
             this.grpOptions.Controls.Add(this.chkDate);
             this.grpOptions.Controls.Add(this.chkInjector);
-            this.grpOptions.Location = new System.Drawing.Point(673, 37);
+            this.grpOptions.Location = new System.Drawing.Point(560, 40);
+            this.grpOptions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grpOptions.Name = "grpOptions";
-            this.grpOptions.Size = new System.Drawing.Size(243, 284);
+            this.grpOptions.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpOptions.Size = new System.Drawing.Size(162, 224);
             this.grpOptions.TabIndex = 4;
             this.grpOptions.TabStop = false;
             this.grpOptions.Text = "Include Options";
@@ -308,50 +314,56 @@
             // txtPO
             // 
             this.txtPO.Enabled = false;
-            this.txtPO.Location = new System.Drawing.Point(15, 238);
+            this.txtPO.Location = new System.Drawing.Point(9, 191);
+            this.txtPO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPO.Name = "txtPO";
-            this.txtPO.Size = new System.Drawing.Size(222, 26);
+            this.txtPO.Size = new System.Drawing.Size(149, 20);
             this.txtPO.TabIndex = 9;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 214);
+            this.label7.Location = new System.Drawing.Point(6, 175);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 20);
+            this.label7.Size = new System.Drawing.Size(68, 13);
             this.label7.TabIndex = 8;
             this.label7.Text = "Injector P/O:";
             // 
             // txtTech
             // 
             this.txtTech.Enabled = false;
-            this.txtTech.Location = new System.Drawing.Point(15, 176);
+            this.txtTech.Location = new System.Drawing.Point(9, 150);
+            this.txtTech.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTech.Name = "txtTech";
-            this.txtTech.Size = new System.Drawing.Size(222, 26);
+            this.txtTech.Size = new System.Drawing.Size(149, 20);
             this.txtTech.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 152);
+            this.label6.Location = new System.Drawing.Point(6, 135);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 20);
+            this.label6.Size = new System.Drawing.Size(74, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Technician(s):";
             // 
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(0, 146);
+            this.label5.Location = new System.Drawing.Point(-1, 131);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(243, 2);
+            this.label5.Size = new System.Drawing.Size(162, 1);
             this.label5.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(7, 146);
+            this.label4.Location = new System.Drawing.Point(4, 131);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
+            this.label4.Size = new System.Drawing.Size(67, 15);
             this.label4.TabIndex = 4;
             // 
             // chkTech
@@ -359,9 +371,10 @@
             this.chkTech.AutoSize = true;
             this.chkTech.Checked = true;
             this.chkTech.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTech.Location = new System.Drawing.Point(19, 25);
+            this.chkTech.Location = new System.Drawing.Point(13, 16);
+            this.chkTech.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkTech.Name = "chkTech";
-            this.chkTech.Size = new System.Drawing.Size(129, 24);
+            this.chkTech.Size = new System.Drawing.Size(90, 17);
             this.chkTech.TabIndex = 3;
             this.chkTech.Text = "Technician(s)";
             this.chkTech.UseVisualStyleBackColor = true;
@@ -372,9 +385,10 @@
             this.chkQR.AutoSize = true;
             this.chkQR.Checked = true;
             this.chkQR.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkQR.Location = new System.Drawing.Point(19, 85);
+            this.chkQR.Location = new System.Drawing.Point(13, 55);
+            this.chkQR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkQR.Name = "chkQR";
-            this.chkQR.Size = new System.Drawing.Size(109, 24);
+            this.chkQR.Size = new System.Drawing.Size(76, 17);
             this.chkQR.TabIndex = 2;
             this.chkQR.Text = "Q.R. Code";
             this.chkQR.UseVisualStyleBackColor = true;
@@ -385,9 +399,10 @@
             this.chkDate.AutoSize = true;
             this.chkDate.Checked = true;
             this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDate.Location = new System.Drawing.Point(19, 115);
+            this.chkDate.Location = new System.Drawing.Point(13, 75);
+            this.chkDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkDate.Name = "chkDate";
-            this.chkDate.Size = new System.Drawing.Size(70, 24);
+            this.chkDate.Size = new System.Drawing.Size(49, 17);
             this.chkDate.TabIndex = 1;
             this.chkDate.Text = "Date";
             this.chkDate.UseVisualStyleBackColor = true;
@@ -398,9 +413,10 @@
             this.chkInjector.AutoSize = true;
             this.chkInjector.Checked = true;
             this.chkInjector.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInjector.Location = new System.Drawing.Point(19, 55);
+            this.chkInjector.Location = new System.Drawing.Point(13, 36);
+            this.chkInjector.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkInjector.Name = "chkInjector";
-            this.chkInjector.Size = new System.Drawing.Size(118, 24);
+            this.chkInjector.Size = new System.Drawing.Size(84, 17);
             this.chkInjector.TabIndex = 0;
             this.chkInjector.Text = "Injector P/O";
             this.chkInjector.UseVisualStyleBackColor = true;
@@ -408,9 +424,10 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(692, 341);
+            this.btnPrint.Location = new System.Drawing.Point(567, 274);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(215, 46);
+            this.btnPrint.Size = new System.Drawing.Size(143, 30);
             this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -419,28 +436,29 @@
             // lstArk
             // 
             this.lstArk.FormattingEnabled = true;
-            this.lstArk.ItemHeight = 20;
-            this.lstArk.Location = new System.Drawing.Point(12, 106);
+            this.lstArk.Location = new System.Drawing.Point(11, 79);
+            this.lstArk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstArk.Name = "lstArk";
-            this.lstArk.Size = new System.Drawing.Size(317, 284);
+            this.lstArk.Size = new System.Drawing.Size(257, 225);
             this.lstArk.TabIndex = 6;
             // 
             // lstInj
             // 
             this.lstInj.FormattingEnabled = true;
-            this.lstInj.ItemHeight = 20;
-            this.lstInj.Location = new System.Drawing.Point(335, 106);
+            this.lstInj.Location = new System.Drawing.Point(285, 79);
+            this.lstInj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lstInj.Name = "lstInj";
-            this.lstInj.Size = new System.Drawing.Size(317, 284);
+            this.lstInj.Size = new System.Drawing.Size(257, 225);
             this.lstInj.TabIndex = 7;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(92, 65);
+            this.label8.Location = new System.Drawing.Point(64, 52);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(142, 26);
+            this.label8.Size = new System.Drawing.Size(98, 18);
             this.label8.TabIndex = 8;
             this.label8.Text = "ARK Serials";
             // 
@@ -448,17 +466,19 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(399, 65);
+            this.label9.Location = new System.Drawing.Point(342, 51);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(172, 26);
+            this.label9.Size = new System.Drawing.Size(121, 18);
             this.label9.TabIndex = 9;
             this.label9.Text = "Injector Serials";
             // 
             // btnArk
             // 
-            this.btnArk.Location = new System.Drawing.Point(254, 62);
+            this.btnArk.Location = new System.Drawing.Point(218, 50);
+            this.btnArk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnArk.Name = "btnArk";
-            this.btnArk.Size = new System.Drawing.Size(75, 36);
+            this.btnArk.Size = new System.Drawing.Size(50, 23);
             this.btnArk.TabIndex = 10;
             this.btnArk.Text = "Import";
             this.btnArk.UseVisualStyleBackColor = true;
@@ -466,9 +486,10 @@
             // 
             // btnInj
             // 
-            this.btnInj.Location = new System.Drawing.Point(577, 59);
+            this.btnInj.Location = new System.Drawing.Point(492, 50);
+            this.btnInj.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnInj.Name = "btnInj";
-            this.btnInj.Size = new System.Drawing.Size(75, 36);
+            this.btnInj.Size = new System.Drawing.Size(50, 23);
             this.btnInj.TabIndex = 11;
             this.btnInj.Text = "Import";
             this.btnInj.UseVisualStyleBackColor = true;
@@ -476,10 +497,10 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(928, 444);
+            this.ClientSize = new System.Drawing.Size(748, 356);
             this.Controls.Add(this.btnInj);
             this.Controls.Add(this.btnArk);
             this.Controls.Add(this.label9);
@@ -495,6 +516,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Smart-i Assist";

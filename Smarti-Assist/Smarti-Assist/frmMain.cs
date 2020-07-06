@@ -381,46 +381,29 @@ namespace Smarti_Assist
             //TODO: Check if the file already exists at that location, then clear it out if it does
             try
             {
-                using (StreamWriter sw = new StreamWriter(choseDirectory() + "/Smart-i-Config.sic", true, Encoding.UTF8))
+                String dir = choseDirectory();
+
+                if(File.Exists(dir + "/Smart-i-Config.sic"))
                 {
-                    sw.WriteLine("SIC - SMART-I ASSIST");
-                    sw.WriteLine(DateTime.UtcNow.ToString("MM-dd-yyyy"));
-                    sw.WriteLine("");
-                    sw.WriteLine("");
-                    sw.WriteLine("*****************************************");
-                    sw.WriteLine("*** SMART-I ASSIST EXPORTED SETTINGS  ***");
-                    sw.WriteLine("*** MANUAL EDITING COULD CAUSE ISSUES ***");
-                    sw.WriteLine("*****************************************");
-                    sw.WriteLine("");
-                    sw.WriteLine("");
-                    sw.WriteLine("Version: " + Settings.Default.version);
-                    if (Settings.Default.technician==null || Settings.Default.technician=="")
+                    var selection = MessageBox.Show("That file already exists inside of that directory, do you want to overwrite it?", "Overwrite existing file?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (selection== DialogResult.Yes)
                     {
+                        writeFile(dir);
+                    }
+                    else if(selection==DialogResult.No)
+                    {
+                        selection = MessageBox.Show("Do you want to save in another location?", "Save in another Directory?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (selection == DialogResult.Yes)
+                        {
+                            while(File.Exists(dir + "/Smart-i-Config.sic"))
+                            {
+                                dir = choseDirectory();
+                            }
 
-                        sw.WriteLine("Technician: !EMPTY");
+                            writeFile(dir);
+                        }
                     }
-                    else
-                    {
-                        sw.WriteLine("Technician: " + Settings.Default.technician);
-                    }
-                    if(Settings.Default.partorder==null || Settings.Default.partorder=="")
-                    {
-                        sw.WriteLine("Purchase-Order: !EMPTY");
-                    }
-                    else
-                    { 
-                        sw.WriteLine("Purchase-Order: " + Settings.Default.partorder);
-                    }
-                    sw.WriteLine("Date-Checked: " + Settings.Default.isChkDate);
-                    sw.WriteLine("QR-Checked: " + Settings.Default.isChkQR);
-                    sw.WriteLine("P.O.-Checked: " + Settings.Default.isChkInj);
-                    sw.WriteLine("Tech-Checked: " + Settings.Default.isChkTech);
-
-                    sw.Close();
                 }
-
-                MessageBox.Show("Your configuration file was successfully exported in your chosen directory as " +
-                    "'Smart-i-Config.sic'", "Export Successful", MessageBoxButtons.OK);
             }
             catch (System.IO.IOException)
             {
@@ -433,6 +416,51 @@ namespace Smarti_Assist
             {
                 MessageBox.Show("Export was cancelled. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void writeFile(string dir)
+        {
+            using (StreamWriter sw = new StreamWriter(dir + "/Smart-i-Config.sic", true, Encoding.UTF8))
+            {
+
+                sw.WriteLine("SIC - SMART-I ASSIST");
+                sw.WriteLine(DateTime.UtcNow.ToString("MM-dd-yyyy"));
+                sw.WriteLine("");
+                sw.WriteLine("");
+                sw.WriteLine("*****************************************");
+                sw.WriteLine("*** SMART-I ASSIST EXPORTED SETTINGS  ***");
+                sw.WriteLine("*** MANUAL EDITING COULD CAUSE ISSUES ***");
+                sw.WriteLine("*****************************************");
+                sw.WriteLine("");
+                sw.WriteLine("");
+                sw.WriteLine("Version: " + Settings.Default.version);
+                if (Settings.Default.technician == null || Settings.Default.technician == "")
+                {
+
+                    sw.WriteLine("Technician: !EMPTY");
+                }
+                else
+                {
+                    sw.WriteLine("Technician: " + Settings.Default.technician);
+                }
+                if (Settings.Default.partorder == null || Settings.Default.partorder == "")
+                {
+                    sw.WriteLine("Purchase-Order: !EMPTY");
+                }
+                else
+                {
+                    sw.WriteLine("Purchase-Order: " + Settings.Default.partorder);
+                }
+                sw.WriteLine("Date-Checked: " + Settings.Default.isChkDate);
+                sw.WriteLine("QR-Checked: " + Settings.Default.isChkQR);
+                sw.WriteLine("P.O.-Checked: " + Settings.Default.isChkInj);
+                sw.WriteLine("Tech-Checked: " + Settings.Default.isChkTech);
+
+                sw.Close();
+            }
+
+            MessageBox.Show("Your configuration file was successfully exported in your chosen directory as " +
+                "'Smart-i-Config.sic'", "Export Successful", MessageBoxButtons.OK);
         }
 
         /// <summary>

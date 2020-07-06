@@ -37,25 +37,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 14);
+            this.label1.Location = new System.Drawing.Point(11, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 60);
+            this.label1.Size = new System.Drawing.Size(218, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter the technician(s) identifier(s) in the box \r\nbelow how exactly the way it s" +
     "hould appear\r\non the generated labels then press submit.";
             // 
             // txtInput
             // 
-            this.txtInput.Location = new System.Drawing.Point(16, 90);
+            this.txtInput.Location = new System.Drawing.Point(11, 58);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(458, 26);
+            this.txtInput.Size = new System.Drawing.Size(307, 20);
             this.txtInput.TabIndex = 1;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(395, 32);
+            this.btnSubmit.Location = new System.Drawing.Point(263, 21);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 31);
+            this.btnSubmit.Size = new System.Drawing.Size(50, 20);
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -63,15 +66,16 @@
             // 
             // frmTech
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 128);
+            this.ClientSize = new System.Drawing.Size(327, 87);
             this.ControlBox = false;
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmTech";
             this.Text = "Change set Technician(s)";
             this.Load += new System.EventHandler(this.frmTech_Load);
