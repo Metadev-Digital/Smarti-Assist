@@ -127,12 +127,12 @@ you wish to have more than one technician, separate by "/"
 Example: R.A.V. / K.R.S.</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Enter the information you want to fill into the "Part Order" field by default on launch.
+    <value>Enter the information you want to fill into the "Purchase Order" field by default.
 Note that this information can be changed later and does not have to be displayed
 on the finished labels.
 
 This data should be a copied over in its native format.
-Example: 10710</value>
+Example: 10711</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

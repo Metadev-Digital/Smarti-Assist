@@ -47,9 +47,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Smarti_Assist.Properties.Resources.ACRELEC_LOGO;
-            this.pictureBox1.Location = new System.Drawing.Point(45, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(30, 8);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(841, 171);
+            this.pictureBox1.Size = new System.Drawing.Size(561, 111);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
@@ -57,27 +58,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 238);
+            this.label1.Location = new System.Drawing.Point(39, 155);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(593, 140);
+            this.label1.Size = new System.Drawing.Size(402, 91);
             this.label1.TabIndex = 16;
             this.label1.Text = resources.GetString("label1.Text");
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtTechnician
             // 
-            this.txtTechnician.Location = new System.Drawing.Point(671, 238);
+            this.txtTechnician.Location = new System.Drawing.Point(447, 155);
+            this.txtTechnician.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTechnician.Name = "txtTechnician";
-            this.txtTechnician.Size = new System.Drawing.Size(230, 26);
+            this.txtTechnician.Size = new System.Drawing.Size(155, 20);
             this.txtTechnician.TabIndex = 17;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(36, 201);
+            this.label2.Location = new System.Drawing.Point(24, 131);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(273, 26);
+            this.label2.Size = new System.Drawing.Size(192, 18);
             this.label2.TabIndex = 18;
             this.label2.Text = "Enter Default Technician";
             // 
@@ -85,33 +89,37 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(36, 412);
+            this.label3.Location = new System.Drawing.Point(24, 268);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(187, 26);
+            this.label3.Size = new System.Drawing.Size(172, 18);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Enter Part Order";
+            this.label3.Text = "Enter Purchase Order";
             // 
             // txtPO
             // 
-            this.txtPO.Location = new System.Drawing.Point(671, 451);
+            this.txtPO.Location = new System.Drawing.Point(447, 293);
+            this.txtPO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPO.Name = "txtPO";
-            this.txtPO.Size = new System.Drawing.Size(230, 26);
+            this.txtPO.Size = new System.Drawing.Size(155, 20);
             this.txtPO.TabIndex = 20;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(58, 451);
+            this.label4.Location = new System.Drawing.Point(39, 293);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(590, 120);
+            this.label4.Size = new System.Drawing.Size(394, 78);
             this.label4.TabIndex = 19;
             this.label4.Text = resources.GetString("label4.Text");
             // 
             // btnEnter
             // 
-            this.btnEnter.Location = new System.Drawing.Point(709, 572);
+            this.btnEnter.Location = new System.Drawing.Point(473, 372);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(161, 34);
+            this.btnEnter.Size = new System.Drawing.Size(107, 22);
             this.btnEnter.TabIndex = 22;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
@@ -119,9 +127,10 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(709, 523);
+            this.btnImport.Location = new System.Drawing.Point(473, 340);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(161, 34);
+            this.btnImport.Size = new System.Drawing.Size(107, 22);
             this.btnImport.TabIndex = 23;
             this.btnImport.Text = "Import from File";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -131,9 +140,10 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(832, 639);
+            this.lblVersion.Location = new System.Drawing.Point(555, 415);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(80, 17);
+            this.lblVersion.Size = new System.Drawing.Size(60, 13);
             this.lblVersion.TabIndex = 26;
             this.lblVersion.Text = "Version 1.0";
             // 
@@ -141,25 +151,27 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(277, 639);
+            this.label6.Location = new System.Drawing.Point(185, 415);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(361, 17);
+            this.label6.Size = new System.Drawing.Size(265, 13);
             this.label6.TabIndex = 25;
             this.label6.Text = "Copyright © 2020 All Rights Reserved - Acrelec America";
             // 
             // label7
             // 
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label7.Location = new System.Drawing.Point(5, 634);
+            this.label7.Location = new System.Drawing.Point(3, 412);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(928, 2);
+            this.label7.Size = new System.Drawing.Size(619, 1);
             this.label7.TabIndex = 24;
             // 
             // frmConfiguration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 661);
+            this.ClientSize = new System.Drawing.Size(626, 430);
             this.ControlBox = false;
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label6);
@@ -175,6 +187,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmConfiguration";
             this.Text = "Smart-i Assist | Configuration Panel";
             this.Load += new System.EventHandler(this.frmConfiguration_Load);

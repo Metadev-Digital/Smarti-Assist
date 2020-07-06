@@ -31,9 +31,6 @@ using System.Text;
 //TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
 //TODO: Include an option to set the number of EACH label to be printed. Do you want 1,2,3,4,etc.. copies of each?
 
-//TODO: Replace all instances of Part Order with Purchase Order
-
-
 //TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
 
 
@@ -269,7 +266,7 @@ namespace Smarti_Assist
                                                 search = "Technician:";
                                                 break;
                                             case 1:
-                                                search = "Part-Order:";
+                                                search = "Purchase-Order:";
                                                 break;
                                             case 2:
                                                 search = "Date-Checked:";
@@ -408,11 +405,11 @@ namespace Smarti_Assist
                     }
                     if(Settings.Default.partorder==null || Settings.Default.partorder=="")
                     {
-                        sw.WriteLine("Part-Order: !EMPTY");
+                        sw.WriteLine("Purchase-Order: !EMPTY");
                     }
                     else
                     { 
-                        sw.WriteLine("Part-Order: " + Settings.Default.partorder);
+                        sw.WriteLine("Purchase-Order: " + Settings.Default.partorder);
                     }
                     sw.WriteLine("Date-Checked: " + Settings.Default.isChkDate);
                     sw.WriteLine("QR-Checked: " + Settings.Default.isChkQR);
@@ -476,7 +473,7 @@ namespace Smarti_Assist
 
                 if (poForm.po == null || poForm.po == "")
                 {
-                    MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Purchase Order cannot be included on the label if the Purchase Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Settings.Default.isChkTech = false;
                     Settings.Default.partorder = "";
                 }
@@ -604,7 +601,7 @@ namespace Smarti_Assist
         {
             if(chkInjector.Checked==true)
             {
-                var selection = MessageBox.Show("Do you wish to change the unit's Part Order?", "Change Part Order?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                var selection = MessageBox.Show("Do you wish to change the unit's Purchase Order?", "Change Purchase Order?", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (selection.Equals(DialogResult.Yes))
                 {
@@ -614,7 +611,7 @@ namespace Smarti_Assist
 
                         if (poForm.po == null || poForm.po == "")
                         {
-                            MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Purchase Order cannot be included on the label if the Purchase Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             Settings.Default.partorder = "";
                             Settings.Default.isChkInj = false;
                         }
@@ -627,7 +624,7 @@ namespace Smarti_Assist
                 }
                 else if(selection == DialogResult.No && txtPO.Text.Equals("") )
                 {
-                    MessageBox.Show("Part Order cannot be included on the label if the Part Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Purchase Order cannot be included on the label if the Purchase Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Settings.Default.isChkInj = false;
                 }
                 else

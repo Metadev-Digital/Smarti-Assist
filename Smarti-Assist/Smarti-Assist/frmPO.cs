@@ -31,5 +31,10 @@ namespace Smarti_Assist
             po = txtInput.Text;
             this.Close();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
