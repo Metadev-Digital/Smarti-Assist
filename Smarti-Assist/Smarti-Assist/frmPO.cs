@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -PO- Version 1.0
  * Created: 6/23/2020
- * Updated: 6/30/2020
+ * Updated: 7/6/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 

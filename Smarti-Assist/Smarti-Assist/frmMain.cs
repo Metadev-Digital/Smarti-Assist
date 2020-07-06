@@ -20,7 +20,7 @@ using System.Text;
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 6/30/2020
+ * Updated: 7/6/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -388,6 +388,7 @@ namespace Smarti_Assist
                     var selection = MessageBox.Show("That file already exists inside of that directory, do you want to overwrite it?", "Overwrite existing file?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (selection== DialogResult.Yes)
                     {
+                        File.Delete(dir + "/Smart-i-Config.sic");
                         writeFile(dir);
                     }
                     else if(selection==DialogResult.No)
@@ -404,6 +405,10 @@ namespace Smarti_Assist
                         }
                     }
                 }
+                else
+                {
+                    writeFile(dir);
+                }
             }
             catch (System.IO.IOException)
             {
@@ -418,11 +423,14 @@ namespace Smarti_Assist
             }
         }
 
+        /// <summary>
+        /// Handles the actual writing of the file. Put in separate method to allow dialog result options without having to type this all out again
+        /// </summary>
+        /// <param name="dir">Chosen directory from chooseDirectory()</param>
         private void writeFile(string dir)
         {
             using (StreamWriter sw = new StreamWriter(dir + "/Smart-i-Config.sic", true, Encoding.UTF8))
             {
-
                 sw.WriteLine("SIC - SMART-I ASSIST");
                 sw.WriteLine(DateTime.UtcNow.ToString("MM-dd-yyyy"));
                 sw.WriteLine("");
@@ -748,7 +756,7 @@ namespace Smarti_Assist
         /// <summary>
         /// Runs through all of the settings to flip and set fields as necessary.
         /// </summary>
-        private void validateSettings()
+        public void validateSettings()
         {
             //Text Fields
             if (Settings.Default.technician == null || Settings.Default.technician == "")
