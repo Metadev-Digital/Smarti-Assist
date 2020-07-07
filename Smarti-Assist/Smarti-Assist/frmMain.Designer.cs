@@ -55,6 +55,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.grpOptions = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudCopies = new System.Windows.Forms.NumericUpDown();
             this.txtPO = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTech = new System.Windows.Forms.TextBox();
@@ -71,8 +73,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnArk = new System.Windows.Forms.Button();
             this.btnInj = new System.Windows.Forms.Button();
-            this.nudCopies = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.grpOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCopies)).BeginInit();
@@ -314,6 +314,38 @@
             this.grpOptions.TabStop = false;
             this.grpOptions.Text = "Include Options";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "# of copies";
+            // 
+            // nudCopies
+            // 
+            this.nudCopies.Location = new System.Drawing.Point(8, 98);
+            this.nudCopies.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudCopies.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudCopies.Name = "nudCopies";
+            this.nudCopies.Size = new System.Drawing.Size(29, 20);
+            this.nudCopies.TabIndex = 10;
+            this.nudCopies.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudCopies.ValueChanged += new System.EventHandler(this.nudCopies_ValueChanged);
+            // 
             // txtPO
             // 
             this.txtPO.Enabled = false;
@@ -489,22 +521,6 @@
             this.btnInj.Text = "Import";
             this.btnInj.UseVisualStyleBackColor = true;
             this.btnInj.Click += new System.EventHandler(this.btnInj_Click);
-            // 
-            // nudCopies
-            // 
-            this.nudCopies.Location = new System.Drawing.Point(8, 98);
-            this.nudCopies.Name = "nudCopies";
-            this.nudCopies.Size = new System.Drawing.Size(29, 20);
-            this.nudCopies.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 102);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "# of copies";
             // 
             // frmMain
             // 

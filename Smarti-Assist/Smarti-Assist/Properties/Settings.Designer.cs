@@ -115,5 +115,17 @@ namespace Smarti_Assist.Properties {
                 this["isChkQR"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int copies {
+            get {
+                return ((int)(this["copies"]));
+            }
+            set {
+                this["copies"] = value;
+            }
+        }
     }
 }

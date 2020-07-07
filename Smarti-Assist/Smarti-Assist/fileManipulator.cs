@@ -40,7 +40,7 @@ namespace Smarti_Assist
                 {
                     try
                     {
-                        String[] newSettings = new string[6];
+                        String[] newSettings = new string[7];
                         bool properImport = false;
 
                         if (sr.ReadLine().Equals("SIC - SMART-I ASSIST"))
@@ -59,7 +59,7 @@ namespace Smarti_Assist
                                 //Version match, we know the exact layout of this file
                                 if (version == Settings.Default.version)
                                 {
-                                    for (int i = 0; i < 6; i++)
+                                    for (int i = 0; i < 7; i++)
                                     {
                                         newSettings[i] = fileText.ElementAt(++searchIndex);
                                         newSettings[i] = newSettings[i].Substring(newSettings[i].IndexOf(":") + 2);
@@ -70,7 +70,7 @@ namespace Smarti_Assist
                                 //Version missmatch, we cannot assume anything about this file, but it might contain the data we're looking for
                                 else
                                 {
-                                    for (int i = 0; i < 6; i++)
+                                    for (int i = 0; i < 7; i++)
                                     {
                                         string search;
                                         switch (i)
@@ -92,6 +92,9 @@ namespace Smarti_Assist
                                                 break;
                                             case 5:
                                                 search = "Tech-Checked:";
+                                                break;
+                                            case 6:
+                                                search = "#-Copies:";
                                                 break;
                                             default:
                                                 search = "--------";
@@ -157,6 +160,7 @@ namespace Smarti_Assist
                             Settings.Default.isChkQR = returnBool(newSettings[3]);
                             Settings.Default.isChkInj = returnBool(newSettings[4]);
                             Settings.Default.isChkTech = returnBool(newSettings[5]);
+                            Settings.Default.copies = Convert.ToInt32(newSettings[6]);
 
                             Settings.Default.Save();
 
@@ -279,6 +283,7 @@ namespace Smarti_Assist
                 sw.WriteLine("QR-Checked: " + Settings.Default.isChkQR);
                 sw.WriteLine("P.O.-Checked: " + Settings.Default.isChkInj);
                 sw.WriteLine("Tech-Checked: " + Settings.Default.isChkTech);
+                sw.WriteLine("#-Copies: " + Settings.Default.copies);
 
                 sw.Close();
             }

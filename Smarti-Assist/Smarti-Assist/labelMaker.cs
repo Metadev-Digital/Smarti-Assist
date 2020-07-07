@@ -45,7 +45,7 @@ namespace Smarti_Assist
         /// <param name="PDF">Object which contains the document and teaches it how to be one with the PDF</param>
         /// <param name="ark">Provided ark serial number for current iteration</param>
         /// <param name="inj">Provided smart injector serial number for current iteration</param>
-        private void createLabel(Document document, PdfDocument PDF, string ark, string inj)
+        private void createLabel(Document document, PdfDocument PDF, string ark, string inj, bool multiple, int count, int max)
         {
             Style normal = new Style();
             Style header = new Style();
@@ -139,7 +139,15 @@ namespace Smarti_Assist
             }
 
             // Footer
-            table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/").AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
+            if(multiple)
+            {
+                table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/ - Label " + count + " of " + max).AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
+            }
+            else
+            {
+                table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/").AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
+            }
+ 
 
             document.Add(table);
         }
@@ -152,7 +160,7 @@ namespace Smarti_Assist
                 {
                     using (PdfWriter outWriter = new PdfWriter(stream))
                     {
-
+                        bool multipleCopies = false;
                         PdfDocument outPDF = new PdfDocument(outWriter);
 
                         //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
@@ -160,9 +168,17 @@ namespace Smarti_Assist
                         iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
                         iText.Layout.Document outDocument = new iText.Layout.Document(outPDF, new PageSize(labelSize));
 
+                        if(Settings.Default.copies>1)
+                        {
+                            multipleCopies = true;
+                        }
+
                         for (int i = 0; i < lstArkSerials.Count(); i++)
                         {
-                            createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i));
+                            for (int j = 1; j <= Settings.Default.copies; j++)
+                            {
+                                createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i),multipleCopies,j, Settings.Default.copies);
+                            }
                         }
 
                         outDocument.Close();
@@ -220,6 +236,8 @@ namespace Smarti_Assist
             {
                 using (PdfWriter outWriter = new PdfWriter(fm.choseDirectory() + "/Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf"))
                 {
+                    bool multipleCopies = false;
+
                     PdfDocument outPDF = new PdfDocument(outWriter);
 
                     //Set to this size because an internet wizard said that it is 1 inch per 72 user units.
@@ -227,10 +245,17 @@ namespace Smarti_Assist
                     iText.Kernel.Geom.Rectangle labelSize = new iText.Kernel.Geom.Rectangle(0, 0, 216, 216);
                     iText.Layout.Document outDocument = new iText.Layout.Document(outPDF, new PageSize(labelSize));
 
+                    if (Settings.Default.copies > 1)
+                    {
+                        multipleCopies = true;
+                    }
+
                     for (int i = 0; i < lstArkSerials.Count(); i++)
                     {
-
-                        createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i));
+                        for (int j = 1; j <= Settings.Default.copies; j++)
+                        {
+                            createLabel(outDocument, outPDF, lstArkSerials.ElementAt(i), lstInjectorSerials.ElementAt(i), multipleCopies, j, Settings.Default.copies);
+                        }
                     }
 
                     outDocument.Close();

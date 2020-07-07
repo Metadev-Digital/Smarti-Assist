@@ -16,13 +16,10 @@ using Smarti_Assist.Properties;
 
 //---------------FOR VERSION 1.0------------------
 //Additional Features:
-//TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
-//TODO: Include an option to set the number of EACH label to be printed. Do you want 1,2,3,4,etc.. copies of each?
+//CURRENTLY DONE
 
 //Processes:
-//TODO: Finish labelMaker.cs and rip duplicate functions out of frmMain and frmConfiguration
-//TODO: Decide if this will be the main branch, then merge or get rid of once applicable.
-//TODO: Verify proper use of the iDisposable functions with Pat
+//CURRENTLY DONE
 
 //Content & Visuals
 //TODO: Final gramar and spelling checks.
@@ -30,9 +27,9 @@ using Smarti_Assist.Properties;
 //TODO: Proper versioning? Server upload? Check for updates?
 //TODO: Configure/Sex-up readme.
 
-
 //---------------FOR VERSION 1.X------------------
 //Additional Features:
+//TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
 //TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
 
 namespace Smarti_Assist
@@ -597,6 +594,22 @@ namespace Smarti_Assist
             {
                 chkInjector.Checked = false;
             }
+
+            //NumberUpDown
+            nudCopies.Value = Settings.Default.copies;
+        }
+
+        /// <summary>
+        /// Updates setting copies with the number set in nudCopies
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void nudCopies_ValueChanged(object sender, EventArgs e)
+        {
+            //Should not need to round due to increment, but to be safe.
+            Settings.Default.copies = Convert.ToInt32(Math.Round(nudCopies.Value, 0));
+
+            Settings.Default.Save();
         }
 
         /// <summary>
