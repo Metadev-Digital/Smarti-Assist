@@ -71,11 +71,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnArk = new System.Windows.Forms.Button();
             this.btnInj = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudCopies = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.grpOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCopies)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -295,7 +295,7 @@
             // grpOptions
             // 
             this.grpOptions.Controls.Add(this.label3);
-            this.grpOptions.Controls.Add(this.numericUpDown1);
+            this.grpOptions.Controls.Add(this.nudCopies);
             this.grpOptions.Controls.Add(this.txtPO);
             this.grpOptions.Controls.Add(this.label7);
             this.grpOptions.Controls.Add(this.txtTech);
@@ -355,7 +355,7 @@
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(-1, 95);
+            this.label5.Location = new System.Drawing.Point(-1, 126);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(162, 1);
@@ -366,7 +366,7 @@
             this.chkTech.AutoSize = true;
             this.chkTech.Checked = true;
             this.chkTech.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTech.Location = new System.Drawing.Point(13, 16);
+            this.chkTech.Location = new System.Drawing.Point(9, 18);
             this.chkTech.Margin = new System.Windows.Forms.Padding(2);
             this.chkTech.Name = "chkTech";
             this.chkTech.Size = new System.Drawing.Size(90, 17);
@@ -380,7 +380,7 @@
             this.chkQR.AutoSize = true;
             this.chkQR.Checked = true;
             this.chkQR.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkQR.Location = new System.Drawing.Point(13, 55);
+            this.chkQR.Location = new System.Drawing.Point(9, 57);
             this.chkQR.Margin = new System.Windows.Forms.Padding(2);
             this.chkQR.Name = "chkQR";
             this.chkQR.Size = new System.Drawing.Size(76, 17);
@@ -394,7 +394,7 @@
             this.chkDate.AutoSize = true;
             this.chkDate.Checked = true;
             this.chkDate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDate.Location = new System.Drawing.Point(13, 75);
+            this.chkDate.Location = new System.Drawing.Point(9, 77);
             this.chkDate.Margin = new System.Windows.Forms.Padding(2);
             this.chkDate.Name = "chkDate";
             this.chkDate.Size = new System.Drawing.Size(49, 17);
@@ -408,7 +408,7 @@
             this.chkInjector.AutoSize = true;
             this.chkInjector.Checked = true;
             this.chkInjector.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInjector.Location = new System.Drawing.Point(13, 36);
+            this.chkInjector.Location = new System.Drawing.Point(9, 38);
             this.chkInjector.Margin = new System.Windows.Forms.Padding(2);
             this.chkInjector.Name = "chkInjector";
             this.chkInjector.Size = new System.Drawing.Size(84, 17);
@@ -490,21 +490,21 @@
             this.btnInj.UseVisualStyleBackColor = true;
             this.btnInj.Click += new System.EventHandler(this.btnInj_Click);
             // 
-            // numericUpDown1
+            // nudCopies
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(25, 104);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(29, 20);
-            this.numericUpDown1.TabIndex = 10;
+            this.nudCopies.Location = new System.Drawing.Point(8, 98);
+            this.nudCopies.Name = "nudCopies";
+            this.nudCopies.Size = new System.Drawing.Size(29, 20);
+            this.nudCopies.TabIndex = 10;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(60, 108);
+            this.label3.Location = new System.Drawing.Point(41, 102);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "# of each label";
+            this.label3.Text = "# of copies";
             // 
             // frmMain
             // 
@@ -536,7 +536,7 @@
             this.menuStrip1.PerformLayout();
             this.grpOptions.ResumeLayout(false);
             this.grpOptions.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCopies)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,7 +587,7 @@
         private System.Windows.Forms.Button btnInj;
         private System.Windows.Forms.ToolStripMenuItem mnuFileClear;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudCopies;
     }
 }
 
