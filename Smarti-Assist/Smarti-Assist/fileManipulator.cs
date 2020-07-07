@@ -158,6 +158,8 @@ namespace Smarti_Assist
                             Settings.Default.isChkInj = returnBool(newSettings[4]);
                             Settings.Default.isChkTech = returnBool(newSettings[5]);
 
+                            Settings.Default.Save();
+
                             MessageBox.Show("Settings successfully imported from selected file.", "Successful Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else

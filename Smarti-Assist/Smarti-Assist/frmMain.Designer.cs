@@ -60,7 +60,6 @@
             this.txtTech = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.chkTech = new System.Windows.Forms.CheckBox();
             this.chkQR = new System.Windows.Forms.CheckBox();
             this.chkDate = new System.Windows.Forms.CheckBox();
@@ -72,8 +71,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnArk = new System.Windows.Forms.Button();
             this.btnInj = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.grpOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -292,12 +294,13 @@
             // 
             // grpOptions
             // 
+            this.grpOptions.Controls.Add(this.label3);
+            this.grpOptions.Controls.Add(this.numericUpDown1);
             this.grpOptions.Controls.Add(this.txtPO);
             this.grpOptions.Controls.Add(this.label7);
             this.grpOptions.Controls.Add(this.txtTech);
             this.grpOptions.Controls.Add(this.label6);
             this.grpOptions.Controls.Add(this.label5);
-            this.grpOptions.Controls.Add(this.label4);
             this.grpOptions.Controls.Add(this.chkTech);
             this.grpOptions.Controls.Add(this.chkQR);
             this.grpOptions.Controls.Add(this.chkDate);
@@ -352,19 +355,11 @@
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(-1, 131);
+            this.label5.Location = new System.Drawing.Point(-1, 95);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(162, 1);
             this.label5.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(4, 131);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
-            this.label4.TabIndex = 4;
             // 
             // chkTech
             // 
@@ -495,6 +490,22 @@
             this.btnInj.UseVisualStyleBackColor = true;
             this.btnInj.Click += new System.EventHandler(this.btnInj_Click);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(25, 104);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(29, 20);
+            this.numericUpDown1.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(60, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "# of each label";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,6 +536,7 @@
             this.menuStrip1.PerformLayout();
             this.grpOptions.ResumeLayout(false);
             this.grpOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,7 +569,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.GroupBox grpOptions;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkTech;
         private System.Windows.Forms.CheckBox chkQR;
         private System.Windows.Forms.CheckBox chkDate;
@@ -575,6 +586,8 @@
         private System.Windows.Forms.Button btnArk;
         private System.Windows.Forms.Button btnInj;
         private System.Windows.Forms.ToolStripMenuItem mnuFileClear;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
