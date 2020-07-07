@@ -1,4 +1,5 @@
 ﻿using iText.Barcodes;
+using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
@@ -6,6 +7,7 @@ using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using Smarti_Assist.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
@@ -13,11 +15,25 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
+/*Smart-i Assist -LabelMaker- Version 1.0
+ * Created: 7/6/2020
+ * Updated: 7/7/2020
+ * Designed by: Kevin Sherman at Acrelec America
+ * Contact at: Kevin@Metadevllc.com
+ * 
+ * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
+ */
+
+
 namespace Smarti_Assist
 {
-    class labelMaker
+    class labelMaker : IDisposable
     {
-        public labelMaker() { }
+        private fileManipulator fm;
+        public labelMaker() 
+        {
+            fm = new fileManipulator();
+        }
 
 
         /// <summary>
@@ -72,7 +88,7 @@ namespace Smarti_Assist
             table.AddCell(new Cell(1, 4).Add(new Paragraph(inj).AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingTop(0));
 
             // Data Row
-            if (chkQR.Checked.Equals(true))
+            if (Settings.Default.isChkQR.Equals(true))
             {
                 table.AddCell(new Cell(4, 3).Add(new Image(new BarcodeQRCode(ark + " / " + inj).CreateFormXObject(PDF)).SetHeight(70).SetWidth(70)).SetBorder(Border.NO_BORDER).SetPadding(0));
             }
@@ -81,10 +97,10 @@ namespace Smarti_Assist
                 table.AddCell(new Cell(4, 3).SetBorder(Border.NO_BORDER));
             }
 
-            if (chkInjector.Checked.Equals(true))
+            if (Settings.Default.isChkInj.Equals(true))
             {
                 table.AddCell(new Cell(1, 1).Add(new Paragraph("P.O.").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
-                table.AddCell(new Cell(1, 3).Add(new Paragraph(txtPO.Text).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 3).Add(new Paragraph(Settings.Default.partorder).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
             }
             else
             {
@@ -92,11 +108,11 @@ namespace Smarti_Assist
                 table.AddCell(new Cell(1, 3).SetBorder(Border.NO_BORDER));
             }
 
-            if (chkTech.Checked.Equals(true))
+            if (Settings.Default.isChkTech.Equals(true))
             {
                 table.AddCell(new Cell(1, 1).Add(new Paragraph("Locale:").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
                 table.AddCell(new Cell(1, 3).Add(new Paragraph("U.S.A.").AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
-                table.AddCell(new Cell(1, 4).Add(new Paragraph(txtTech.Text).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
+                table.AddCell(new Cell(1, 4).Add(new Paragraph(Settings.Default.technician).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER));
             }
             else
             {
@@ -105,7 +121,7 @@ namespace Smarti_Assist
                 table.AddCell(new Cell(1, 4).SetBorder(Border.NO_BORDER));
             }
 
-            if (chkDate.Checked.Equals(true))
+            if (Settings.Default.isChkDate.Equals(true))
             {
                 table.AddCell(new Cell(1, 4).Add(new Paragraph(DateTime.UtcNow.ToString("MM-dd-yyyy")).AddStyle(subtext).SetTextAlignment(TextAlignment.LEFT)).SetBorder(Border.NO_BORDER).SetPaddingBottom(0));
             }
@@ -113,7 +129,7 @@ namespace Smarti_Assist
              * Handles the case that in the extremely unlikely event that no additional data at all is included on the label,
              * sets the second to last cell to have a set height to allow the footer to still be in the correct position
              */
-            else if (chkDate.Checked.Equals(false) && chkInjector.Checked.Equals(false) && chkQR.Checked.Equals(false) && chkTech.Checked.Equals(false))
+            else if (Settings.Default.isChkDate.Equals(false) && Settings.Default.isChkInj.Equals(false) && Settings.Default.isChkQR.Equals(false) && Settings.Default.isChkTech.Equals(false))
             {
                 table.AddCell(new Cell(1, 4).SetHeight(50).SetBorder(Border.NO_BORDER));
             }
@@ -202,7 +218,7 @@ namespace Smarti_Assist
         {
             try
             {
-                using (PdfWriter outWriter = new PdfWriter(choseDirectory() + "/Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf"))
+                using (PdfWriter outWriter = new PdfWriter(fm.choseDirectory() + "/Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf"))
                 {
                     PdfDocument outPDF = new PdfDocument(outWriter);
 
@@ -237,5 +253,38 @@ namespace Smarti_Assist
             }
         }
 
+
+        //IDispose Function
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing == true)
+                ReleaseManagedResources();
+
+            ReleaseUnmanagedResources();
+        }
+
+        private void ReleaseManagedResources()
+        {
+            if(fm != null)
+            {
+                fm.Dispose();
+            }
+        }
+
+        private void ReleaseUnmanagedResources()
+        {
+            //There are none for this class
+        }
+
+        ~labelMaker()
+        {
+            Dispose(false);
+        }
     }
 }

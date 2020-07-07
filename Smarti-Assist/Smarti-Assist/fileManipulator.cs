@@ -7,6 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+/*Smart-i Assist -FileManipulator- Version 1.0
+ * Created: 7/6/2020
+ * Updated: 7/7/2020
+ * Designed by: Kevin Sherman at Acrelec America
+ * Contact at: Kevin@Metadevllc.com
+ * 
+ * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
+ */
+
 namespace Smarti_Assist
 {
     class fileManipulator : IDisposable
@@ -345,12 +354,12 @@ namespace Smarti_Assist
 
         private void ReleaseManagedResources()
         {
-
+            //There are none for this implementation of this class
         }
 
         private void ReleaseUnmanagedResources()
         {
-
+            //There are none for this class
         }
 
         ~fileManipulator()
