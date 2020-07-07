@@ -338,7 +338,7 @@
             0});
             this.nudCopies.Name = "nudCopies";
             this.nudCopies.Size = new System.Drawing.Size(29, 20);
-            this.nudCopies.TabIndex = 10;
+            this.nudCopies.TabIndex = 9;
             this.nudCopies.Value = new decimal(new int[] {
             1,
             0,
