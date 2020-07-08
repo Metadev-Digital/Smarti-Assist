@@ -141,7 +141,7 @@ namespace Smarti_Assist
             // Footer
             if(multiple)
             {
-                table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/ - Label " + count + " of " + max).AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
+                table.AddCell(new Cell(1, 7).Add(new Paragraph("Acrelec America - https://acrelec.com/ - # " + count + " of " + max).AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetBorder(Border.NO_BORDER).SetBorderTop(new SolidBorder(ColorConstants.BLACK, 1)).SetPaddingTop(0));
             }
             else
             {
