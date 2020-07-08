@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>ftps://ns1.metadevdigital.com/acrelec/smarti/latest/</PublishUrl>
+    <PublishUrl>ftp://ftp.metadevdigital.com/public_html/acrelec/smarti/latest/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,15 +27,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://metadevdigital.com/acrelec/</InstallUrl>
+    <InstallUrl>https://www.metadevdigital.com/acrelec/</InstallUrl>
     <SupportUrl>https://www.metadevdigital.com/acrelec</SupportUrl>
     <ProductName>Smarti Assist</ProductName>
     <PublisherName>Acrelec America</PublisherName>
     <SuiteName>Smarti</SuiteName>
     <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
