@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -PO- Version 1.0
  * Created: 6/23/2020
- * Updated: 7/6/2020
+ * Updated: 7/8/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -32,9 +32,12 @@ namespace Smarti_Assist
             this.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void frmPO_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSubmit_Click(null, null);
+            }
         }
     }
 }

@@ -36,10 +36,10 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(263, 20);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubmit.Location = new System.Drawing.Point(249, 21);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(50, 20);
+            this.btnSubmit.Size = new System.Drawing.Size(67, 26);
             this.btnSubmit.TabIndex = 5;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -48,7 +48,7 @@
             // txtInput
             // 
             this.txtInput.Location = new System.Drawing.Point(11, 58);
-            this.txtInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(2);
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(307, 20);
             this.txtInput.TabIndex = 4;
@@ -59,11 +59,10 @@
             this.label1.Location = new System.Drawing.Point(11, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 39);
+            this.label1.Size = new System.Drawing.Size(205, 39);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Enter the new relevant purchase order in the box \r\nbelow how exactly the way it s" +
-    "hould appear\r\non the generated labels then press submit.";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Text = "Enter the new purchase order in the box \r\nbelow exactly how it should appear on t" +
+    "he\r\ngenerated labels. Then press Submit.";
             // 
             // frmPO
             // 
@@ -76,10 +75,12 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPO";
             this.Text = "Change Purchase Order";
             this.Load += new System.EventHandler(this.frmPO_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPO_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

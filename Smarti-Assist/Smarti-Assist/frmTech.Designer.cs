@@ -40,25 +40,25 @@
             this.label1.Location = new System.Drawing.Point(11, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 39);
+            this.label1.Size = new System.Drawing.Size(207, 39);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Enter the technician(s) identifier(s) in the box \r\nbelow how exactly the way it s" +
-    "hould appear\r\non the generated labels then press submit.";
+            this.label1.Text = "Enter the technician identifier(s) in the box \r\nbelow exactly how it should appea" +
+    "r on the\r\ngenerated labels. Then press Submit.\r\n";
             // 
             // txtInput
             // 
             this.txtInput.Location = new System.Drawing.Point(11, 58);
-            this.txtInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtInput.Margin = new System.Windows.Forms.Padding(2);
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(307, 20);
             this.txtInput.TabIndex = 1;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(263, 21);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSubmit.Location = new System.Drawing.Point(246, 22);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(50, 20);
+            this.btnSubmit.Size = new System.Drawing.Size(67, 26);
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -75,10 +75,12 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmTech";
             this.Text = "Change set Technician(s)";
             this.Load += new System.EventHandler(this.frmTech_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTech_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

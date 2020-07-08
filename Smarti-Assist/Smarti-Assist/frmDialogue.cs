@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -Dialogue- Version 1.0
  * Created: 6/16/2020
- * Updated: 7/6/2020
+ * Updated: 7/8/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -45,6 +45,7 @@ namespace Smarti_Assist
                     List<String> emptyOut = new List<String>();
                     emptyOut.Add("");
                     this.outReturn = emptyOut;
+                    this.Close();
                 }
             }
             else

@@ -1,15 +1,11 @@
 ﻿using Smarti_Assist.Properties;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 
 /*Smart-i Assist -About- Version 1.0
  * Created: 6/29/2020
- * Updated: 7/6/2020
+ * Updated: 7/8/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -55,7 +51,7 @@ namespace Smarti_Assist
                    var selection = MessageBox.Show("Technician and Purchase Order fields should not be empty. These fields can be disabled from " +
                         "printing later if you do not wish for them to be displayed, however a default entry is recommended.\n\n" +
                         "Do you wish to continue anyway?",
-                        "Error",MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        "Warning",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     if (selection==DialogResult.Yes)
                     {
@@ -71,7 +67,7 @@ namespace Smarti_Assist
                 {
                     var selection = MessageBox.Show("Purchase order field is empty. This field can be disabled from " +
                         "printing later if you do not wish for it to be displayed, however a default entry " +
-                        "is recommended.\n\nDo you wish to continue anyway?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        "is recommended.\n\nDo you wish to continue anyway?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     if(selection==DialogResult.Yes)
                     {
@@ -87,7 +83,7 @@ namespace Smarti_Assist
                 {
                     var selection = MessageBox.Show("Technician field is empty. This field can be disabled from " +
                         "printing later if you do not wish for it to be displayed, however a default entry " +
-                        "is recommended.\n\nDo you wish to continue anyway?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                        "is recommended.\n\nDo you wish to continue anyway?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                    
                     if (selection == DialogResult.Yes)
                     {

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 /*Smart-i Assist -Tech- Version 1.0
  * Created: 6/19/2020
- * Updated: 7/6/2020
+ * Updated: 7/8/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -30,6 +30,14 @@ namespace Smarti_Assist
         private void frmTech_Load(object sender, EventArgs e)
         {
             txtInput.Focus();
+        }
+
+        private void frmTech_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSubmit_Click(null, null);
+            }
         }
     }
 }

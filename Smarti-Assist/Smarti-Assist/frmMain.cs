@@ -7,7 +7,7 @@ using Smarti_Assist.Properties;
 
 /*Smart-i Assist Version 0.6
  * Created: 6/9/2020
- * Updated: 7/7/2020
+ * Updated: 7/8/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -79,8 +79,10 @@ namespace Smarti_Assist
         {
             lstArk.Items.Clear();
             lstInj.Items.Clear();
-            lstArkSerials = new List<string>();
-            lstInjectorSerials = new List<string>();
+            lstArkSerials.Clear();
+            lstInjectorSerials.Clear();
+
+            MessageBox.Show("Serials successfully reset.", "Reset Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -259,7 +261,7 @@ namespace Smarti_Assist
 
                 if (techForm.technician == null || techForm.technician == "")
                 {
-                    MessageBox.Show("Technician(s) cannot be included on the label if the technician field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Technician(s) cannot be included on the label(s) if the technician field is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Settings.Default.isChkTech = false;
                     Settings.Default.technician = "";
                 }
@@ -284,7 +286,7 @@ namespace Smarti_Assist
 
                 if (poForm.po == null || poForm.po == "")
                 {
-                    MessageBox.Show("Purchase Order cannot be included on the label if the Purchase Order Field is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Purchase Order cannot be included on the label(s) if the purchase Order field is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Settings.Default.isChkTech = false;
                     Settings.Default.partorder = "";
                 }
@@ -303,7 +305,7 @@ namespace Smarti_Assist
         /// <param name="e">mnuEditRemove</param>
         private void mnuEditRemove_Click(object sender, EventArgs e)
         {
-            var selection = MessageBox.Show("Are you sure you wish to reset the configuration file back to defaults?\nNote: This will remove " +
+            var selection = MessageBox.Show("Are you sure you wish to reset the configuration \nfile back to defaults? This will remove " +
                 "ALL settings.", "Remove Settings?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (selection == DialogResult.Yes)
@@ -313,8 +315,7 @@ namespace Smarti_Assist
                 validateSettings();
 
                 var selection2 = MessageBox.Show("Do you wish run the first time configuration now?" +
-                    "\nNote: If not now, you must reset these fields if you want them to be displayed on the finished " +
-                    "labels.", "Reset now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    "\nNote: If not run now, you will still see first time configuration panel on next launch.", "Reset now?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(selection2==DialogResult.Yes)
                 {
                     using (frmConfiguration configForm = new frmConfiguration())
@@ -354,7 +355,7 @@ namespace Smarti_Assist
         /// Forces a second thought on disabling the QR codes on account of the.... whole point.
         /// </summary>
         /// <param name="sender">frmMain</param>
-        /// <param name="e">chkQR</param>
+        /// <param name="e">chkDate</param>
         private void chkDate_Click(object sender, EventArgs e)
         {
             if(chkDate.Checked)
@@ -379,7 +380,7 @@ namespace Smarti_Assist
         {
             if (chkQR.Checked.Equals(false))
             {
-                var selection = MessageBox.Show("Are you sure you wish to disable the QR code on the output labels?", "Disable QR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                var selection = MessageBox.Show("Are you sure you wish to disable \nthe QR code on the output labels?", "Disable QR", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (selection == DialogResult.No)
                 {
                     chkQR.Checked = true;
@@ -621,30 +622,30 @@ namespace Smarti_Assist
         /// <returns></returns>
         private bool validateSerials(List<string> lstArkSerials, List<string> lstInjectorSerials)
         {
-                if (lstInjectorSerials == null && lstArkSerials == null)
+                if ((lstInjectorSerials == null || lstInjectorSerials.Count<1) && (lstArkSerials == null || lstArkSerials.Count<1))
                 {
-                    MessageBox.Show("No serial entries were provided. Please enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No serial entries were provided. \nPlease enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-                else if (lstInjectorSerials == null)
+                else if (lstInjectorSerials == null || lstInjectorSerials.Count<1)
                 {
-                    MessageBox.Show("No Smart Injector serials were provided. Enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No Smart Injector serials were provided. \nEnter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
-                else if(lstArkSerials == null)
+                else if(lstArkSerials == null || lstArkSerials.Count<1)
                 {
-                    MessageBox.Show("No ARK serials were provided. Enter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No ARK serials were provided. \nEnter data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 else if (lstInjectorSerials.Count != lstArkSerials.Count)
                 {
                     if (lstArkSerials.Count > lstInjectorSerials.Count)
                     {
-                        MessageBox.Show("There are more ARK serial number entries than Smart Injectors. Re-enter the data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("There are more ARK serial number entries \nthan Smart Injectors. Re-enter the data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show("There are more Smart Injector serial number entries than ARKs. Re-enter the data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("There are more Smart Injector serial number entries \nthan ARKs. Re-enter the data and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     return false;
                 }

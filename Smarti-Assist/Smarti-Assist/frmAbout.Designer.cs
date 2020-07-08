@@ -50,7 +50,7 @@
             this.label1.Location = new System.Drawing.Point(17, 122);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(581, 39);
+            this.label1.Size = new System.Drawing.Size(558, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -126,12 +126,11 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "Smart-i Assist, and other accompanied tools, were designed at the Pittsburgh loca" +
     "tion. Issues or questions? Report an \r\nissue to a technician.\r\n";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // btnContact
             // 
             this.btnContact.Location = new System.Drawing.Point(271, 235);
-            this.btnContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnContact.Margin = new System.Windows.Forms.Padding(2);
             this.btnContact.Name = "btnContact";
             this.btnContact.Size = new System.Drawing.Size(50, 21);
             this.btnContact.TabIndex = 11;
@@ -163,7 +162,7 @@
             // 
             this.pictureBox1.Image = global::Smarti_Assist.Properties.Resources.ACRELEC_LOGO;
             this.pictureBox1.Location = new System.Drawing.Point(21, 8);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(561, 111);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -189,7 +188,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmAbout";
             this.Text = "About Smart-i Assist";
             this.Load += new System.EventHandler(this.frmAbout_Load);
