@@ -22,7 +22,6 @@ using Smarti_Assist.Properties;
 //CURRENTLY DONE
 
 //Content & Visuals
-//TODO: Final gramar and spelling checks.
 //TODO: Properly configure the project so that it has all relevant install content. Dont' want it looking like garbo!!
 //TODO: Proper versioning? Server upload? Check for updates?
 //TODO: Configure/Sex-up readme.
@@ -30,6 +29,8 @@ using Smarti_Assist.Properties;
 //---------------FOR VERSION 1.X------------------
 //Additional Features:
 //TODO: Include an option to manually delete or reorder list once something has been added to the listbox?
+
+//Processes:
 //TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
 
 namespace Smarti_Assist
