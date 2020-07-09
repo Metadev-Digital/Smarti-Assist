@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Smarti_Assist.Properties;
 
 
-/*Smart-i Assist Version 0.6
+/*Smart-i Assist Version 1.0.5
  * Created: 6/9/2020
  * Updated: 7/8/2020
  * Designed by: Kevin Sherman at Acrelec America
@@ -22,8 +25,6 @@ using Smarti_Assist.Properties;
 //CURRENTLY DONE
 
 //Content & Visuals
-//TODO: Properly configure the project so that it has all relevant install content. Dont' want it looking like garbo!!
-//TODO: Proper versioning? Server upload? Check for updates?
 //TODO: Configure/Sex-up readme.
 
 //---------------FOR VERSION 1.X------------------
@@ -46,6 +47,9 @@ namespace Smarti_Assist
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //Only works for deployment environment. Remove below line for testing.
+            SetAddRemoveProgramsIcon();
+
             Settings.Default.Reload();
             if(Settings.Default.configuration==true)
             {
@@ -652,6 +656,47 @@ namespace Smarti_Assist
                 }
 
             return true;
+        }
+
+        private static void SetAddRemoveProgramsIcon()
+        {
+            //Only execute on a first run after first install or after update
+            if (ApplicationDeployment.CurrentDeployment.IsFirstRun)
+            {
+                try
+                {
+                    // Set the name of the application EXE file - make sure to include `,0` at the end.
+                    // Does not work for ClickOnce applications as far as I could figure out... Note, this will probably work
+                    // when run from Visual Studio, but not when deployed.
+                    //string iconSourcePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "example.exe,0");
+                    // Reverted to using this instead (note this will probably not work when run from Visual Studio, but will work on deploy.
+                    string iconSourcePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "Acrelec Favicon.ico");
+                    if (!File.Exists(iconSourcePath))
+                    {
+                        MessageBox.Show("We could not find the application icon. Please notify your software vendor of this error.");
+                        return;
+                    }
+
+                    RegistryKey myUninstallKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall");
+                    string[] mySubKeyNames = myUninstallKey.GetSubKeyNames();
+                    for (int i = 0; i < mySubKeyNames.Length; i++)
+                    {
+                        RegistryKey myKey = myUninstallKey.OpenSubKey(mySubKeyNames[i], true);
+                        object myValue = myKey.GetValue("DisplayName");
+                        Console.WriteLine(myValue.ToString());
+                        // Set this to the display name of the application. If you are not sure, browse to the registry directory and check.
+                        if (myValue != null && myValue.ToString() == "Smarti Assist")
+                        {
+                            myKey.SetValue("DisplayIcon", iconSourcePath);
+                            break;
+                        }
+                    }
+                }
+                catch (Exception mye)
+                {
+                    MessageBox.Show("We could not properly setup the application icons. Please notify your software vendor of this error.\r\n" + mye.ToString());
+                }
+            }
         }
     }
 }

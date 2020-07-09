@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>ftp://ftp.metadevdigital.com/public_html/acrelec/smarti/latest/</PublishUrl>
+    <PublishUrl>ftp://ftp.metadevdigital.com/public_html/acrelec/smarti/1.0.0.3/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,14 +27,17 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://www.metadevdigital.com/acrelec/</InstallUrl>
+    <InstallUrl>https://www.metadevdigital.com/acrelec/smarti/latest/</InstallUrl>
+    <UpdateUrl>https://www.metadevdigital.com/acrelec/smarti/latest/</UpdateUrl>
     <SupportUrl>https://www.metadevdigital.com/acrelec</SupportUrl>
     <ProductName>Smarti Assist</ProductName>
     <PublisherName>Acrelec America</PublisherName>
     <SuiteName>Smarti</SuiteName>
-    <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.3</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -273,7 +276,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Acrelec Favicon.ico" />
+    <Content Include="Acrelec Favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <FileAssociation Include=".soc">
@@ -282,6 +287,9 @@
       <Progid>Smarti.Config</Progid>
       <DefaultIcon>Acrelec Favicon.ico</DefaultIcon>
     </FileAssociation>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
