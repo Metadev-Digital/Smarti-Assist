@@ -8,9 +8,9 @@ using Microsoft.Win32;
 using Smarti_Assist.Properties;
 
 
-/*Smart-i Assist Version 1.0.5
+/*Smart-i Assist Version 1.0.0.5
  * Created: 6/9/2020
- * Updated: 7/8/2020
+ * Updated: 7/9/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
@@ -25,7 +25,9 @@ using Smarti_Assist.Properties;
 //CURRENTLY DONE
 
 //Content & Visuals
-//TODO: Configure/Sex-up readme.
+//CURRENTLY DONE
+
+//1.0 RELEASE READY
 
 //---------------FOR VERSION 1.X------------------
 //Additional Features:

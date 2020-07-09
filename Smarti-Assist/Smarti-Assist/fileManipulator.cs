@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-/*Smart-i Assist -FileManipulator- Version 1.0
+/*Smart-i Assist -FileManipulator- Version 1.0.0.5
  * Created: 7/6/2020
- * Updated: 7/7/2020
+ * Updated: 7/9/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 

@@ -1,6 +1,16 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
+
+/*Smart-i Assist -Exceptions- Version 1.0.0.5
+ * Created: 6/29/2020
+ * Updated: 7/9/2020
+ * Designed by: Kevin Sherman at Acrelec America
+ * Contact at: Kevin@Metadevllc.com
+ * 
+ * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
+ */
+
 namespace Smarti_Assist
 {
     [Serializable()]

@@ -3,9 +3,9 @@ using System;
 using System.Windows.Forms;
 
 
-/*Smart-i Assist -About- Version 1.0
+/*Smart-i Assist -About- Version 1.0.0.5
  * Created: 6/29/2020
- * Updated: 7/8/2020
+ * Updated: 7/9/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 

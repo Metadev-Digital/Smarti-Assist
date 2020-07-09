@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*Smart-i Assist -Assembly View- Version 1.0
+/*Smart-i Assist -Assembly View- Version 1.0.0.5
  * Created: 6/17/2020
- * Updated: 6/26/2020
+ * Updated: 7/9/2020
  * Designed by: Kevin Sherman at Acrelec America
  * Contact at: Kevin@Metadevllc.com
  * 
