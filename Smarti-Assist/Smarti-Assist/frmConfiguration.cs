@@ -59,6 +59,7 @@ namespace Smarti_Assist
                         Settings.Default.partorder = "";
                         Settings.Default.isChkTech = false;
                         Settings.Default.isChkInj = false;
+                        Settings.Default.configuration = false;
 
                         this.Close();
                     }
@@ -75,6 +76,7 @@ namespace Smarti_Assist
                         Settings.Default.partorder = "";
                         Settings.Default.isChkInj = false;
                         Settings.Default.isChkTech = true;
+                        Settings.Default.configuration = false;
 
                         this.Close();
                     }
@@ -91,6 +93,7 @@ namespace Smarti_Assist
                         Settings.Default.technician = "";
                         Settings.Default.isChkTech = false;
                         Settings.Default.isChkInj = true;
+                        Settings.Default.configuration = false;
 
                         this.Close();
                     }
