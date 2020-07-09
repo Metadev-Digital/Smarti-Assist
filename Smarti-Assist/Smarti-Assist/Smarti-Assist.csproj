@@ -17,7 +17,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>ftp://ftp.metadevdigital.com/public_html/acrelec/smarti/1.0.0.7/</PublishUrl>
+    <PublishUrl>ftp://ftp.metadevdigital.com/public_html/acrelec/smarti/1.0.0.9/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -33,11 +33,11 @@
     <ProductName>Smarti Assist</ProductName>
     <PublisherName>Acrelec America</PublisherName>
     <SuiteName>Smarti</SuiteName>
-    <MinimumRequiredVersion>1.0.0.7</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.9</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -87,6 +87,15 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Metadev Digital SNK.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.comodoca.com/authenticode</ManifestTimestampUrl>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
@@ -135,7 +144,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -247,6 +258,7 @@
     </Compile>
     <None Include="App.config" />
     <None Include="app.manifest" />
+    <None Include="Metadev Digital SNK.pfx" />
     <None Include="MetadevDigital.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -298,5 +310,15 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props'))" />
     <Error Condition="!Exists('..\packages\PdfiumViewer.Native.x86.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PdfiumViewer.Native.x86.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86.v8-xfa.props'))" />
+  </Target>
+  <!-- This section is used for code-signing the application. This should not be confused with manifest signing or with strong-name assembly signing, which can both be done from the Visual Studio interface. -->
+  <Target Name="AfterCompile" Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe&quot; sign /n &quot;Metadev Digital&quot; /t http://timestamp.comodoca.com/authenticode /fd sha256 /v &quot;$(ProjectDir)obj\$(ConfigurationName)\$(TargetFileName)&quot;" />
+  </Target>
+  <Target Name="SignManifest" AfterTargets="_DeploymentSignClickOnceDeployment" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\mage.exe&quot; -Sign &quot;$(_DeploymentApplicationDir)$(_DeploymentTargetApplicationManifestFileName)&quot; -CertHash f3e7920b2bc4b2b3704a5441e923aafedfac1a21 -TimeStampUri http://timestamp.comodoca.com/authenticode" />
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\mage.exe&quot; -Update &quot;$(PublishDir)$(TargetDeployManifestFileName)&quot; -AppManifest &quot;$(_DeploymentApplicationDir)$(_DeploymentTargetApplicationManifestFileName)&quot;" />
+    <Exec Command="&quot;C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\mage.exe&quot; -Sign &quot;$(PublishDir)$(TargetDeployManifestFileName)&quot; -CertHash f3e7920b2bc4b2b3704a5441e923aafedfac1a21 -TimeStampUri http://timestamp.comodoca.com/authenticode" />
+    <Exec Command="&quot;C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe&quot; sign /n &quot;Metadev Digital&quot; /t http://timestamp.comodoca.com/authenticode /fd sha256 /v &quot;$(PublishDir)\setup.exe&quot;" />
   </Target>
 </Project>
