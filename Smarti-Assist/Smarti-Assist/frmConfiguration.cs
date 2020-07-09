@@ -111,5 +111,12 @@ namespace Smarti_Assist
             this.Close();
         }
 
+        private void frmConfiguration_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEnter_Click(null, null);
+            }
+        }
     }
 }
