@@ -181,7 +181,7 @@
             this.mnuEditTech.Name = "mnuEditTech";
             this.mnuEditTech.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.T)));
-            this.mnuEditTech.Size = new System.Drawing.Size(226, 22);
+            this.mnuEditTech.Size = new System.Drawing.Size(249, 22);
             this.mnuEditTech.Text = "Set Technicians";
             this.mnuEditTech.Click += new System.EventHandler(this.mnuEditTech_Click);
             // 
@@ -190,19 +190,19 @@
             this.mnuEditPart.Name = "mnuEditPart";
             this.mnuEditPart.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.N)));
-            this.mnuEditPart.Size = new System.Drawing.Size(226, 22);
-            this.mnuEditPart.Text = "Part Numbers";
+            this.mnuEditPart.Size = new System.Drawing.Size(249, 22);
+            this.mnuEditPart.Text = "Set Purchase Order";
             this.mnuEditPart.Click += new System.EventHandler(this.mnuEditPart_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(223, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(246, 6);
             // 
             // mnuEditRemove
             // 
             this.mnuEditRemove.Name = "mnuEditRemove";
-            this.mnuEditRemove.Size = new System.Drawing.Size(226, 22);
+            this.mnuEditRemove.Size = new System.Drawing.Size(249, 22);
             this.mnuEditRemove.Text = "Remove Config File";
             this.mnuEditRemove.Click += new System.EventHandler(this.mnuEditRemove_Click);
             // 
@@ -317,7 +317,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 102);
+            this.label3.Location = new System.Drawing.Point(44, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 11;
@@ -337,7 +337,7 @@
             0,
             0});
             this.nudCopies.Name = "nudCopies";
-            this.nudCopies.Size = new System.Drawing.Size(29, 20);
+            this.nudCopies.Size = new System.Drawing.Size(34, 20);
             this.nudCopies.TabIndex = 9;
             this.nudCopies.Value = new decimal(new int[] {
             1,
