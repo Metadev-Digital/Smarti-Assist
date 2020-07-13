@@ -35,6 +35,7 @@ using Smarti_Assist.Properties;
 
 //Processes:
 //TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
+//TODO: Configure Reports to be a nice HTML email
 
 namespace Smarti_Assist
 {
