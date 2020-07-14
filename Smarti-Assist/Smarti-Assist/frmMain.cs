@@ -36,6 +36,7 @@ using Smarti_Assist.Properties;
 //Processes:
 //TODO: JSON my man (Newtonsoft.Json) - Better way to handle import/export
 //TODO: Configure Reports to be a nice HTML email
+//TODO: Fix import config on frmConfig closing the frame even if no file is succesfully imported
 
 namespace Smarti_Assist
 {
