@@ -41,7 +41,6 @@ using Smarti_Assist.Properties;
 //Bug Fix:
 //TODO: Fix import config on frmConfig closing the frame even if no file is succesfully imported
 //TODO: Fix strange issues caused by attempting to reset to defaults without running first time config and then saving to PDF.
-
 namespace Smarti_Assist
 {
     public partial class frmMain : Form
