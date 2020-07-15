@@ -203,7 +203,7 @@
             // 
             this.mnuEditRemove.Name = "mnuEditRemove";
             this.mnuEditRemove.Size = new System.Drawing.Size(249, 22);
-            this.mnuEditRemove.Text = "Remove Config File";
+            this.mnuEditRemove.Text = "Remove Config Settings";
             this.mnuEditRemove.Click += new System.EventHandler(this.mnuEditRemove_Click);
             // 
             // viewToolStripMenuItem
