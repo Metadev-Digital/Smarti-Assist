@@ -234,7 +234,7 @@ namespace Smarti_Assist
             {
                 MessageBox.Show("An unexcected error occured when trying to save the file in that location. Is there already a file" +
                     " with that name open and in use? Does the selected directory exist? Do you have permissions to save inside of it?" +
-                    "\nPlease try again.",
+                    "\n\nPlease try again.",
                     "Unexected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (System.InvalidOperationException)

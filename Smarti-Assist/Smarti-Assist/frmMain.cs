@@ -668,7 +668,8 @@ namespace Smarti_Assist
         private static void SetAddRemoveProgramsIcon()
         {
             //Only execute on a first run after first install or after update
-            if (ApplicationDeployment.CurrentDeployment.IsFirstRun)
+            //if (ApplicationDeployment.CurrentDeployment.IsFirstRun)
+            if(true)
             {
                 try
                 {
