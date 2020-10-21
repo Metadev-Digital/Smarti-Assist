@@ -6,9 +6,9 @@ using System.Windows.Forms;
  * Created: 6/17/2020
  * Updated: 7/9/2020
  * Designed by: Kevin Sherman at Acrelec America
- * Contact at: Kevin@Metadevllc.com
+ * Contact at: Kevin@metadevdigital.com
  * 
- * Copyright liscence Apache Liscenece 2.0 - Enjoy boys, keep updating without me. Fork to your hearts content
+ * Copyright Copyright MIT Liscenece  - Enjoy boys, keep updating without me. Fork to your hearts content
  */
 
 namespace Smarti_Assist
