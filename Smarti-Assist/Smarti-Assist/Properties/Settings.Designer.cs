@@ -49,7 +49,7 @@ namespace Smarti_Assist.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.5")]
         public string version {
             get {
                 return ((string)(this["version"]));
