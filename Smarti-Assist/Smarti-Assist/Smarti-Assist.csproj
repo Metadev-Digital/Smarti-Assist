@@ -97,6 +97,9 @@
     <ManifestTimestampUrl>http://timestamp.comodoca.com/authenticode</ManifestTimestampUrl>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AAInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AAInfo.1.0.0\lib\net472\AAInfo.exe</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -162,12 +165,6 @@
   <ItemGroup>
     <Compile Include="exceptions.cs" />
     <Compile Include="fileManipulator.cs" />
-    <Compile Include="frmAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAbout.Designer.cs">
-      <DependentUpon>frmAbout.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,12 +176,6 @@
     </Compile>
     <Compile Include="frmDialogue.Designer.cs">
       <DependentUpon>frmDialogue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMail.Designer.cs">
-      <DependentUpon>frmMail.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -219,17 +210,11 @@
     <Compile Include="labelMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAbout.resx">
-      <DependentUpon>frmAbout.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmConfiguration.resx">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDialogue.resx">
       <DependentUpon>frmDialogue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMail.resx">
-      <DependentUpon>frmMail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

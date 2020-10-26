@@ -4,6 +4,7 @@ using System.Deployment.Application;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using AAInfo;
 using Microsoft.Win32;
 using Smarti_Assist.Properties;
 
@@ -78,8 +79,10 @@ namespace Smarti_Assist
         /// <param name="e">mnuHelpAbout</param>
         private void aboutSmartiAssistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAbout aboutFrame = new frmAbout();
-            aboutFrame.ShowDialog();
+            ErrorReporter errorReporter = new ErrorReporter("Smart-i Assist");
+            InfoDisplayer infoDisplayer = new InfoDisplayer("Smart-i Assist", "Acrelec America", "MIT Licence", "help facilitate " +
+                "construction of our in-house product, Hyperviews", errorReporter);
+            infoDisplayer.showForm();
         }
 
         /// <summary>
@@ -521,8 +524,8 @@ namespace Smarti_Assist
         /// <param name="e">mnuHelpReport</param>
         private void mnuHelpReport_Click(object sender, EventArgs e)
         {
-            frmMail mailForm = new frmMail();
-            mailForm.ShowDialog();
+            ErrorReporter errorReporter = new ErrorReporter("Smart-i Assist");
+            errorReporter.showForm();
         }
 
         /// <summary>
