@@ -71,7 +71,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://www.metadevdigital.com/acrelec/aainfo/proj.png" alt="Smarti-Assist Download">
+<img src="https://www.metadevdigital.com/acrelec/smarti/smarti.png" alt="Smarti-Assist Download">
 
 Smart-i Assist provides a solution to better automate tracability and labeling in C#. This tool was created during an attempt to simplify and automate process taken by Order Fullfillmentfor Acrelec America. By creating this as it's own stand-alone tool, Smart-i Assist allows users to scan parts and print labels en-masse, greatly improving efficiency and accuracy.
 
@@ -87,7 +87,6 @@ Of course, no one solution will serve all projects since your needs may be diffe
 ### Built With
 
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
-* [HTML5](https://html.com/html5/)
 * [Deployed with Visual Studio](https://visualstudio.microsoft.com/)
 
 
@@ -192,6 +191,9 @@ Project Link: [https://github.com/Metadev-Digital/Smarti-Assist](https://github.
 ## Acknowledgements
 * [Img Shields](https://shields.io)
 * [AAInfo] (https://github.com/Metadev-Digital/Smarti-Assist)
+* [PDFiumViewer] (https://github.com/pvginkel/PdfiumViewer)
+* [IText7] (https://itextpdf.com)
+* [Windows API Pack] (https://github.com/aybe/Windows-API-Code-Pack-1.1)
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
 
 
