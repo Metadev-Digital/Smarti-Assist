@@ -50,7 +50,7 @@ namespace Smarti_Assist
             Style normal = new Style();
             Style header = new Style();
             Style subtext = new Style();
-            Style subheader = new Style();
+            Style subheadertext = new Style();
 
             PdfFont nfont = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA);
             PdfFont hFont = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA_BOLD);
@@ -58,7 +58,7 @@ namespace Smarti_Assist
 
             normal.SetFont(nfont).SetFontSize(11);
             header.SetFont(hFont).SetFontSize(16);
-            subheader.SetFont(hFont).SetFontSize(13);
+            subheadertext.SetFont(hFont).SetFontSize(13);
             subtext.SetFont(sFont).SetFontSize(7);
 
             document.SetMargins(10, 25, 10, 25);
@@ -74,16 +74,16 @@ namespace Smarti_Assist
             table.AddCell(new Cell(1, 7).Add(new Paragraph("ARK-1123H with Smart Injector").AddStyle(subtext)).SetTextAlignment(TextAlignment.CENTER).SetPadding(5).SetMaxHeight(10).SetBorder(Border.NO_BORDER).SetBorderBottom(new SolidBorder(ColorConstants.BLACK, 1)));
 
             // PC Data Row
-            table.AddCell(new Cell(2, 2).Add(new Paragraph("PC:").AddStyle(subheader)).SetBorder(Border.NO_BORDER).SetPaddingBottom(10));
+            table.AddCell(new Cell(2, 2).Add(new Paragraph("PC:").AddStyle(subheadertext)).SetBorder(Border.NO_BORDER).SetPaddingBottom(10));
             table.AddCell(new Cell(1, 1).Add(new Paragraph("Part:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingBottom(0));
             table.AddCell(new Cell(1, 4).Add(new Paragraph("HAPC0000088").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingBottom(0));
             table.AddCell(new Cell(1, 1).Add(new Paragraph("Serial:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingTop(0));
             table.AddCell(new Cell(1, 4).Add(new Paragraph(ark).AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingTop(0));
 
             // Injector Data Row
-            table.AddCell(new Cell(2, 2).Add(new Paragraph("Injector:").AddStyle(subheader)).SetBorder(Border.NO_BORDER).SetPaddingBottom(10));
+            table.AddCell(new Cell(2, 2).Add(new Paragraph("Injector:").AddStyle(subheadertext)).SetBorder(Border.NO_BORDER).SetPaddingBottom(10));
             table.AddCell(new Cell(1, 1).Add(new Paragraph("Part:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingBottom(0));
-            table.AddCell(new Cell(1, 4).Add(new Paragraph("HAT-HYPR-0284").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingBottom(0));
+            table.AddCell(new Cell(1, 4).Add(new Paragraph("HAT-HYPR-0287").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingBottom(0));
             table.AddCell(new Cell(1, 1).Add(new Paragraph("Serial:").AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.RIGHT).SetPaddingTop(0));
             table.AddCell(new Cell(1, 4).Add(new Paragraph(inj).AddStyle(subtext)).SetBorder(Border.NO_BORDER).SetTextAlignment(TextAlignment.LEFT).SetPaddingTop(0));
 
@@ -265,13 +265,7 @@ namespace Smarti_Assist
                     MessageBox.Show("Your file was successfully exported in your chosen directory as 'Smart-i-" + DateTime.UtcNow.ToString("MM-dd-yyyy") + ".pdf'", "Success!", MessageBoxButtons.OK);
                 }
             }
-            catch (System.IO.IOException)
-            {
-                MessageBox.Show("An unexcected error occured when trying to save the file in that location. Is there already a file" +
-                    " with that name open and in use? Does the selected directory exist? Do you have permissions to save inside of it?" +
-                    "\nPlease try again.",
-                    "Unexected Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
             catch (System.InvalidOperationException)
             {
                 MessageBox.Show("Export was cancelled. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
